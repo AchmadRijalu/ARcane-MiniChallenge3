@@ -12,6 +12,9 @@
 		77C1F9372A735E3F00D2FBD2 /* Experience.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = 77C1F9362A735E3F00D2FBD2 /* Experience.rcproject */; };
 		77C1F9392A735E4000D2FBD2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77C1F9382A735E4000D2FBD2 /* Assets.xcassets */; };
 		77C1F93C2A735E4000D2FBD2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77C1F93B2A735E4000D2FBD2 /* Preview Assets.xcassets */; };
+		77C1F9432A73689000D2FBD2 /* ProjectileObject.reality in Resources */ = {isa = PBXBuildFile; fileRef = 77C1F9422A73689000D2FBD2 /* ProjectileObject.reality */; };
+		77C1F9492A736D4200D2FBD2 /* SpellshootButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C1F9482A736D4200D2FBD2 /* SpellshootButton.swift */; };
+		77C1F9672A73BA4E00D2FBD2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C1F9662A73BA4E00D2FBD2 /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +24,9 @@
 		77C1F9362A735E3F00D2FBD2 /* Experience.rcproject */ = {isa = PBXFileReference; lastKnownFileType = file.rcproject; path = Experience.rcproject; sourceTree = "<group>"; };
 		77C1F9382A735E4000D2FBD2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		77C1F93B2A735E4000D2FBD2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		77C1F9422A73689000D2FBD2 /* ProjectileObject.reality */ = {isa = PBXFileReference; lastKnownFileType = file; path = ProjectileObject.reality; sourceTree = "<group>"; };
+		77C1F9482A736D4200D2FBD2 /* SpellshootButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellshootButton.swift; sourceTree = "<group>"; };
+		77C1F9662A73BA4E00D2FBD2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,9 +61,12 @@
 			children = (
 				77C1F9322A735E3F00D2FBD2 /* AppDelegate.swift */,
 				77C1F9342A735E3F00D2FBD2 /* ContentView.swift */,
+				77C1F9422A73689000D2FBD2 /* ProjectileObject.reality */,
 				77C1F9362A735E3F00D2FBD2 /* Experience.rcproject */,
 				77C1F9382A735E4000D2FBD2 /* Assets.xcassets */,
 				77C1F93A2A735E4000D2FBD2 /* Preview Content */,
+				77C1F9482A736D4200D2FBD2 /* SpellshootButton.swift */,
+				77C1F9662A73BA4E00D2FBD2 /* ViewController.swift */,
 			);
 			path = "ARcane-MiniChallenge3";
 			sourceTree = "<group>";
@@ -130,6 +139,7 @@
 			files = (
 				77C1F93C2A735E4000D2FBD2 /* Preview Assets.xcassets in Resources */,
 				77C1F9392A735E4000D2FBD2 /* Assets.xcassets in Resources */,
+				77C1F9432A73689000D2FBD2 /* ProjectileObject.reality in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,8 +150,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77C1F9672A73BA4E00D2FBD2 /* ViewController.swift in Sources */,
 				77C1F9352A735E3F00D2FBD2 /* ContentView.swift in Sources */,
 				77C1F9332A735E3F00D2FBD2 /* AppDelegate.swift in Sources */,
+				77C1F9492A736D4200D2FBD2 /* SpellshootButton.swift in Sources */,
 				77C1F9372A735E3F00D2FBD2 /* Experience.rcproject in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -279,8 +291,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIRequiredDeviceCapabilities = arkit;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -310,8 +321,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIRequiredDeviceCapabilities = arkit;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
