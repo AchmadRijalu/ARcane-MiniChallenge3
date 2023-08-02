@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SpellshootButton: View {
+    
     var body: some View {
         VStack{
             Image("MagicWandIcon").resizable().scaledToFit()
