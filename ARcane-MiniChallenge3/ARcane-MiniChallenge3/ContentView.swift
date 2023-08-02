@@ -15,7 +15,6 @@ struct ContentView : View {
         ZStack(alignment: .bottomTrailing){
             ARViewController(isHit: $isHit).edgesIgnoringSafeArea(.all)
             SpellshootButton().onTapGesture {
-                print("tapped")
                 isHit = true
             }
         }
@@ -31,9 +30,8 @@ struct ARViewController : UIViewControllerRepresentable{
     }
     
     func updateUIViewController(_ uiViewController: ViewController, context: Context) {
-        print("update")
         if isHit == true{
-            uiViewController.testHit()
+            uiViewController.spellShoot()
             DispatchQueue.main.async {
                 isHit = false
             }
