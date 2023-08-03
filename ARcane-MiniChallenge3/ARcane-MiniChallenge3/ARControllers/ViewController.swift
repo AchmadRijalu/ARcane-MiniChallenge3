@@ -101,11 +101,11 @@ extension ViewController: ARSessionDelegate{
             if let playerAnchor = anchor as? ARParticipantAnchor {
                 print("Success connected with another player")
                 let anchorEntity = AnchorEntity(anchor: playerAnchor)
-                let mesh = MeshResource.generateBox(size: 4.3)
+                let mesh = MeshResource.generateSphere(radius: 0.03)
                 
                 let color = UIColor.green
                 
-                let material = SimpleMaterial(color: color, isMetallic: true)
+                let material = SimpleMaterial(color: color, isMetallic: false)
                 
                 let coloredSphered = ModelEntity(mesh: mesh, materials: [material])
                 
