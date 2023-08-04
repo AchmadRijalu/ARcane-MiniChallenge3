@@ -24,8 +24,8 @@ class ViewController: UIViewController {
     var sessionIDObservation: NSKeyValueObservation?
     
     //Did Appear
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidAppear(_ animated:Bool) {
+        super.viewDidAppear(animated)
         self.view.backgroundColor = .clear
         self.view.addSubview(self.arView)
                     
