@@ -13,6 +13,8 @@
 		77C1F9392A735E4000D2FBD2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77C1F9382A735E4000D2FBD2 /* Assets.xcassets */; };
 		77C1F93C2A735E4000D2FBD2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77C1F93B2A735E4000D2FBD2 /* Preview Assets.xcassets */; };
 		BF4001582A7C9DB8000007B2 /* ARViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4001572A7C9DB8000007B2 /* ARViewContainer.swift */; };
+		77C1F9432A73689000D2FBD2 /* ProjectileObject.reality in Resources */ = {isa = PBXBuildFile; fileRef = 77C1F9422A73689000D2FBD2 /* ProjectileObject.reality */; };
+		77C1F9492A736D4200D2FBD2 /* SpellshootButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C1F9482A736D4200D2FBD2 /* SpellshootButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +25,8 @@
 		77C1F9382A735E4000D2FBD2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		77C1F93B2A735E4000D2FBD2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		BF4001572A7C9DB8000007B2 /* ARViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewContainer.swift; sourceTree = "<group>"; };
+		77C1F9422A73689000D2FBD2 /* ProjectileObject.reality */ = {isa = PBXFileReference; lastKnownFileType = file; path = ProjectileObject.reality; sourceTree = "<group>"; };
+		77C1F9482A736D4200D2FBD2 /* SpellshootButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellshootButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +65,7 @@
 				77C1F9382A735E4000D2FBD2 /* Assets.xcassets */,
 				77C1F93A2A735E4000D2FBD2 /* Preview Content */,
 				BF4001572A7C9DB8000007B2 /* ARViewContainer.swift */,
+				77767C602A7C88180043EC08 /* MultipeerController.swift */,
 			);
 			path = "ARcane-MiniChallenge3";
 			sourceTree = "<group>";
@@ -144,7 +149,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				77C1F9352A735E3F00D2FBD2 /* ContentView.swift in Sources */,
-				BF4001582A7C9DB8000007B2 /* ARViewContainer.swift in Sources */,
 				77C1F9332A735E3F00D2FBD2 /* AppDelegate.swift in Sources */,
 				77C1F9372A735E3F00D2FBD2 /* Experience.rcproject in Sources */,
 			);

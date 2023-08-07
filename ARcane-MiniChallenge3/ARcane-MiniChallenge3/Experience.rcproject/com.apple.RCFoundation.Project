@@ -79,6 +79,32 @@
                             "value" : "Steel Box",
                             "typeName" : "String"
                           }
+                        ],
+                        [
+                          "rigidBody-enabled",
+                          {
+                            "typeName" : "Bool",
+                            "value" : false
+                          }
+                        ],
+                        [
+                          "rigidBody-material",
+                          {
+                            "typeName" : "RigidBodyMaterial",
+                            "value" : {
+                              "builtIn" : "plastic",
+                              "overrides" : {
+
+                              }
+                            }
+                          }
+                        ],
+                        [
+                          "rigidBody-motionType",
+                          {
+                            "typeName" : "REMotionType",
+                            "value" : "static"
+                          }
                         ]
                       ]
                     },
