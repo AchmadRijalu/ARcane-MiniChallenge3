@@ -7,23 +7,39 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		772933292A78C57C006B42F6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772933282A78C57C006B42F6 /* ViewController.swift */; };
+		7729332C2A78E974006B42F6 /* SpellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7729332B2A78E974006B42F6 /* SpellViewModel.swift */; };
+		7729332F2A7A04CB006B42F6 /* MultipeerSession in Frameworks */ = {isa = PBXBuildFile; productRef = 7729332E2A7A04CB006B42F6 /* MultipeerSession */; };
+		772933322A7A083C006B42F6 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772933312A7A083C006B42F6 /* MenuView.swift */; };
+		772933342A7A0870006B42F6 /* GameRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772933332A7A0870006B42F6 /* GameRoomView.swift */; };
+		77767C612A7C88180043EC08 /* MultipeerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77767C602A7C88180043EC08 /* MultipeerController.swift */; };
 		77C1F9332A735E3F00D2FBD2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C1F9322A735E3F00D2FBD2 /* AppDelegate.swift */; };
 		77C1F9352A735E3F00D2FBD2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C1F9342A735E3F00D2FBD2 /* ContentView.swift */; };
 		77C1F9372A735E3F00D2FBD2 /* Experience.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = 77C1F9362A735E3F00D2FBD2 /* Experience.rcproject */; };
 		77C1F9392A735E4000D2FBD2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77C1F9382A735E4000D2FBD2 /* Assets.xcassets */; };
 		77C1F93C2A735E4000D2FBD2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77C1F93B2A735E4000D2FBD2 /* Preview Assets.xcassets */; };
+		77C1F9432A73689000D2FBD2 /* ProjectileObject.reality in Resources */ = {isa = PBXBuildFile; fileRef = 77C1F9422A73689000D2FBD2 /* ProjectileObject.reality */; };
+		77C1F9492A736D4200D2FBD2 /* SpellshootButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C1F9482A736D4200D2FBD2 /* SpellshootButton.swift */; };
 		BF4001582A7C9DB8000007B2 /* ARViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4001572A7C9DB8000007B2 /* ARViewContainer.swift */; };
 		77C1F9432A73689000D2FBD2 /* ProjectileObject.reality in Resources */ = {isa = PBXBuildFile; fileRef = 77C1F9422A73689000D2FBD2 /* ProjectileObject.reality */; };
 		77C1F9492A736D4200D2FBD2 /* SpellshootButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C1F9482A736D4200D2FBD2 /* SpellshootButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		772933282A78C57C006B42F6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		7729332B2A78E974006B42F6 /* SpellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellViewModel.swift; sourceTree = "<group>"; };
+		772933312A7A083C006B42F6 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
+		772933332A7A0870006B42F6 /* GameRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRoomView.swift; sourceTree = "<group>"; };
+		772933382A7AA103006B42F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		77767C602A7C88180043EC08 /* MultipeerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipeerController.swift; sourceTree = "<group>"; };
 		77C1F92F2A735E3F00D2FBD2 /* ARcane-MiniChallenge3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ARcane-MiniChallenge3.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		77C1F9322A735E3F00D2FBD2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		77C1F9342A735E3F00D2FBD2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		77C1F9362A735E3F00D2FBD2 /* Experience.rcproject */ = {isa = PBXFileReference; lastKnownFileType = file.rcproject; path = Experience.rcproject; sourceTree = "<group>"; };
 		77C1F9382A735E4000D2FBD2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		77C1F93B2A735E4000D2FBD2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		77C1F9422A73689000D2FBD2 /* ProjectileObject.reality */ = {isa = PBXFileReference; lastKnownFileType = file; path = ProjectileObject.reality; sourceTree = "<group>"; };
+		77C1F9482A736D4200D2FBD2 /* SpellshootButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellshootButton.swift; sourceTree = "<group>"; };
 		BF4001572A7C9DB8000007B2 /* ARViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewContainer.swift; sourceTree = "<group>"; };
 		77C1F9422A73689000D2FBD2 /* ProjectileObject.reality */ = {isa = PBXFileReference; lastKnownFileType = file; path = ProjectileObject.reality; sourceTree = "<group>"; };
 		77C1F9482A736D4200D2FBD2 /* SpellshootButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellshootButton.swift; sourceTree = "<group>"; };
@@ -34,12 +50,54 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7729332F2A7A04CB006B42F6 /* MultipeerSession in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7729332A2A78E95A006B42F6 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				7729332B2A78E974006B42F6 /* SpellViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		772933302A7A082B006B42F6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				772933312A7A083C006B42F6 /* MenuView.swift */,
+				772933332A7A0870006B42F6 /* GameRoomView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		772933352A7A087E006B42F6 /* RealityObjects */ = {
+			isa = PBXGroup;
+			children = (
+				77C1F9422A73689000D2FBD2 /* ProjectileObject.reality */,
+			);
+			path = RealityObjects;
+			sourceTree = "<group>";
+		};
+		772933362A7A08A2006B42F6 /* ARControllers */ = {
+			isa = PBXGroup;
+			children = (
+				772933282A78C57C006B42F6 /* ViewController.swift */,
+			);
+			path = ARControllers;
+			sourceTree = "<group>";
+		};
+		772933372A7A08B2006B42F6 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				77C1F9482A736D4200D2FBD2 /* SpellshootButton.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		77C1F9262A735E3F00D2FBD2 = {
 			isa = PBXGroup;
 			children = (
@@ -59,11 +117,18 @@
 		77C1F9312A735E3F00D2FBD2 /* ARcane-MiniChallenge3 */ = {
 			isa = PBXGroup;
 			children = (
+				772933382A7AA103006B42F6 /* Info.plist */,
 				77C1F9322A735E3F00D2FBD2 /* AppDelegate.swift */,
 				77C1F9342A735E3F00D2FBD2 /* ContentView.swift */,
 				77C1F9362A735E3F00D2FBD2 /* Experience.rcproject */,
 				77C1F9382A735E4000D2FBD2 /* Assets.xcassets */,
+				772933372A7A08B2006B42F6 /* Components */,
+				772933362A7A08A2006B42F6 /* ARControllers */,
+				772933352A7A087E006B42F6 /* RealityObjects */,
+				772933302A7A082B006B42F6 /* Views */,
+				7729332A2A78E95A006B42F6 /* ViewModels */,
 				77C1F93A2A735E4000D2FBD2 /* Preview Content */,
+				77767C602A7C88180043EC08 /* MultipeerController.swift */,
 				BF4001572A7C9DB8000007B2 /* ARViewContainer.swift */,
 				77767C602A7C88180043EC08 /* MultipeerController.swift */,
 			);
@@ -94,6 +159,9 @@
 			dependencies = (
 			);
 			name = "ARcane-MiniChallenge3";
+			packageProductDependencies = (
+				7729332E2A7A04CB006B42F6 /* MultipeerSession */,
+			);
 			productName = "ARcane-MiniChallenge3";
 			productReference = 77C1F92F2A735E3F00D2FBD2 /* ARcane-MiniChallenge3.app */;
 			productType = "com.apple.product-type.application";
@@ -122,6 +190,9 @@
 				Base,
 			);
 			mainGroup = 77C1F9262A735E3F00D2FBD2;
+			packageReferences = (
+				7729332D2A7A04CB006B42F6 /* XCRemoteSwiftPackageReference "multipeer-session" */,
+			);
 			productRefGroup = 77C1F9302A735E3F00D2FBD2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -138,6 +209,7 @@
 			files = (
 				77C1F93C2A735E4000D2FBD2 /* Preview Assets.xcassets in Resources */,
 				77C1F9392A735E4000D2FBD2 /* Assets.xcassets in Resources */,
+				77C1F9432A73689000D2FBD2 /* ProjectileObject.reality in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,9 +220,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				772933322A7A083C006B42F6 /* MenuView.swift in Sources */,
+				77767C612A7C88180043EC08 /* MultipeerController.swift in Sources */,
+				772933292A78C57C006B42F6 /* ViewController.swift in Sources */,
 				77C1F9352A735E3F00D2FBD2 /* ContentView.swift in Sources */,
 				77C1F9332A735E3F00D2FBD2 /* AppDelegate.swift in Sources */,
+				77C1F9492A736D4200D2FBD2 /* SpellshootButton.swift in Sources */,
+				7729332C2A78E974006B42F6 /* SpellViewModel.swift in Sources */,
 				77C1F9372A735E3F00D2FBD2 /* Experience.rcproject in Sources */,
+				772933342A7A0870006B42F6 /* GameRoomView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,7 +285,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -261,7 +339,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -282,13 +360,16 @@
 				DEVELOPMENT_TEAM = DYXBWDG6F4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "ARcane-MiniChallenge3/Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "$(MARKETING_VERSION)";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIRequiredDeviceCapabilities = arkit;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationLandscapeLeft;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
@@ -316,13 +397,16 @@
 				DEVELOPMENT_TEAM = DYXBWDG6F4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "ARcane-MiniChallenge3/Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "$(MARKETING_VERSION)";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIRequiredDeviceCapabilities = arkit;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationLandscapeLeft;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
@@ -361,6 +445,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		7729332D2A7A04CB006B42F6 /* XCRemoteSwiftPackageReference "multipeer-session" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RyanKopinskyLLC/multipeer-session";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7729332E2A7A04CB006B42F6 /* MultipeerSession */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7729332D2A7A04CB006B42F6 /* XCRemoteSwiftPackageReference "multipeer-session" */;
+			productName = MultipeerSession;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 77C1F9272A735E3F00D2FBD2 /* Project object */;
 }

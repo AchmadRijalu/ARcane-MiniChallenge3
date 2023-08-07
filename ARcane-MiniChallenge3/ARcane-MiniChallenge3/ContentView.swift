@@ -9,9 +9,15 @@ import SwiftUI
 import RealityKit
 
 struct ContentView : View {
+    @State var isHit = false
     var body: some View {
-        ARViewContainer()
-			.ignoresSafeArea()
+        
+        ZStack(alignment: .bottomTrailing){
+            ARViewController(isHit: $isHit).edgesIgnoringSafeArea(.all)
+            SpellshootButton().onTapGesture {
+                isHit = true
+            }
+        }
     }
 }
 
@@ -25,11 +31,12 @@ struct ARViewController : UIViewControllerRepresentable{
     }
     
     func updateUIViewController(_ uiViewController: ViewController, context: Context) {
-        if isHit == true {
+        if isHit == true{
             uiViewController.spellShoot()
             DispatchQueue.main.async {
                 isHit = false
             }
+            
         }
     }
 
@@ -38,7 +45,7 @@ struct ARViewController : UIViewControllerRepresentable{
 #if DEBUG
 struct ContentView_Previews : PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView().previewInterfaceOrientation(.landscapeLeft)
     }
 }
 #endif
