@@ -44,13 +44,29 @@ class ViewController: UIViewController {
     }
     //setup the AR View
     func setupARView(){
-        arView.automaticallyConfigureSession = false
-        let config = ARWorldTrackingConfiguration()
-        config.planeDetection = [.horizontal, .vertical]
-        config.environmentTexturing = .automatic
+		// give physics to ar view environment
+		arView.environment.sceneUnderstanding.options.insert([.collision, .physics, .occlusion])
+		
+		// Starting AR session with LIDAR configuration
+		let configuration = ARWorldTrackingConfiguration()
+		
+		configuration.planeDetection = [.horizontal, .vertical]
+		configuration.environmentTexturing = .automatic
+		configuration.sceneReconstruction = .mesh
+		
+		if type(of: configuration).supportsFrameSemantics(.sceneDepth) {
+			// read surroundings and create a depth map using the sensor
+			configuration.frameSemantics = .sceneDepth
+		}
+		
+		arView.automaticallyConfigureSession = false
+		
+//		#if DEBUG
+//		arView.debugOptions = [.showSceneUnderstanding]
+//		#endif
         
-        config.isCollaborationEnabled = true
-        arView.session.run(config)
+        configuration.isCollaborationEnabled = true
+        arView.session.run(configuration)
     }
     
     func setupMultipeerSession(){
