@@ -20,6 +20,7 @@ struct ContentView : View {
         }
     }
 }
+
 struct ARViewController : UIViewControllerRepresentable{
     typealias UIViewControllerType = ViewController
     @Binding var isHit:Bool
