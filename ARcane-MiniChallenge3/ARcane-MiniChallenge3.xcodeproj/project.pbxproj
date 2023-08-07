@@ -20,7 +20,6 @@
 		77C1F93C2A735E4000D2FBD2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77C1F93B2A735E4000D2FBD2 /* Preview Assets.xcassets */; };
 		77C1F9432A73689000D2FBD2 /* ProjectileObject.reality in Resources */ = {isa = PBXBuildFile; fileRef = 77C1F9422A73689000D2FBD2 /* ProjectileObject.reality */; };
 		77C1F9492A736D4200D2FBD2 /* SpellshootButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C1F9482A736D4200D2FBD2 /* SpellshootButton.swift */; };
-		BF4001582A7C9DB8000007B2 /* ARViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4001572A7C9DB8000007B2 /* ARViewContainer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,7 +37,6 @@
 		77C1F93B2A735E4000D2FBD2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		77C1F9422A73689000D2FBD2 /* ProjectileObject.reality */ = {isa = PBXFileReference; lastKnownFileType = file; path = ProjectileObject.reality; sourceTree = "<group>"; };
 		77C1F9482A736D4200D2FBD2 /* SpellshootButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellshootButton.swift; sourceTree = "<group>"; };
-		BF4001572A7C9DB8000007B2 /* ARViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewContainer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,7 +123,6 @@
 				7729332A2A78E95A006B42F6 /* ViewModels */,
 				77C1F93A2A735E4000D2FBD2 /* Preview Content */,
 				77767C602A7C88180043EC08 /* MultipeerController.swift */,
-				BF4001572A7C9DB8000007B2 /* ARViewContainer.swift */,
 			);
 			path = "ARcane-MiniChallenge3";
 			sourceTree = "<group>";
@@ -219,7 +216,6 @@
 				77767C612A7C88180043EC08 /* MultipeerController.swift in Sources */,
 				772933292A78C57C006B42F6 /* ViewController.swift in Sources */,
 				77C1F9352A735E3F00D2FBD2 /* ContentView.swift in Sources */,
-				BF4001582A7C9DB8000007B2 /* ARViewContainer.swift in Sources */,
 				77C1F9332A735E3F00D2FBD2 /* AppDelegate.swift in Sources */,
 				77C1F9492A736D4200D2FBD2 /* SpellshootButton.swift in Sources */,
 				7729332C2A78E974006B42F6 /* SpellViewModel.swift in Sources */,
@@ -365,7 +361,6 @@
 				INFOPLIST_KEY_UIRequiredDeviceCapabilities = arkit;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationLandscapeLeft;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
@@ -402,7 +397,6 @@
 				INFOPLIST_KEY_UIRequiredDeviceCapabilities = arkit;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationLandscapeLeft;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
