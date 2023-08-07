@@ -110,7 +110,7 @@ class ViewController: UIViewController {
 extension ViewController: ARSessionDelegate{
     func session(_ session: ARSession, didAdd anchors: [ARAnchor]) {
         for anchor in anchors {
-            if let anchorName = anchor.name, anchorName == "ProjectileObject"{
+            if let anchorName = anchor.name, anchorName == "ProjectileObject" {
                 placeObject(named: anchorName, for : anchor)
             }
             

@@ -159,7 +159,7 @@
                           "diameter",
                           {
                             "typeName" : "Double",
-                            "value" : 0.040000000000000001
+                            "value" : 0.044999999999999998
                           }
                         ],
                         [
@@ -219,7 +219,7 @@
                           "rigidBody-enabled",
                           {
                             "typeName" : "Bool",
-                            "value" : false
+                            "value" : true
                           }
                         ],
                         [
@@ -238,7 +238,7 @@
                           "rigidBody-motionType",
                           {
                             "typeName" : "REMotionType",
-                            "value" : "static"
+                            "value" : "dynamic"
                           }
                         ]
                       ]
@@ -292,9 +292,9 @@
                   0.61434662342071533,
                   0.67739540338516235,
                   0,
-                  0.33224654197692871,
-                  0.64100408554077148,
-                  0.94216042757034302,
+                  0.43307429552078247,
+                  0.66745030879974365,
+                  0.85795009136199951,
                   1
                 ],
                 "sceneTransform" : [
