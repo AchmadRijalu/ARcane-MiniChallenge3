@@ -15,6 +15,10 @@ import MultipeerSession
 class ViewController: UIViewController {
     var arView: ARView = {
         let arView = ARView(frame: .zero)
+		
+		// give physics to ar view environment
+		arView.environment.sceneUnderstanding.options.insert([.collision, .physics, .occlusion])
+		
         return arView
     }()
     
@@ -44,9 +48,6 @@ class ViewController: UIViewController {
     }
     //setup the AR View
     func setupARView(){
-		// give physics to ar view environment
-		arView.environment.sceneUnderstanding.options.insert([.collision, .physics, .occlusion])
-		
 		// Starting AR session with LIDAR configuration
 		let configuration = ARWorldTrackingConfiguration()
 		
@@ -61,9 +62,9 @@ class ViewController: UIViewController {
 		
 		arView.automaticallyConfigureSession = false
 		
-//		#if DEBUG
-//		arView.debugOptions = [.showSceneUnderstanding]
-//		#endif
+		#if DEBUG
+//		arView.debugOptions = [.showAnchorOrigins]
+		#endif
         
         configuration.isCollaborationEnabled = true
         arView.session.run(configuration)
@@ -73,7 +74,6 @@ class ViewController: UIViewController {
         //Use the key-value observation to monitor the ARSession
         sessionIDObservation =
         arView.session.observe(\.identifier, options: [.new]){
-            
             
             object, change in
             print("SessionID changed to : \(change.newValue)")
@@ -91,44 +91,54 @@ class ViewController: UIViewController {
 
     
     func spellShoot(){
-        let anchor = ARAnchor(name: "ProjectileObject", transform: arView.cameraTransform.matrix)
+		let anchor = ARAnchor(name: "SpellShoot", transform: arView.cameraTransform.matrix)
+//		print(arView.cameraTransform.matrix)
         arView.session.add(anchor: anchor)
     }
     
-    func placeObject(named entityName: String, for anchor:ARAnchor){
-        let spellEntity = try! ModelEntity.load(named: entityName)
-        //This is for position or reallocate anchor in the same orientation
-        let anchorEntity = AnchorEntity(anchor: anchor)
-        anchorEntity.addChild(spellEntity)
-        arView.scene.addAnchor(anchorEntity)
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.60){
-            self.arView.scene.removeAnchor(anchorEntity)
-        }
+    func placeObject(named entityName: String, for anchor: ARAnchor){
+		// Mesh
+		let spellEntity = ModelEntity(mesh: .generateBox(width: 0.5, height: 0.5, depth: 2.5, cornerRadius: 0.5), materials: [SimpleMaterial(color: .systemPink, isMetallic: true)])
+		spellEntity.scale = [0.1, 0.1, 0.1]
+		
+		
+		spellEntity.collision = CollisionComponent(shapes: [.generateBox(width: 0.5, height: 0.5, depth: 2.5)])
+		spellEntity.physicsBody = PhysicsBodyComponent(massProperties: .default, material: .default, mode: .dynamic)
+//		// TODO: add force
+//		spellEntity.physicsMotion = PhysicsMotionComponent(linearVelocity: .one)
+		
+		
+		let anchorEntity = AnchorEntity(.camera)
+		anchorEntity.addChild(spellEntity)
+		arView.scene.addAnchor(anchorEntity)
+		
+		DispatchQueue.main.asyncAfter(deadline: .now() + 0.70){
+			self.arView.scene.removeAnchor(anchorEntity)
+		}
     }
 }
 extension ViewController: ARSessionDelegate{
     func session(_ session: ARSession, didAdd anchors: [ARAnchor]) {
         for anchor in anchors {
-            if let anchorName = anchor.name, anchorName == "ProjectileObject" {
+            if let anchorName = anchor.name, anchorName == "SpellShoot" {
                 placeObject(named: anchorName, for : anchor)
             }
             
-            if let playerAnchor = anchor as? ARParticipantAnchor {
-                print("Success connected with another player")
-                let anchorEntity = AnchorEntity(anchor: playerAnchor)
-                let mesh = MeshResource.generateSphere(radius: 0.03)
-                
-                let color = UIColor.green
-                
-                let material = SimpleMaterial(color: color, isMetallic: false)
-                
-                let coloredSphered = ModelEntity(mesh: mesh, materials: [material])
-                
-                anchorEntity.addChild(coloredSphered)
-                
-                arView.scene.addAnchor(anchorEntity)
-            }
+			if let playerAnchor = anchor as? ARParticipantAnchor {
+				print("Success connected with another player")
+				let anchorEntity = AnchorEntity(anchor: playerAnchor)
+				let mesh = MeshResource.generateSphere(radius: 0.03)
+				
+				let color = UIColor.green
+				
+				let material = SimpleMaterial(color: color, isMetallic: false)
+				
+				let coloredSphered = ModelEntity(mesh: mesh, materials: [material])
+				
+				anchorEntity.addChild(coloredSphered)
+				
+				arView.scene.addAnchor(anchorEntity)
+			}
         }
         
         
@@ -224,7 +234,13 @@ extension ViewController{
             
         }
         else{
-            print("Deferred sending collaboration to later because there are no peers")
+//            print("Deferred sending collaboration to later because there are no peers")
         }
     }
+}
+
+extension float4x4 {
+	var forward: SIMD3<Float> {
+		normalize(SIMD3<Float>(-columns.2.x, -columns.2.y, -columns.2.z))
+	}
 }
