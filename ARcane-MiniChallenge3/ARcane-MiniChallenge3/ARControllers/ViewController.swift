@@ -67,8 +67,7 @@ class ViewController: UIViewController {
             
             
             //Automatically looking for other player using multipeer
-           
-
+        
         }
         multipeerSession = MultipeerSession(serviceName: "multiuser-ar", receivedDataHandler: self.receivedData, peerJoinedHandler: self.peerJoined, peerLeftHandler: self.peerLeft, peerDiscoveredHandler: self.peerDiscovered)
     }
@@ -90,21 +89,28 @@ class ViewController: UIViewController {
             self.arView.scene.removeAnchor(anchorEntity)
         }
     }
+    
+    
 }
 extension ViewController: ARSessionDelegate{
     func session(_ session: ARSession, didAdd anchors: [ARAnchor]) {
         for anchor in anchors {
             if let anchorName = anchor.name, anchorName == "ProjectileObject"{
                 placeObject(named: anchorName, for : anchor)
+              
             }
+            let startLabelEntity = try! ModelEntity.load(named: "MenuExperience")
+            //This is for position or reallocate anchor in the same orientation
+            let anchorEntity:AnchorEntity = AnchorEntity(plane: .horizontal, classification: .any)
+            anchorEntity.addChild(startLabelEntity)
+            arView.scene.addAnchor(anchorEntity)
+            anchorEntity.addChild(startLabelEntity)
             
             if let playerAnchor = anchor as? ARParticipantAnchor {
                 print("Success connected with another player")
                 let anchorEntity = AnchorEntity(anchor: playerAnchor)
                 let mesh = MeshResource.generateSphere(radius: 0.03)
-                
                 let color = UIColor.green
-                
                 let material = SimpleMaterial(color: color, isMetallic: false)
                 
                 let coloredSphered = ModelEntity(mesh: mesh, materials: [material])

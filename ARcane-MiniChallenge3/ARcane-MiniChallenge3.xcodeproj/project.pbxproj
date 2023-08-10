@@ -13,6 +13,7 @@
 		772933322A7A083C006B42F6 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772933312A7A083C006B42F6 /* MenuView.swift */; };
 		772933342A7A0870006B42F6 /* GameRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772933332A7A0870006B42F6 /* GameRoomView.swift */; };
 		77767C612A7C88180043EC08 /* MultipeerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77767C602A7C88180043EC08 /* MultipeerController.swift */; };
+		77767C662A7CB2AF0043EC08 /* MenuExperience.reality in Resources */ = {isa = PBXBuildFile; fileRef = 77767C652A7CA9970043EC08 /* MenuExperience.reality */; };
 		77C1F9332A735E3F00D2FBD2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C1F9322A735E3F00D2FBD2 /* AppDelegate.swift */; };
 		77C1F9352A735E3F00D2FBD2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C1F9342A735E3F00D2FBD2 /* ContentView.swift */; };
 		77C1F9372A735E3F00D2FBD2 /* Experience.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = 77C1F9362A735E3F00D2FBD2 /* Experience.rcproject */; };
@@ -29,6 +30,8 @@
 		772933332A7A0870006B42F6 /* GameRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRoomView.swift; sourceTree = "<group>"; };
 		772933382A7AA103006B42F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		77767C602A7C88180043EC08 /* MultipeerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipeerController.swift; sourceTree = "<group>"; };
+		77767C622A7C9E110043EC08 /* MenuExperience.rcproject */ = {isa = PBXFileReference; lastKnownFileType = file.rcproject; path = MenuExperience.rcproject; sourceTree = "<group>"; };
+		77767C652A7CA9970043EC08 /* MenuExperience.reality */ = {isa = PBXFileReference; lastKnownFileType = file; path = MenuExperience.reality; sourceTree = "<group>"; };
 		77C1F92F2A735E3F00D2FBD2 /* ARcane-MiniChallenge3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ARcane-MiniChallenge3.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		77C1F9322A735E3F00D2FBD2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		77C1F9342A735E3F00D2FBD2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -71,6 +74,7 @@
 		772933352A7A087E006B42F6 /* RealityObjects */ = {
 			isa = PBXGroup;
 			children = (
+				77767C652A7CA9970043EC08 /* MenuExperience.reality */,
 				77C1F9422A73689000D2FBD2 /* ProjectileObject.reality */,
 			);
 			path = RealityObjects;
@@ -115,6 +119,7 @@
 				77C1F9322A735E3F00D2FBD2 /* AppDelegate.swift */,
 				77C1F9342A735E3F00D2FBD2 /* ContentView.swift */,
 				77C1F9362A735E3F00D2FBD2 /* Experience.rcproject */,
+				77767C622A7C9E110043EC08 /* MenuExperience.rcproject */,
 				77C1F9382A735E4000D2FBD2 /* Assets.xcassets */,
 				772933372A7A08B2006B42F6 /* Components */,
 				772933362A7A08A2006B42F6 /* ARControllers */,
@@ -202,6 +207,7 @@
 				77C1F93C2A735E4000D2FBD2 /* Preview Assets.xcassets in Resources */,
 				77C1F9392A735E4000D2FBD2 /* Assets.xcassets in Resources */,
 				77C1F9432A73689000D2FBD2 /* ProjectileObject.reality in Resources */,
+				77767C662A7CB2AF0043EC08 /* MenuExperience.reality in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

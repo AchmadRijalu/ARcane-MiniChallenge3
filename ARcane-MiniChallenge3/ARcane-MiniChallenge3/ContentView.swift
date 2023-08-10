@@ -24,10 +24,16 @@ struct ARViewController : UIViewControllerRepresentable{
     typealias UIViewControllerType = ViewController
     @Binding var isHit:Bool
     
+    
+    
     func makeUIViewController(context: Context) -> ViewController {
         let controller = ViewController()
+        
+      
+        
         return controller
     }
+    
     
     func updateUIViewController(_ uiViewController: ViewController, context: Context) {
         if isHit == true{
