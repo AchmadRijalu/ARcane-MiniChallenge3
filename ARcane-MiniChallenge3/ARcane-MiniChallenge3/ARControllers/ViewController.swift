@@ -51,7 +51,6 @@ class ViewController: UIViewController {
 		// Starting AR session with LIDAR configuration
 		let configuration = ARWorldTrackingConfiguration()
 		
-		configuration.planeDetection = [.horizontal, .vertical]
 		configuration.environmentTexturing = .automatic
 		configuration.sceneReconstruction = .mesh
 		
@@ -100,15 +99,12 @@ class ViewController: UIViewController {
 		// Mesh
 		let spellEntity = ModelEntity(mesh: .generateBox(width: 0.5, height: 0.5, depth: 2.5, cornerRadius: 0.5), materials: [SimpleMaterial(color: .systemPink, isMetallic: true)])
 		spellEntity.scale = [0.1, 0.1, 0.1]
-		
-		
+
 		spellEntity.collision = CollisionComponent(shapes: [.generateBox(width: 0.5, height: 0.5, depth: 2.5)])
 		spellEntity.physicsBody = PhysicsBodyComponent(massProperties: .default, material: .default, mode: .dynamic)
-//		// TODO: add force
-//		spellEntity.physicsMotion = PhysicsMotionComponent(linearVelocity: .one)
+		spellEntity.physicsMotion = PhysicsMotionComponent(linearVelocity: SIMD3(anchor.transform.columns.2.x * -20, anchor.transform.columns.2.y * -20, anchor.transform.columns.2.z * -20))
 		
-		
-		let anchorEntity = AnchorEntity(.camera)
+		let anchorEntity = AnchorEntity(anchor: anchor)
 		anchorEntity.addChild(spellEntity)
 		arView.scene.addAnchor(anchorEntity)
 		

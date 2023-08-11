@@ -11,7 +11,6 @@ import RealityKit
 struct ContentView : View {
     @State var isHit = false
     var body: some View {
-        
         ZStack(alignment: .bottomTrailing){
             ARViewController(isHit: $isHit).edgesIgnoringSafeArea(.all)
             SpellshootButton().onTapGesture {
