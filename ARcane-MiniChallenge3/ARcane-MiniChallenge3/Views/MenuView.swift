@@ -9,7 +9,11 @@ import SwiftUI
 
 struct MenuView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        GeometryReader{geo in
+            VStack{
+                
+            }.frame(maxWidth: .infinity, maxHeight: .infinity).background(.red)
+        }
     }
 }
 

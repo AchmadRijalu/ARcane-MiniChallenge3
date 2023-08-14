@@ -11,6 +11,8 @@ import RealityKit
 import AVFoundation
 import SwiftUI
 import MultipeerSession
+import UIKit
+
 
 class ViewController: UIViewController {
     var arView: ARView = {
@@ -23,12 +25,19 @@ class ViewController: UIViewController {
     var multipeerSession: MultipeerSession?
     var sessionIDObservation: NSKeyValueObservation?
     
+    //setup the arcoachignoverlay
+    let coachingOverlay = ARCoachingOverlayView()
+    var message:MessageLabel = MessageLabel()
+//    var emptyMessage:UILabel = UILabel
+    
+    
     //Did Appear
     override func viewDidAppear(_ animated:Bool) {
         super.viewDidAppear(animated)
         self.view.backgroundColor = .clear
         self.view.addSubview(self.arView)
-                    
+        self.view.addSubview(self.message)
+        
         NSLayoutConstraint.activate([
             arView.topAnchor.constraint(equalTo: self.view.topAnchor),
             arView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
@@ -41,6 +50,9 @@ class ViewController: UIViewController {
         arView.session.delegate = self
         setupARView()
         setupMultipeerSession()
+        setupCoachingOverlay()
+        message.displayMessage("Track you phone to find some players", duration: 60.0)
+        
     }
     //setup the AR View
     func setupARView(){
@@ -67,11 +79,11 @@ class ViewController: UIViewController {
             
             
             //Automatically looking for other player using multipeer
-        
+            
         }
         multipeerSession = MultipeerSession(serviceName: "multiuser-ar", receivedDataHandler: self.receivedData, peerJoinedHandler: self.peerJoined, peerLeftHandler: self.peerLeft, peerDiscoveredHandler: self.peerDiscovered)
     }
-
+    
     
     func spellShoot(){
         let anchor = ARAnchor(name: "ProjectileObject", transform: arView.cameraTransform.matrix)
@@ -97,15 +109,8 @@ extension ViewController: ARSessionDelegate{
         for anchor in anchors {
             if let anchorName = anchor.name, anchorName == "ProjectileObject"{
                 placeObject(named: anchorName, for : anchor)
-              
+                
             }
-            let startLabelEntity = try! ModelEntity.load(named: "MenuExperience")
-            //This is for position or reallocate anchor in the same orientation
-            let anchorEntity:AnchorEntity = AnchorEntity(plane: .horizontal, classification: .any)
-            anchorEntity.addChild(startLabelEntity)
-            arView.scene.addAnchor(anchorEntity)
-            anchorEntity.addChild(startLabelEntity)
-            
             if let playerAnchor = anchor as? ARParticipantAnchor {
                 print("Success connected with another player")
                 let anchorEntity = AnchorEntity(anchor: playerAnchor)
@@ -174,7 +179,9 @@ extension ViewController{
     }
     func peerJoined(_ peer: PeerID){
         print("A Player wants to join hold it")
-        
+        message.displayMessage("""
+                   A Player wants to join hold it
+            """, duration: 6.0)
         //provide it the session ID to the new user so they can your track the anchors
     }
     
@@ -215,6 +222,7 @@ extension ViewController{
         }
         else{
             print("Deferred sending collaboration to later because there are no peers")
+            message.displayMessage("Finding Local Players")
         }
     }
 }
