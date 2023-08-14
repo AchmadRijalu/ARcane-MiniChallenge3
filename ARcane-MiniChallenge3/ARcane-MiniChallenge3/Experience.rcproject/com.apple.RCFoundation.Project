@@ -10,132 +10,7 @@
                 "name" : "surface"
               },
               "behaviors" : [
-                {
-                  "__content" : [
-                    {
-                      "accessibility" : {
-                        "__content" : [
-                          {
-                            "isEnabled" : false
-                          }
-                        ],
-                        "__version" : 1
-                      },
-                      "actionGroups" : [
-                        {
-                          "__content" : [
-                            {
-                              "configurations" : [
-                                {
-                                  "__content" : [
-                                    {
-                                      "configurationBox" : {
-                                        "configuration" : {
-                                          "angularCoefficient" : 1,
-                                          "duration" : 0.5,
-                                          "isTransformInitKeyPath" : true,
-                                          "linearCoefficient" : 1,
-                                          "location" : [
-                                            0,
-                                            8,
-                                            0
-                                          ],
-                                          "moveEase" : "easeIn",
-                                          "respectPhysics" : false,
-                                          "target" : [
-                                            "AE944DAF-BB30-415A-ACDA-D067AD8C0644"
-                                          ]
-                                        },
-                                        "name" : {
-                                          "arguments" : "local",
-                                          "type" : "transform"
-                                        }
-                                      },
-                                      "identifier" : "52EE6018-2427-48D1-8C8A-0E36F0B68239",
-                                      "isEnabled" : true
-                                    }
-                                  ],
-                                  "__version" : 1
-                                }
-                              ],
-                              "identifier" : "8D0E9DC9-114F-4D07-99AA-739712E7CBB7",
-                              "isEnabled" : true
-                            }
-                          ],
-                          "__version" : 1
-                        },
-                        {
-                          "__content" : [
-                            {
-                              "configurations" : [
-                                {
-                                  "__content" : [
-                                    {
-                                      "configurationBox" : {
-                                        "configuration" : {
-                                          "angularCoefficient" : 1,
-                                          "animationStyle" : "basic",
-                                          "buildOutAnimationType" : "none",
-                                          "distance" : 1,
-                                          "duration" : 0,
-                                          "fadeOut" : true,
-                                          "linearCoefficient" : 1,
-                                          "moveEase" : "easeInOut",
-                                          "respectPhysics" : false,
-                                          "target" : [
-                                            "AE944DAF-BB30-415A-ACDA-D067AD8C0644"
-                                          ]
-                                        },
-                                        "name" : {
-                                          "type" : "hide"
-                                        }
-                                      },
-                                      "identifier" : "F294F21D-B5D3-496A-B0DC-5A6CE1CB318A",
-                                      "isEnabled" : true
-                                    }
-                                  ],
-                                  "__version" : 1
-                                }
-                              ],
-                              "identifier" : "EAEF8873-7A8E-4245-BC03-097539AF07A9",
-                              "isEnabled" : true
-                            }
-                          ],
-                          "__version" : 1
-                        }
-                      ],
-                      "color" : [
-                        0.364705890417099,
-                        0.74117648601531982,
-                        0.69019609689712524,
-                        1
-                      ],
-                      "identifier" : "FC6817BA-A736-49EB-82FF-8F4D47D208F0",
-                      "isEnabled" : true,
-                      "isLooping" : false,
-                      "isModal" : false,
-                      "name" : "Spell",
-                      "triggers" : [
-                        {
-                          "__content" : [
-                            {
-                              "configurationBox" : {
-                                "configuration" : {
 
-                                },
-                                "name" : "start"
-                              },
-                              "identifier" : "F9A65F7B-BBB6-4BB9-BDBD-C8252C820574",
-                              "isEnabled" : true
-                            }
-                          ],
-                          "__version" : 1
-                        }
-                      ]
-                    }
-                  ],
-                  "__version" : 3
-                }
               ],
               "gravity" : [
                 0,
@@ -159,14 +34,14 @@
                           "diameter",
                           {
                             "typeName" : "Double",
-                            "value" : 0.040000000000000001
+                            "value" : 0.044999999999999998
                           }
                         ],
                         [
                           "height",
                           {
                             "typeName" : "Double",
-                            "value" : 0.31220087139821184
+                            "value" : 0.31
                           }
                         ],
                         [
@@ -257,15 +132,15 @@
                         0,
                         0,
                         0,
-                        5.0663948059082031e-06,
-                        -1,
+                        7.0929495450400282e-06,
+                        -0.9999995231628418,
                         0,
                         0,
-                        1,
-                        5.0663948059082031e-06,
+                        0.9999995231628418,
+                        7.0929495450400282e-06,
                         0,
                         0,
-                        0,
+                        0.022472228854894638,
                         -0.0042393803596496582,
                         1
                       ]
@@ -299,9 +174,9 @@
                   0.61434662342071533,
                   0.67739540338516235,
                   0,
-                  0.33224654197692871,
-                  0.64100408554077148,
-                  0.94216042757034302,
+                  0.53392159938812256,
+                  0.907795250415802,
+                  0.90999764204025269,
                   1
                 ],
                 "sceneTransform" : [
