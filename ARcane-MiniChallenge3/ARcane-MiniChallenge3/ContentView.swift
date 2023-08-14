@@ -15,7 +15,6 @@ struct ContentView : View {
     
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     var body: some View {
-        
         ZStack(alignment: .bottomTrailing){
             ARViewController(isHit: $isHit).edgesIgnoringSafeArea(.all)
             

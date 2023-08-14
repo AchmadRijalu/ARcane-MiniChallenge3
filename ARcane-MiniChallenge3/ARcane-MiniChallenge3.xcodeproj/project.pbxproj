@@ -24,9 +24,7 @@
 		77C1F9372A735E3F00D2FBD2 /* Experience.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = 77C1F9362A735E3F00D2FBD2 /* Experience.rcproject */; };
 		77C1F9392A735E4000D2FBD2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77C1F9382A735E4000D2FBD2 /* Assets.xcassets */; };
 		77C1F93C2A735E4000D2FBD2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77C1F93B2A735E4000D2FBD2 /* Preview Assets.xcassets */; };
-		77C1F9432A73689000D2FBD2 /* ProjectileObject.reality in Resources */ = {isa = PBXBuildFile; fileRef = 77C1F9422A73689000D2FBD2 /* ProjectileObject.reality */; };
 		77C1F9492A736D4200D2FBD2 /* SpellshootButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C1F9482A736D4200D2FBD2 /* SpellshootButton.swift */; };
-		BF4001582A7C9DB8000007B2 /* ARViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4001572A7C9DB8000007B2 /* ARViewContainer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,9 +48,7 @@
 		77C1F9362A735E3F00D2FBD2 /* Experience.rcproject */ = {isa = PBXFileReference; lastKnownFileType = file.rcproject; path = Experience.rcproject; sourceTree = "<group>"; };
 		77C1F9382A735E4000D2FBD2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		77C1F93B2A735E4000D2FBD2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		77C1F9422A73689000D2FBD2 /* ProjectileObject.reality */ = {isa = PBXFileReference; lastKnownFileType = file; path = ProjectileObject.reality; sourceTree = "<group>"; };
 		77C1F9482A736D4200D2FBD2 /* SpellshootButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellshootButton.swift; sourceTree = "<group>"; };
-		BF4001572A7C9DB8000007B2 /* ARViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewContainer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,12 +138,10 @@
 				77C1F9382A735E4000D2FBD2 /* Assets.xcassets */,
 				772933372A7A08B2006B42F6 /* Components */,
 				772933362A7A08A2006B42F6 /* ARControllers */,
-				772933352A7A087E006B42F6 /* RealityObjects */,
 				772933302A7A082B006B42F6 /* Views */,
 				7729332A2A78E95A006B42F6 /* ViewModels */,
 				77C1F93A2A735E4000D2FBD2 /* Preview Content */,
 				77767C602A7C88180043EC08 /* MultipeerController.swift */,
-				BF4001572A7C9DB8000007B2 /* ARViewContainer.swift */,
 			);
 			path = "ARcane-MiniChallenge3";
 			sourceTree = "<group>";
@@ -243,7 +237,6 @@
 				77AC76D22A85DEF200564ADF /* ViewCounterController.swift in Sources */,
 				772933292A78C57C006B42F6 /* ViewController.swift in Sources */,
 				77C1F9352A735E3F00D2FBD2 /* ContentView.swift in Sources */,
-				BF4001582A7C9DB8000007B2 /* ARViewContainer.swift in Sources */,
 				77C1F9332A735E3F00D2FBD2 /* AppDelegate.swift in Sources */,
 				77C1F9492A736D4200D2FBD2 /* SpellshootButton.swift in Sources */,
 				77AC76D02A85D04200564ADF /* StartViewModel.swift in Sources */,
@@ -381,7 +374,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ARcane-MiniChallenge3/Preview Content\"";
-				DEVELOPMENT_TEAM = DYXBWDG6F4;
+				DEVELOPMENT_TEAM = 9B67722SW9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "ARcane-MiniChallenge3/Info.plist";
@@ -395,7 +388,7 @@
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationLandscapeLeft;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -417,7 +410,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ARcane-MiniChallenge3/Preview Content\"";
-				DEVELOPMENT_TEAM = DYXBWDG6F4;
+				DEVELOPMENT_TEAM = 9B67722SW9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "ARcane-MiniChallenge3/Info.plist";
@@ -431,7 +424,7 @@
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationLandscapeLeft;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
