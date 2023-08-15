@@ -16,7 +16,7 @@ import FocusEntity
 
 
 class ViewController: UIViewController {
-
+    
     var arView: ARView = {
         let arView = ARView(frame: .zero)
         
@@ -30,13 +30,12 @@ class ViewController: UIViewController {
     var shootAudioPlayer : AVAudioPlayer!
     var multipeerSession: MultipeerSession?
     var sessionIDObservation: NSKeyValueObservation?
+    var connectedPeers: [UUID: String] = [:]
     
     //setup the arcoachignoverlay
     let coachingOverlay = ARCoachingOverlayView()
     var message:MessageLabel = MessageLabel()
     //    var emptyMessage:UILabel = UILabel
-    
-    
     //Did Appear
     override func viewDidAppear(_ animated:Bool) {
         super.viewDidAppear(animated)
@@ -50,28 +49,39 @@ class ViewController: UIViewController {
             arView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
             arView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
         ])
-		
+        
         self.view.subviews.forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
-		
+        
         arView.session.delegate = self
-		
+        
         setupARView()
-        setupMultipeerSession()
+        
+        //        setupMultipeerSession()
         setupCoachingOverlay()
-        message.displayMessage("Track you phone to find some players", duration: 60.0)
+        message.displayMessage("Track your phone to find some players", duration: 60.0)
         
+        message.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            // Center the label horizontally
+            message.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            // Position the label at the top with a margin of 20 points
+            message.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
+            
+            // Add other constraints as needed
+        ])
         
-        
-     
-		
-		let hitbox = HitboxEntity(color: .systemPink)
-		
-		arView.scene.anchors.append(hitbox)
-		hitbox.addCollisions()
+        message.layer.cornerRadius = 10
+        message.ignoreMessages = false
+        message.textAlignment = .center
+        //		let hitbox = HitboxEntity(color: .systemPink)
+        //
+        //		arView.scene.anchors.append(hitbox)
+        //		hitbox.addCollisions()
     }
-
+    
     //setup the AR View
     func setupARView(){
         // Starting AR session with LIDAR configuration
@@ -86,25 +96,22 @@ class ViewController: UIViewController {
         arView.automaticallyConfigureSession = false
         
 #if DEBUG
-        //		arView.debugOptions = [.showAnchorOrigins]
+        //        arView.debugOptions = [.showSceneUnderstanding, .showPhysics]
 #endif
         
         configuration.isCollaborationEnabled = true
         arView.session.run(configuration)
     }
-
+    
     func setupMultipeerSession(){
         //Use the key-value observation to monitor the ARSession
         sessionIDObservation =
         arView.session.observe(\.identifier, options: [.new]){
-            
             object, change in
             print("SessionID changed to : \(change.newValue)")
             guard let multipeerSession = self.multipeerSession else{return}
             
             self.sendARSessionIDTo(peers: multipeerSession.connectedPeers)
-            
-            
         }
         multipeerSession = MultipeerSession(serviceName: "multiuser-ar", receivedDataHandler: self.receivedData, peerJoinedHandler: self.peerJoined, peerLeftHandler: self.peerLeft, peerDiscoveredHandler: self.peerDiscovered)
     }
@@ -117,27 +124,27 @@ class ViewController: UIViewController {
     }
     
     func placeObject(named entityName: String, for anchor: ARAnchor){
-		// Mesh
-//		let spellEntity = ModelEntity(mesh: .generateBox(width: 0.5, height: 0.5, depth: 2.5, cornerRadius: 0.5), materials: [SimpleMaterial(color: .systemPink, isMetallic: true)])
-//		spellEntity.scale = [0.1, 0.1, 0.1]
-//
-//		spellEntity.collision = CollisionComponent(shapes: [.generateBox(width: 0.5, height: 0.5, depth: 2.5)])
-//		spellEntity.physicsBody = PhysicsBodyComponent(massProperties: .default, material: .default, mode: .dynamic)
-//		spellEntity.physicsMotion = PhysicsMotionComponent(linearVelocity: SIMD3(anchor.transform.columns.2.x * -20, anchor.transform.columns.2.y * -20, anchor.transform.columns.2.z * -20))
-		
-		let spellEntity = BulletEntity(color: .systemPink, for: anchor)
-		
-		let anchorEntity = AnchorEntity(anchor: anchor)
-		anchorEntity.addChild(spellEntity)
-		arView.scene.addAnchor(anchorEntity)
-		
-		spellEntity.addCollisions()
-		
-		DispatchQueue.main.asyncAfter(deadline: .now() + 0.70){
-			self.arView.scene.removeAnchor(anchorEntity)
-		}
+        // Mesh
+        //		let spellEntity = ModelEntity(mesh: .generateBox(width: 0.5, height: 0.5, depth: 2.5, cornerRadius: 0.5), materials: [SimpleMaterial(color: .systemPink, isMetallic: true)])
+        //		spellEntity.scale = [0.1, 0.1, 0.1]
+        //
+        //		spellEntity.collision = CollisionComponent(shapes: [.generateBox(width: 0.5, height: 0.5, depth: 2.5)])
+        //		spellEntity.physicsBody = PhysicsBodyComponent(massProperties: .default, material: .default, mode: .dynamic)
+        //		spellEntity.physicsMotion = PhysicsMotionComponent(linearVelocity: SIMD3(anchor.transform.columns.2.x * -20, anchor.transform.columns.2.y * -20, anchor.transform.columns.2.z * -20))
+        
+        let spellEntity = BulletEntity(color: .systemPink, for: anchor)
+        
+        let anchorEntity = AnchorEntity(anchor: anchor)
+        anchorEntity.addChild(spellEntity)
+        arView.scene.addAnchor(anchorEntity)
+        
+        spellEntity.addCollisions()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.70){
+            self.arView.scene.removeAnchor(anchorEntity)
+        }
     }
-   
+    
     
     
 }
@@ -147,13 +154,11 @@ extension ViewController: ARSessionDelegate{
         for anchor in anchors {
             if let anchorName = anchor.name, anchorName == "SpellShoot" {
                 placeObject(named: anchorName, for : anchor)
-
+                
             }
             
-        
-            
             if let playerAnchor = anchor as? ARParticipantAnchor {
-                print("Success connected with another player")
+                print("Success connected with : \(playerAnchor.sessionIdentifier)")
                 let anchorEntity = AnchorEntity(anchor: playerAnchor)
                 let mesh = MeshResource.generateSphere(radius: 0.03)
                 
@@ -172,6 +177,8 @@ extension ViewController: ARSessionDelegate{
         
     }
 }
+
+
 
 
 //MARK: - This is Multipeer Extension start
@@ -211,7 +218,7 @@ extension ViewController{
     func peerDiscovered(_ peer: PeerID) -> Bool {
         guard let multipeerSession = multipeerSession else {return false}
         
-        if multipeerSession.connectedPeers.count > 3{
+        if multipeerSession.connectedPeers.count > 2{
             print("There's some player wants to join but the limitation of peers, it can't join the battle")
             return false
         }
@@ -223,15 +230,19 @@ extension ViewController{
     func peerJoined(_ peer: PeerID){
         print("A Player wants to join hold it")
         message.displayMessage("""
-                   A Player wants to join hold it
+                   \(peer.displayName) is joining
             """, duration: 6.0)
         //provide it the session ID to the new user so they can your track the anchors
+//        if let playerAnchor = arView.session.currentFrame?.anchors.first {
+//            let indicatorEntity = createPlayerIndicator(playerName: connectedPeers[peer] ?? "Unknown")
+//            playerAnchor.addChild(indicatorEntity)
+//        }
     }
     
     func peerLeft(_ peer:PeerID){
         guard let multipeerSession = multipeerSession else { return}
         
-        print("The player \(peer) is leaving the game")
+        print("The player \(peer.displayName) is leaving the game")
         
         if let sessionID = multipeerSession.peerSessionIDs[peer]{
             removeAllAnchorsOriginatingFromARSessionWithID(sessionID)
@@ -264,7 +275,7 @@ extension ViewController{
             
         }
         else{
-            print("Deferred sending collaboration to later because there are no peers")
+            //            print("Deferred sending collaboration to later because there are no peers")
             message.displayMessage("Finding Local Players")
         }
     }
