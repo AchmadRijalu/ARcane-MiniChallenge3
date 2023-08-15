@@ -50,10 +50,13 @@ class ViewController: UIViewController {
             arView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
             arView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
         ])
+		
         self.view.subviews.forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
+		
         arView.session.delegate = self
+		
         setupARView()
         setupMultipeerSession()
         setupCoachingOverlay()
@@ -62,6 +65,11 @@ class ViewController: UIViewController {
         
         
      
+		
+		let hitbox = HitboxEntity(color: .systemPink)
+		
+		arView.scene.anchors.append(hitbox)
+		hitbox.addCollisions()
     }
 
     //setup the AR View
@@ -109,26 +117,31 @@ class ViewController: UIViewController {
     }
     
     func placeObject(named entityName: String, for anchor: ARAnchor){
-        // Mesh
-        let spellEntity = ModelEntity(mesh: .generateBox(width: 0.5, height: 0.5, depth: 2.5, cornerRadius: 0.5), materials: [SimpleMaterial(color: .systemPink, isMetallic: true)])
-        spellEntity.scale = [0.1, 0.1, 0.1]
-        
-        spellEntity.collision = CollisionComponent(shapes: [.generateBox(width: 0.5, height: 0.5, depth: 2.5)])
-        spellEntity.physicsBody = PhysicsBodyComponent(massProperties: .default, material: .default, mode: .dynamic)
-        spellEntity.physicsMotion = PhysicsMotionComponent(linearVelocity: SIMD3(anchor.transform.columns.2.x * -20, anchor.transform.columns.2.y * -20, anchor.transform.columns.2.z * -20))
-        
-        let anchorEntity = AnchorEntity(anchor: anchor)
-        anchorEntity.addChild(spellEntity)
-        arView.scene.addAnchor(anchorEntity)
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.70){
-            self.arView.scene.removeAnchor(anchorEntity)
-        }
+		// Mesh
+//		let spellEntity = ModelEntity(mesh: .generateBox(width: 0.5, height: 0.5, depth: 2.5, cornerRadius: 0.5), materials: [SimpleMaterial(color: .systemPink, isMetallic: true)])
+//		spellEntity.scale = [0.1, 0.1, 0.1]
+//
+//		spellEntity.collision = CollisionComponent(shapes: [.generateBox(width: 0.5, height: 0.5, depth: 2.5)])
+//		spellEntity.physicsBody = PhysicsBodyComponent(massProperties: .default, material: .default, mode: .dynamic)
+//		spellEntity.physicsMotion = PhysicsMotionComponent(linearVelocity: SIMD3(anchor.transform.columns.2.x * -20, anchor.transform.columns.2.y * -20, anchor.transform.columns.2.z * -20))
+		
+		let spellEntity = BulletEntity(color: .systemPink, for: anchor)
+		
+		let anchorEntity = AnchorEntity(anchor: anchor)
+		anchorEntity.addChild(spellEntity)
+		arView.scene.addAnchor(anchorEntity)
+		
+		spellEntity.addCollisions()
+		
+		DispatchQueue.main.asyncAfter(deadline: .now() + 0.70){
+			self.arView.scene.removeAnchor(anchorEntity)
+		}
     }
    
     
     
 }
+
 extension ViewController: ARSessionDelegate{
     func session(_ session: ARSession, didAdd anchors: [ARAnchor]) {
         for anchor in anchors {
