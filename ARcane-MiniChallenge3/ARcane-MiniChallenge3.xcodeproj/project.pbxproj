@@ -19,6 +19,8 @@
 		77C1F9392A735E4000D2FBD2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77C1F9382A735E4000D2FBD2 /* Assets.xcassets */; };
 		77C1F93C2A735E4000D2FBD2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77C1F93B2A735E4000D2FBD2 /* Preview Assets.xcassets */; };
 		77C1F9492A736D4200D2FBD2 /* SpellshootButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C1F9482A736D4200D2FBD2 /* SpellshootButton.swift */; };
+		BF5182B12A89DF63005413F9 /* BulletEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5182B02A89DF63005413F9 /* BulletEntity.swift */; };
+		BF5182B32A8B1BE4005413F9 /* HitboxEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5182B22A8B1BE4005413F9 /* HitboxEntity.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +37,8 @@
 		77C1F9382A735E4000D2FBD2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		77C1F93B2A735E4000D2FBD2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		77C1F9482A736D4200D2FBD2 /* SpellshootButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellshootButton.swift; sourceTree = "<group>"; };
+		BF5182B02A89DF63005413F9 /* BulletEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulletEntity.swift; sourceTree = "<group>"; };
+		BF5182B22A8B1BE4005413F9 /* HitboxEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitboxEntity.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +105,7 @@
 		77C1F9312A735E3F00D2FBD2 /* ARcane-MiniChallenge3 */ = {
 			isa = PBXGroup;
 			children = (
+				BF5182AF2A89DF2E005413F9 /* Entities */,
 				772933382A7AA103006B42F6 /* Info.plist */,
 				77C1F9322A735E3F00D2FBD2 /* AppDelegate.swift */,
 				77C1F9342A735E3F00D2FBD2 /* ContentView.swift */,
@@ -122,6 +127,15 @@
 				77C1F93B2A735E4000D2FBD2 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		BF5182AF2A89DF2E005413F9 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				BF5182B02A89DF63005413F9 /* BulletEntity.swift */,
+				BF5182B22A8B1BE4005413F9 /* HitboxEntity.swift */,
+			);
+			path = Entities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -200,8 +214,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF5182B12A89DF63005413F9 /* BulletEntity.swift in Sources */,
 				772933322A7A083C006B42F6 /* MenuView.swift in Sources */,
 				77767C612A7C88180043EC08 /* MultipeerController.swift in Sources */,
+				BF5182B32A8B1BE4005413F9 /* HitboxEntity.swift in Sources */,
 				772933292A78C57C006B42F6 /* ViewController.swift in Sources */,
 				77C1F9352A735E3F00D2FBD2 /* ContentView.swift in Sources */,
 				77C1F9332A735E3F00D2FBD2 /* AppDelegate.swift in Sources */,
