@@ -15,10 +15,12 @@
 		7767120B2A8483200011362B /* MessageLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7767120A2A8483200011362B /* MessageLabel.swift */; };
 		7767120F2A848B4D0011362B /* StartShowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7767120E2A848B4D0011362B /* StartShowButton.swift */; };
 		77767C612A7C88180043EC08 /* MultipeerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77767C602A7C88180043EC08 /* MultipeerController.swift */; };
-		77767C662A7CB2AF0043EC08 /* MenuExperience.reality in Resources */ = {isa = PBXBuildFile; fileRef = 77767C652A7CA9970043EC08 /* MenuExperience.reality */; };
 		77AC76CE2A85CF9C00564ADF /* ViewStartController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AC76CD2A85CF9C00564ADF /* ViewStartController.swift */; };
 		77AC76D02A85D04200564ADF /* StartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AC76CF2A85D04200564ADF /* StartViewModel.swift */; };
 		77AC76D22A85DEF200564ADF /* ViewCounterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AC76D12A85DEF200564ADF /* ViewCounterController.swift */; };
+		77AF6AFD2A89C2C7000DF49B /* MenuExperience.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = 77767C622A7C9E110043EC08 /* MenuExperience.rcproject */; };
+		77AF6B002A89CE6A000DF49B /* FocusEntity in Frameworks */ = {isa = PBXBuildFile; productRef = 77AF6AFF2A89CE6A000DF49B /* FocusEntity */; };
+		77AF6B022A8A7A87000DF49B /* ARObjectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AF6B012A8A7A87000DF49B /* ARObjectViewModel.swift */; };
 		77C1F9332A735E3F00D2FBD2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C1F9322A735E3F00D2FBD2 /* AppDelegate.swift */; };
 		77C1F9352A735E3F00D2FBD2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C1F9342A735E3F00D2FBD2 /* ContentView.swift */; };
 		77C1F9372A735E3F00D2FBD2 /* Experience.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = 77C1F9362A735E3F00D2FBD2 /* Experience.rcproject */; };
@@ -37,11 +39,11 @@
 		7767120E2A848B4D0011362B /* StartShowButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartShowButton.swift; sourceTree = "<group>"; };
 		77767C602A7C88180043EC08 /* MultipeerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipeerController.swift; sourceTree = "<group>"; };
 		77767C622A7C9E110043EC08 /* MenuExperience.rcproject */ = {isa = PBXFileReference; lastKnownFileType = file.rcproject; path = MenuExperience.rcproject; sourceTree = "<group>"; };
-		77767C652A7CA9970043EC08 /* MenuExperience.reality */ = {isa = PBXFileReference; lastKnownFileType = file; path = MenuExperience.reality; sourceTree = "<group>"; };
 		77AC76CD2A85CF9C00564ADF /* ViewStartController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewStartController.swift; sourceTree = "<group>"; };
 		77AC76CF2A85D04200564ADF /* StartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewModel.swift; sourceTree = "<group>"; };
 		77AC76D12A85DEF200564ADF /* ViewCounterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCounterController.swift; sourceTree = "<group>"; };
 		77AC76D32A85E0CD00564ADF /* PlayerHitPointExperience.rcproject */ = {isa = PBXFileReference; lastKnownFileType = file.rcproject; path = PlayerHitPointExperience.rcproject; sourceTree = "<group>"; };
+		77AF6B012A8A7A87000DF49B /* ARObjectViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARObjectViewModel.swift; sourceTree = "<group>"; };
 		77C1F92F2A735E3F00D2FBD2 /* ARcane-MiniChallenge3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ARcane-MiniChallenge3.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		77C1F9322A735E3F00D2FBD2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		77C1F9342A735E3F00D2FBD2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -56,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77AF6B002A89CE6A000DF49B /* FocusEntity in Frameworks */,
 				7729332F2A7A04CB006B42F6 /* MultipeerSession in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -68,6 +71,7 @@
 			children = (
 				7729332B2A78E974006B42F6 /* SpellViewModel.swift */,
 				77AC76CF2A85D04200564ADF /* StartViewModel.swift */,
+				77AF6B012A8A7A87000DF49B /* ARObjectViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -78,15 +82,6 @@
 				772933312A7A083C006B42F6 /* MenuView.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		772933352A7A087E006B42F6 /* RealityObjects */ = {
-			isa = PBXGroup;
-			children = (
-				77767C652A7CA9970043EC08 /* MenuExperience.reality */,
-				77C1F9422A73689000D2FBD2 /* ProjectileObject.reality */,
-			);
-			path = RealityObjects;
 			sourceTree = "<group>";
 		};
 		772933362A7A08A2006B42F6 /* ARControllers */ = {
@@ -110,11 +105,19 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		77AF6AFC2A89C287000DF49B /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		77C1F9262A735E3F00D2FBD2 = {
 			isa = PBXGroup;
 			children = (
 				77C1F9312A735E3F00D2FBD2 /* ARcane-MiniChallenge3 */,
 				77C1F9302A735E3F00D2FBD2 /* Products */,
+				77AF6AFC2A89C287000DF49B /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -172,6 +175,7 @@
 			name = "ARcane-MiniChallenge3";
 			packageProductDependencies = (
 				7729332E2A7A04CB006B42F6 /* MultipeerSession */,
+				77AF6AFF2A89CE6A000DF49B /* FocusEntity */,
 			);
 			productName = "ARcane-MiniChallenge3";
 			productReference = 77C1F92F2A735E3F00D2FBD2 /* ARcane-MiniChallenge3.app */;
@@ -203,6 +207,7 @@
 			mainGroup = 77C1F9262A735E3F00D2FBD2;
 			packageReferences = (
 				7729332D2A7A04CB006B42F6 /* XCRemoteSwiftPackageReference "multipeer-session" */,
+				77AF6AFE2A89CE6A000DF49B /* XCRemoteSwiftPackageReference "FocusEntity" */,
 			);
 			productRefGroup = 77C1F9302A735E3F00D2FBD2 /* Products */;
 			projectDirPath = "";
@@ -220,8 +225,6 @@
 			files = (
 				77C1F93C2A735E4000D2FBD2 /* Preview Assets.xcassets in Resources */,
 				77C1F9392A735E4000D2FBD2 /* Assets.xcassets in Resources */,
-				77C1F9432A73689000D2FBD2 /* ProjectileObject.reality in Resources */,
-				77767C662A7CB2AF0043EC08 /* MenuExperience.reality in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,6 +242,8 @@
 				77C1F9352A735E3F00D2FBD2 /* ContentView.swift in Sources */,
 				77C1F9332A735E3F00D2FBD2 /* AppDelegate.swift in Sources */,
 				77C1F9492A736D4200D2FBD2 /* SpellshootButton.swift in Sources */,
+				77AF6AFD2A89C2C7000DF49B /* MenuExperience.rcproject in Sources */,
+				77AF6B022A8A7A87000DF49B /* ARObjectViewModel.swift in Sources */,
 				77AC76D02A85D04200564ADF /* StartViewModel.swift in Sources */,
 				7729332C2A78E974006B42F6 /* SpellViewModel.swift in Sources */,
 				77AC76CE2A85CF9C00564ADF /* ViewStartController.swift in Sources */,
@@ -374,7 +379,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ARcane-MiniChallenge3/Preview Content\"";
-				DEVELOPMENT_TEAM = 9B67722SW9;
+				DEVELOPMENT_TEAM = DYXBWDG6F4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "ARcane-MiniChallenge3/Info.plist";
@@ -410,7 +415,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ARcane-MiniChallenge3/Preview Content\"";
-				DEVELOPMENT_TEAM = 9B67722SW9;
+				DEVELOPMENT_TEAM = DYXBWDG6F4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "ARcane-MiniChallenge3/Info.plist";
@@ -470,6 +475,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		77AF6AFE2A89CE6A000DF49B /* XCRemoteSwiftPackageReference "FocusEntity" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/maxxfrazer/FocusEntity";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -477,6 +490,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7729332D2A7A04CB006B42F6 /* XCRemoteSwiftPackageReference "multipeer-session" */;
 			productName = MultipeerSession;
+		};
+		77AF6AFF2A89CE6A000DF49B /* FocusEntity */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 77AF6AFE2A89CE6A000DF49B /* XCRemoteSwiftPackageReference "FocusEntity" */;
+			productName = FocusEntity;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

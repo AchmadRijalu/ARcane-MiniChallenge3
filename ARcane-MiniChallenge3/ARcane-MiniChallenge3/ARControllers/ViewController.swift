@@ -12,15 +12,17 @@ import AVFoundation
 import SwiftUI
 import MultipeerSession
 import UIKit
+import FocusEntity
 
 
 class ViewController: UIViewController {
+
     var arView: ARView = {
         let arView = ARView(frame: .zero)
-		
-		// give physics to ar view environment
-		arView.environment.sceneUnderstanding.options.insert([.collision, .physics, .occlusion])
-		
+        
+        // give physics to ar view environment
+        arView.environment.sceneUnderstanding.options.insert([.collision, .physics, .occlusion])
+        
         return arView
     }()
     
@@ -32,7 +34,7 @@ class ViewController: UIViewController {
     //setup the arcoachignoverlay
     let coachingOverlay = ARCoachingOverlayView()
     var message:MessageLabel = MessageLabel()
-//    var emptyMessage:UILabel = UILabel
+    //    var emptyMessage:UILabel = UILabel
     
     
     //Did Appear
@@ -57,30 +59,32 @@ class ViewController: UIViewController {
         setupCoachingOverlay()
         message.displayMessage("Track you phone to find some players", duration: 60.0)
         
+        
+        
+     
     }
+
     //setup the AR View
     func setupARView(){
-		// Starting AR session with LIDAR configuration
-		let configuration = ARWorldTrackingConfiguration()
-		
-		configuration.environmentTexturing = .automatic
-		configuration.sceneReconstruction = .mesh
-		
-		if type(of: configuration).supportsFrameSemantics(.sceneDepth) {
-			// read surroundings and create a depth map using the sensor
-			configuration.frameSemantics = .sceneDepth
-		}
-		
-		arView.automaticallyConfigureSession = false
-		
-		#if DEBUG
-//		arView.debugOptions = [.showAnchorOrigins]
-		#endif
+        // Starting AR session with LIDAR configuration
+        let configuration = ARWorldTrackingConfiguration()
+        configuration.environmentTexturing = .automatic
+        configuration.sceneReconstruction = .mesh
+        
+        if type(of: configuration).supportsFrameSemantics(.sceneDepth) {
+            // read surroundings and create a depth map using the sensor
+            configuration.frameSemantics = .sceneDepth
+        }
+        arView.automaticallyConfigureSession = false
+        
+#if DEBUG
+        //		arView.debugOptions = [.showAnchorOrigins]
+#endif
         
         configuration.isCollaborationEnabled = true
         arView.session.run(configuration)
     }
-    
+
     func setupMultipeerSession(){
         //Use the key-value observation to monitor the ARSession
         sessionIDObservation =
@@ -93,36 +97,35 @@ class ViewController: UIViewController {
             self.sendARSessionIDTo(peers: multipeerSession.connectedPeers)
             
             
-            //Automatically looking for other player using multipeer
-            
         }
         multipeerSession = MultipeerSession(serviceName: "multiuser-ar", receivedDataHandler: self.receivedData, peerJoinedHandler: self.peerJoined, peerLeftHandler: self.peerLeft, peerDiscoveredHandler: self.peerDiscovered)
     }
     
     
     func spellShoot(){
-		let anchor = ARAnchor(name: "SpellShoot", transform: arView.cameraTransform.matrix)
-//		print(arView.cameraTransform.matrix)
+        let anchor = ARAnchor(name: "SpellShoot", transform: arView.cameraTransform.matrix)
         arView.session.add(anchor: anchor)
+        
     }
     
     func placeObject(named entityName: String, for anchor: ARAnchor){
-		// Mesh
-		let spellEntity = ModelEntity(mesh: .generateBox(width: 0.5, height: 0.5, depth: 2.5, cornerRadius: 0.5), materials: [SimpleMaterial(color: .systemPink, isMetallic: true)])
-		spellEntity.scale = [0.1, 0.1, 0.1]
-
-		spellEntity.collision = CollisionComponent(shapes: [.generateBox(width: 0.5, height: 0.5, depth: 2.5)])
-		spellEntity.physicsBody = PhysicsBodyComponent(massProperties: .default, material: .default, mode: .dynamic)
-		spellEntity.physicsMotion = PhysicsMotionComponent(linearVelocity: SIMD3(anchor.transform.columns.2.x * -20, anchor.transform.columns.2.y * -20, anchor.transform.columns.2.z * -20))
-		
-		let anchorEntity = AnchorEntity(anchor: anchor)
-		anchorEntity.addChild(spellEntity)
-		arView.scene.addAnchor(anchorEntity)
-		
-		DispatchQueue.main.asyncAfter(deadline: .now() + 0.70){
-			self.arView.scene.removeAnchor(anchorEntity)
-		}
+        // Mesh
+        let spellEntity = ModelEntity(mesh: .generateBox(width: 0.5, height: 0.5, depth: 2.5, cornerRadius: 0.5), materials: [SimpleMaterial(color: .systemPink, isMetallic: true)])
+        spellEntity.scale = [0.1, 0.1, 0.1]
+        
+        spellEntity.collision = CollisionComponent(shapes: [.generateBox(width: 0.5, height: 0.5, depth: 2.5)])
+        spellEntity.physicsBody = PhysicsBodyComponent(massProperties: .default, material: .default, mode: .dynamic)
+        spellEntity.physicsMotion = PhysicsMotionComponent(linearVelocity: SIMD3(anchor.transform.columns.2.x * -20, anchor.transform.columns.2.y * -20, anchor.transform.columns.2.z * -20))
+        
+        let anchorEntity = AnchorEntity(anchor: anchor)
+        anchorEntity.addChild(spellEntity)
+        arView.scene.addAnchor(anchorEntity)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.70){
+            self.arView.scene.removeAnchor(anchorEntity)
+        }
     }
+   
     
     
 }
@@ -131,24 +134,26 @@ extension ViewController: ARSessionDelegate{
         for anchor in anchors {
             if let anchorName = anchor.name, anchorName == "SpellShoot" {
                 placeObject(named: anchorName, for : anchor)
-                
+
             }
             
-			if let playerAnchor = anchor as? ARParticipantAnchor {
-				print("Success connected with another player")
-				let anchorEntity = AnchorEntity(anchor: playerAnchor)
-				let mesh = MeshResource.generateSphere(radius: 0.03)
-				
-				let color = UIColor.green
-				
-				let material = SimpleMaterial(color: color, isMetallic: false)
-				
-				let coloredSphered = ModelEntity(mesh: mesh, materials: [material])
-				
-				anchorEntity.addChild(coloredSphered)
-				
-				arView.scene.addAnchor(anchorEntity)
-			}
+        
+            
+            if let playerAnchor = anchor as? ARParticipantAnchor {
+                print("Success connected with another player")
+                let anchorEntity = AnchorEntity(anchor: playerAnchor)
+                let mesh = MeshResource.generateSphere(radius: 0.03)
+                
+                let color = UIColor.green
+                
+                let material = SimpleMaterial(color: color, isMetallic: false)
+                
+                let coloredSphered = ModelEntity(mesh: mesh, materials: [material])
+                
+                anchorEntity.addChild(coloredSphered)
+                
+                arView.scene.addAnchor(anchorEntity)
+            }
         }
         
         
@@ -253,7 +258,7 @@ extension ViewController{
 }
 
 extension float4x4 {
-	var forward: SIMD3<Float> {
-		normalize(SIMD3<Float>(-columns.2.x, -columns.2.y, -columns.2.z))
-	}
+    var forward: SIMD3<Float> {
+        normalize(SIMD3<Float>(-columns.2.x, -columns.2.y, -columns.2.z))
+    }
 }

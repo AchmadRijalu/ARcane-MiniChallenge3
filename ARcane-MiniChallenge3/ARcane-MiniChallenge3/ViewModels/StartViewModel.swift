@@ -9,4 +9,5 @@ import Foundation
 
 class StartViewModel:ObservableObject{
     @Published var countDown:Int = 5
+    @Published var startButtonShooted:Bool = false
 }

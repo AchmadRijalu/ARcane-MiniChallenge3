@@ -288,6 +288,13 @@
                           }
                         ],
                         [
+                          "entityName",
+                          {
+                            "typeName" : "String",
+                            "value" : "StartObject"
+                          }
+                        ],
+                        [
                           "rigidBody-enabled",
                           {
                             "typeName" : "Bool",
@@ -350,7 +357,7 @@
                 ]
               },
               "physicsMode" : "grid",
-              "title" : "Box",
+              "title" : "MenuExperience",
               "viewTransform" : {
                 "cameraTransform" : [
                   0.99996274709701538,
