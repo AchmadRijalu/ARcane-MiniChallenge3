@@ -14,18 +14,23 @@ import ARKit
 class HitboxEntity: Entity, HasModel, HasCollision, HasAnchoring {
 	// Array that holds the collision subscriptions for the entities
 	var collisionSubs: [Cancellable] = []
+	var arView: ARView = ARView()
+	var health: Int = 100
+	var textEntity = ModelEntity(mesh: .generateText("", font: UIFont.systemFont(ofSize: 0.01)), materials: [SimpleMaterial(color: .red, isMetallic: false)])
 		
-	required init(color: UIColor) {
+	required init(color: UIColor, arView: ARView) {
 		super.init()
 		
+		self.arView = arView
+		
 		self.components[CollisionComponent.self] = CollisionComponent(
-			shapes: [.generateBox(width: 0.5, height: 0.5, depth: 2.5)],
+			shapes: [.generateBox(width: 0.5, height: 1, depth: 0.5)],
 			mode: .trigger,
 			filter: .sensor
 		)
 		
 		self.components[ModelComponent.self] = ModelComponent(
-			mesh: .generateBox(width: 0.5, height: 0.5, depth: 2.5),
+			mesh: .generateBox(width: 0.5, height: 1, depth: 0.5),
 			materials: [
 				SimpleMaterial(
 					color: color,
@@ -34,11 +39,18 @@ class HitboxEntity: Entity, HasModel, HasCollision, HasAnchoring {
 			]
 		)
 		
+		self.scale = [0.2, 0.2, 0.2]
+		
 		self.components[PhysicsBodyComponent.self] = PhysicsBodyComponent(
 			massProperties: .default,
 			material: .default,
 			mode: .static
 		)
+		
+		textEntity = ModelEntity(mesh: .generateText("\(health)", extrusionDepth: 0.01, font: UIFont.systemFont(ofSize: 0.1), alignment: .center), materials: [SimpleMaterial(color: .white, isMetallic: false)])
+		textEntity.position.z += 0.5
+		
+		self.addChild(textEntity)
 	}
 	
 	required init() {
@@ -53,19 +65,24 @@ extension HitboxEntity {
 	}
 
 	collisionSubs.append(scene.subscribe(to: CollisionEvents.Began.self, on: self) { event in
-		guard let boxA = event.entityA as? HitboxEntity else {
-			return
-		}
+//		guard let boxA = event.entityA as? HitboxEntity else {
+//			return
+//		}
 
-		boxA.model?.materials = [SimpleMaterial(color: .blue, isMetallic: false)]
+//		self.arView.scene.anchors.remove(self)
+		self.removeChild(self.textEntity)
+		self.health -= 1
+		self.textEntity = ModelEntity(mesh: .generateText("\(self.health)", extrusionDepth: 0.01, font: UIFont.systemFont(ofSize: 0.1), alignment: .center), materials: [SimpleMaterial(color: .white, isMetallic: false)])
+		self.textEntity.position.z += 0.7
+		self.addChild(self.textEntity)
 	})
 	  
 	collisionSubs.append(scene.subscribe(to: CollisionEvents.Ended.self, on: self) { event in
-		guard let boxA = event.entityA as? HitboxEntity else {
-			return
-		}
+//		guard let boxA = event.entityA as? HitboxEntity else {
+//			return
+//		}
 		
-		boxA.model?.materials = [SimpleMaterial(color: .yellow, isMetallic: false)]
+//		boxA.model?.materials = [SimpleMaterial(color: .yellow, isMetallic: false)]
 	})
   }
 }
