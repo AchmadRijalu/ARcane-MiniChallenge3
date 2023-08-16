@@ -137,15 +137,10 @@ extension ViewController: ARSessionDelegate{
 			if let playerAnchor = anchor as? ARParticipantAnchor {
 				print("Success connected with another player")
 				let anchorEntity = AnchorEntity(anchor: playerAnchor)
-				let mesh = MeshResource.generateSphere(radius: 0.03)
 				
-				let color = UIColor.green
+				let playerEntity = HitboxEntity(color: .green, arView: arView)
 				
-				let material = SimpleMaterial(color: color, isMetallic: false)
-				
-				let coloredSphered = ModelEntity(mesh: mesh, materials: [material])
-				
-				anchorEntity.addChild(coloredSphered)
+				anchorEntity.addChild(playerEntity)
 				
 				arView.scene.addAnchor(anchorEntity)
 			}
