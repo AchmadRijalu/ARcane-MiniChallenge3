@@ -49,11 +49,12 @@ class ViewController: UIViewController {
         setupARView()
         setupMultipeerSession()
 		
-		let hitbox = HitboxEntity(color: .systemPink)
+		let hitbox = HitboxEntity(color: .systemPink, arView: arView)
 		
 		arView.scene.anchors.append(hitbox)
 		hitbox.addCollisions()
     }
+	
     //setup the AR View
     func setupARView(){
 		// Starting AR session with LIDAR configuration
@@ -111,9 +112,10 @@ class ViewController: UIViewController {
 //		spellEntity.physicsBody = PhysicsBodyComponent(massProperties: .default, material: .default, mode: .dynamic)
 //		spellEntity.physicsMotion = PhysicsMotionComponent(linearVelocity: SIMD3(anchor.transform.columns.2.x * -20, anchor.transform.columns.2.y * -20, anchor.transform.columns.2.z * -20))
 		
-		let spellEntity = BulletEntity(color: .systemPink, for: anchor)
-		
 		let anchorEntity = AnchorEntity(anchor: anchor)
+		
+		let spellEntity = BulletEntity(color: .systemPink, for: anchor, arView: arView, anchorEntity: anchorEntity)
+		
 		anchorEntity.addChild(spellEntity)
 		arView.scene.addAnchor(anchorEntity)
 		
