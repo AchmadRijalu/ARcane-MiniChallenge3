@@ -10,6 +10,7 @@ import RealityKit
 
 struct ContentView : View {
     @State var isHit = false
+    @State var isSummonedBlock = false
     //    @StateObject var startViewModel = StartViewModel()
     @State var isAnimating:Bool = false
     @State var isStarted:Bool = false
@@ -17,13 +18,17 @@ struct ContentView : View {
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     var body: some View {
         ZStack(alignment: .bottomTrailing){
-            ARViewController(isHit: $isHit, isStarted: $isStarted).edgesIgnoringSafeArea(.all)
+            ARViewController(isHit: $isHit, isStarted: $isStarted, isSummonedBlock: $isSummonedBlock).edgesIgnoringSafeArea(.all)
             if isStarted {
                 SpellshootButton().onTapGesture {
                     isHit = true
                 }
+                VStack{
+                    StartShowButton().onTapGesture {
+                        isSummonedBlock = true
+                    }
+                }.padding(EdgeInsets(top: 0, leading: 10, bottom: 150, trailing: 6))
             } else {
-                
                 // Create a transparent background with a blur effect
                 Color.clear
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -34,11 +39,10 @@ struct ContentView : View {
                     .onTapGesture {
                         isStarted = true
                     }
-                
                 VStack(alignment: .center) {
                     HStack {
                         Spacer()
-                        Text("Tap Anywhere to Start Finding Local Players")
+                        Text("Tap Anywhere to Start Finding Player")
                             .foregroundColor(.white)
                             .font(.system(size: 24).bold())
                             .scaleEffect(isAnimating ? 1.2 : 1.0)
@@ -76,8 +80,13 @@ struct ARViewController : UIViewControllerRepresentable{
     typealias UIViewControllerType = ViewController
     @Binding var isHit:Bool
     @Binding var isStarted:Bool
+    @Binding var isSummonedBlock:Bool
     func makeUIViewController(context: Context) -> ViewController {
         let controller = ViewController()
+        
+//        if controller.countdownIsOn == true{
+//            controller.startCountdown()
+//        }
         return controller
     }
     
@@ -89,8 +98,11 @@ struct ARViewController : UIViewControllerRepresentable{
                 isHit = false
             }
         }
-        if isStarted == true{
-            uiViewController.setupMultipeerSession()
+        if isSummonedBlock == true{
+            uiViewController.blockDeploy()
+            DispatchQueue.main.async {
+                isSummonedBlock = false
+            }
         }
     }
     
