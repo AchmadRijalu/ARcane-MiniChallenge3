@@ -82,6 +82,14 @@ class ViewController: UIViewController {
         message.textAlignment = .center
     }
     
+        setupMultipeerSession()
+		
+		let hitbox = HitboxEntity(color: .systemPink, arView: arView)
+		
+		arView.scene.anchors.append(hitbox)
+		hitbox.addCollisions()
+    }
+	
     //setup the AR View
     func setupARView(){
         // Starting AR session with LIDAR configuration

@@ -14,9 +14,14 @@ import ARKit
 class BulletEntity: Entity, HasModel, HasCollision {
 	// Array that holds the collision subscriptions for the entities
 	var collisionSubs: [Cancellable] = []
+	var arView: ARView = ARView()
+	var anchorEntity: AnchorEntity = AnchorEntity()
 		
-	required init(color: UIColor, for anchor: ARAnchor) {
+	required init(color: UIColor, for anchor: ARAnchor, arView: ARView, anchorEntity: AnchorEntity) {
 		super.init()
+		
+		self.anchorEntity = anchorEntity
+		self.arView = arView
 		
 		self.components[CollisionComponent.self] = CollisionComponent(
 			shapes: [.generateBox(width: 0.5, height: 0.5, depth: 2.5)],
@@ -64,7 +69,7 @@ extension BulletEntity {
 			return
 		}
 
-		boxA.model?.materials = [SimpleMaterial(color: .red, isMetallic: false)]
+//		self.arView.scene.removeAnchor(self.anchorEntity)
 	})
 	  
 	collisionSubs.append(scene.subscribe(to: CollisionEvents.Ended.self, on: self) { event in
@@ -72,7 +77,7 @@ extension BulletEntity {
 			return
 		}
 		
-		boxA.model?.materials = [SimpleMaterial(color: .yellow, isMetallic: false)]
+//		boxA.model?.materials = [SimpleMaterial(color: .yellow, isMetallic: false)]
 	})
   }
 }
