@@ -38,7 +38,6 @@ class BulletEntity: Entity, HasModel, HasCollision {
 		)
 		
 		self.scale = [0.1, 0.1, 0.1]
-		
 		self.components[PhysicsBodyComponent.self] = PhysicsBodyComponent(
 			massProperties: .default,
 			material: .default,
@@ -47,9 +46,9 @@ class BulletEntity: Entity, HasModel, HasCollision {
 		
 		self.components[PhysicsMotionComponent.self] = PhysicsMotionComponent(
 			linearVelocity: SIMD3(
-				anchor.transform.columns.2.x * -10,
-				anchor.transform.columns.2.y * -10,
-				anchor.transform.columns.2.z * -10
+				anchor.transform.columns.2.x * -20,
+				anchor.transform.columns.2.y * -20,
+				anchor.transform.columns.2.z * -20
 			)
 		)
 	}
