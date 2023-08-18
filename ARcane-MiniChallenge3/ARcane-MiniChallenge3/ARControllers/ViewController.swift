@@ -164,14 +164,14 @@ class ViewController: UIViewController {
             }
         
     }
+	
     func placeObject(named entityName: String, for anchor: ARAnchor){
-        
-        
-        let spellEntity = BulletEntity(color: .systemPink, for: anchor)
         let anchorEntity = AnchorEntity(anchor: anchor)
+		
+		let spellEntity = BulletEntity(color: .systemPink, for: anchor)
+		
         anchorEntity.addChild(spellEntity)
         arView.scene.addAnchor(anchorEntity)
-        spellEntity.addCollisions()
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.70){
             self.arView.scene.removeAnchor(anchorEntity)
@@ -209,7 +209,11 @@ extension ViewController: ARSessionDelegate{
             if let anchorName = anchor.name, anchorName == "SpellShoot" {
                 placeObject(named: anchorName, for : anchor)
             }
-            
+			
+			if let anchorName = anchor.name, anchorName == "BlockDeploy"{
+				placeObjectBlock(named: anchorName, for: anchor)
+			}
+			
 			if let playerAnchor = anchor as? ARParticipantAnchor {
 				print("Success connected with another player")
 				let anchorEntity = AnchorEntity(anchor: playerAnchor)

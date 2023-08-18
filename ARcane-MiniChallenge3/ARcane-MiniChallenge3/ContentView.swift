@@ -23,11 +23,27 @@ struct ContentView : View {
                 SpellshootButton().onTapGesture {
                     isHit = true
                 }
+				
                 VStack{
                     StartShowButton().onTapGesture {
                         isSummonedBlock = true
                     }
-                }.padding(EdgeInsets(top: 0, leading: 10, bottom: 150, trailing: 6))
+                }
+				.padding(EdgeInsets(top: 0, leading: 10, bottom: 150, trailing: 6))
+				
+				VStack {
+					HStack {
+						Text("Your Health: 100")
+							.foregroundColor(.black)
+							.background(.white)
+							.font(.title2)
+						
+						Spacer()
+					}
+					
+					Spacer()
+				}
+				.padding(EdgeInsets(top: 15, leading: 15, bottom: 0, trailing: 0))
             } else {
                 // Create a transparent background with a blur effect
                 Color.clear
