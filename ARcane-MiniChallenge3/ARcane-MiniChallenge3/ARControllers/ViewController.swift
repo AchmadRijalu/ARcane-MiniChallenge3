@@ -80,7 +80,6 @@ class ViewController: UIViewController {
         message.layer.cornerRadius = 10
         message.ignoreMessages = false
         message.textAlignment = .center
-    }
     
         setupMultipeerSession()
 		
