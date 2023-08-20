@@ -16,15 +16,19 @@ struct ContentView : View {
     @State var isStarted:Bool = false
     
     //PASS THE VALUE INTO UIKIT FOR THE SCORE
-    @StateObject var viewModel = HealthViewModel()
+    @StateObject var healthviewModel = HealthViewModel()
+    @State private var showModalResult = false
+    
+    
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     var body: some View {
         ZStack(alignment: .bottomTrailing){
-            ARViewController(isHit: $isHit, isStarted: $isStarted, isSummonedBlock: $isSummonedBlock, healthviewModel: viewModel, Health: viewModel.playerOneHealth ).edgesIgnoringSafeArea(.all)
+            ARViewController(isHit: $isHit, isStarted: $isStarted, isSummonedBlock: $isSummonedBlock, healthviewModel: healthviewModel, Health: healthviewModel.playerOneHealth ).edgesIgnoringSafeArea(.all)
             if isStarted {
                 SpellshootButton().onTapGesture {
                     isHit = true
-                    viewModel.playerOneHealth -= 1
+//                    healthviewModel.playerOneHealth -= 1
+                    
                 }
                 VStack{
                     ShieldSummonButton().onTapGesture {
@@ -35,7 +39,7 @@ struct ContentView : View {
                 
                 VStack {
                     HStack {
-                        Text("Your Health: \(viewModel.playerOneHealth)")
+                        Text("Your Health: \(healthviewModel.playerOneHealth)")
                             .foregroundColor(.black)
                             .background(.white)
                             .font(.title2)
@@ -74,9 +78,16 @@ struct ContentView : View {
                 }
             }
         }
-        //            Image(systemName: "questionmark.circle").font(.system(size: 60)).onTapGesture {
-        //
-        //            }
+        .onChange(of: healthviewModel.playerTwoHealth) { newHealth in
+                    if newHealth <= 0 {
+                        withAnimation {
+                            showModalResult = true
+                        }
+                    }
+                }
+        .sheet(isPresented: $showModalResult) {
+            ResultPage()
+        }
     }
 }
 
