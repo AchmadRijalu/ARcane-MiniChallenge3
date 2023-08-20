@@ -15,35 +15,37 @@ struct ContentView : View {
     @State var isAnimating:Bool = false
     @State var isStarted:Bool = false
     
+    //PASS THE VALUE INTO UIKIT FOR THE SCORE
+    @StateObject var viewModel = HealthViewModel()
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     var body: some View {
         ZStack(alignment: .bottomTrailing){
-            ARViewController(isHit: $isHit, isStarted: $isStarted, isSummonedBlock: $isSummonedBlock).edgesIgnoringSafeArea(.all)
+            ARViewController(isHit: $isHit, isStarted: $isStarted, isSummonedBlock: $isSummonedBlock, healthviewModel: viewModel, Health: viewModel.playerOneHealth ).edgesIgnoringSafeArea(.all)
             if isStarted {
                 SpellshootButton().onTapGesture {
                     isHit = true
+                    viewModel.playerOneHealth -= 1
                 }
-				
                 VStack{
-                    StartShowButton().onTapGesture {
+                    ShieldSummonButton().onTapGesture {
                         isSummonedBlock = true
                     }
                 }
-				.padding(EdgeInsets(top: 0, leading: 10, bottom: 150, trailing: 6))
-				
-				VStack {
-					HStack {
-						Text("Your Health: 100")
-							.foregroundColor(.black)
-							.background(.white)
-							.font(.title2)
-						
-						Spacer()
-					}
-					
-					Spacer()
-				}
-				.padding(EdgeInsets(top: 15, leading: 15, bottom: 0, trailing: 0))
+                .padding(EdgeInsets(top: 0, leading: 10, bottom: 150, trailing: 6))
+                
+                VStack {
+                    HStack {
+                        Text("Your Health: \(viewModel.playerOneHealth)")
+                            .foregroundColor(.black)
+                            .background(.white)
+                            .font(.title2)
+                        
+                        Spacer()
+                    }
+                    
+                    Spacer()
+                }
+                .padding(EdgeInsets(top: 15, leading: 15, bottom: 0, trailing: 0))
             } else {
                 // Create a transparent background with a blur effect
                 Color.clear
@@ -67,7 +69,6 @@ struct ContentView : View {
                     }
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                
                 .onAppear() {
                     isAnimating = true
                 }
@@ -80,6 +81,7 @@ struct ContentView : View {
 }
 
 struct VisualEffectView: UIViewRepresentable {
+    
     var effect: UIVisualEffect?
     
     func makeUIView(context: Context) -> UIVisualEffectView {
@@ -97,17 +99,22 @@ struct ARViewController : UIViewControllerRepresentable{
     @Binding var isHit:Bool
     @Binding var isStarted:Bool
     @Binding var isSummonedBlock:Bool
+    
+    //PASS THE VALUE INTO HERE
+    var healthviewModel : HealthViewModel
+    var Health: Int
     func makeUIViewController(context: Context) -> ViewController {
         let controller = ViewController()
-        
-//        if controller.countdownIsOn == true{
-//            controller.startCountdown()
-//        }
+        //        if controller.countdownIsOn == true{
+        //            controller.startCountdown()
+        //        }
         return controller
     }
     
     func updateUIViewController(_ uiViewController: ViewController, context: Context) {
         
+        uiViewController.healthviewModel = healthviewModel
+        uiViewController.healthLabel.text = String(Health)
         if isHit == true{
             uiViewController.spellShoot()
             DispatchQueue.main.async {
@@ -121,6 +128,7 @@ struct ARViewController : UIViewControllerRepresentable{
             }
         }
     }
+    // this is very important, this coordinator will be used in `makeUIViewController`
     
 }
 

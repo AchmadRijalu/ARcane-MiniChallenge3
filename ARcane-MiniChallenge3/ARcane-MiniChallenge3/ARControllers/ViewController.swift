@@ -15,14 +15,15 @@ import UIKit
 import FocusEntity
 
 
+
 class ViewController: UIViewController {
+    var healthviewModel : HealthViewModel?
+    var healthLabel =  UILabel()
     
     var arView: ARView = {
         let arView = ARView(frame: .zero)
-        
         // give physics to ar view environment
         arView.environment.sceneUnderstanding.options.insert([.collision, .physics, .occlusion])
-        
         return arView
     }()
     //setup the mutlipeer package
@@ -50,6 +51,20 @@ class ViewController: UIViewController {
         self.view.backgroundColor = .clear
         self.view.addSubview(self.arView)
         self.view.addSubview(self.message)
+        
+//        healthLabel.translatesAutoresizingMaskIntoConstraints = false
+//        healthLabel.textAlignment = .left
+//        healthLabel.font = UIFont.systemFont(ofSize: 18)
+//        healthLabel.text = "Finger X Position"
+//        healthLabel.numberOfLines = 0
+//        view.addSubview(healthLabel)
+//        
+//        NSLayoutConstraint.activate([
+//            healthLabel.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
+//            healthLabel.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
+//            
+//        ])
+        
         
         NSLayoutConstraint.activate([
             arView.topAnchor.constraint(equalTo: self.view.topAnchor),
@@ -80,15 +95,17 @@ class ViewController: UIViewController {
         message.layer.cornerRadius = 10
         message.ignoreMessages = false
         message.textAlignment = .center
-    
+        
         setupMultipeerSession()
-		
-		let hitbox = HitboxEntity(color: .systemPink, arView: arView)
-		
-		arView.scene.anchors.append(hitbox)
-		hitbox.addCollisions()
+        
+        let hitbox = HitboxEntity(color: .systemPink, arView: arView, healthViewModel: healthviewModel ?? HealthViewModel())
+        
+        arView.scene.anchors.append(hitbox)
+        hitbox.addCollisions()
+        
+        
     }
-	
+    
     //setup the AR View
     func setupARView(){
         // Starting AR session with LIDAR configuration
@@ -134,42 +151,42 @@ class ViewController: UIViewController {
     func placeObjectBlock(named entityName : String , for anchor : ARAnchor){
         // Mesh
         let anchorTransform = anchor.transform
-            
-            // Create a translation matrix to move the square in front of the anchor
-            let translationMatrix = simd_float4x4([
-                simd_float4(1, 0, 0, 0),    // X-axis translation
-                simd_float4(0, 1, 0, 0),    // Y-axis translation
-                simd_float4(0, 0, 1, -1),   // Z-axis translation (negative to move in front)
-                simd_float4(0, 0, 0, 1)     // Homogeneous coordinate
-            ])
-            
-            // Apply the translation to the anchor's transform
-            let transformedTransform = simd_mul(anchorTransform, translationMatrix)
-            
-            // Create the square entity
-            let squareSize: Float = 0.2  // Adjust the size as needed
-            let squareEntity = ModelEntity(mesh: .generateBox(width: squareSize, height: squareSize, depth: squareSize), materials: [SimpleMaterial(color: .systemPink, isMetallic: true)])
-            squareEntity.collision = CollisionComponent(shapes: [.generateBox(width: squareSize, height: squareSize, depth: squareSize)])
+        
+        // Create a translation matrix to move the square in front of the anchor
+        let translationMatrix = simd_float4x4([
+            simd_float4(1, 0, 0, 0),    // X-axis translation
+            simd_float4(0, 1, 0, 0),    // Y-axis translation
+            simd_float4(0, 0, 1, -1),   // Z-axis translation (negative to move in front)
+            simd_float4(0, 0, 0, 1)     // Homogeneous coordinate
+        ])
+        
+        // Apply the translation to the anchor's transform
+        let transformedTransform = simd_mul(anchorTransform, translationMatrix)
+        
+        // Create the square entity
+        let squareSize: Float = 0.2  // Adjust the size as needed
+        let squareEntity = ModelEntity(mesh: .generateBox(width: squareSize, height: squareSize, depth: squareSize), materials: [SimpleMaterial(color: .systemPink, isMetallic: true)])
+        squareEntity.collision = CollisionComponent(shapes: [.generateBox(width: squareSize, height: squareSize, depth: squareSize)])
         squareEntity.physicsBody = PhysicsBodyComponent(massProperties: .default, material: .default, mode: .static)
-            
-            // Create an anchor entity at the transformed position and add the square entity
-            let anchorEntity = AnchorEntity(world: transformedTransform)
-            anchorEntity.addChild(squareEntity)
-            
-            // Add the anchor entity to the AR view's scene
-            arView.scene.addAnchor(anchorEntity)
+        
+        // Create an anchor entity at the transformed position and add the square entity
+        let anchorEntity = AnchorEntity(world: transformedTransform)
+        anchorEntity.addChild(squareEntity)
+        
+        // Add the anchor entity to the AR view's scene
+        arView.scene.addAnchor(anchorEntity)
         DispatchQueue.main.asyncAfter(deadline: .now() + 4) { [weak anchorEntity] in
-                guard let anchorEntity = anchorEntity else { return }
-                self.arView.scene.removeAnchor(anchorEntity)
-            }
+            guard let anchorEntity = anchorEntity else { return }
+            self.arView.scene.removeAnchor(anchorEntity)
+        }
         
     }
-	
+    
     func placeObject(named entityName: String, for anchor: ARAnchor){
         let anchorEntity = AnchorEntity(anchor: anchor)
-		
-		let spellEntity = BulletEntity(color: .systemPink, for: anchor)
-		
+        
+        let spellEntity = BulletEntity(color: .systemPink, for: anchor)
+        
         anchorEntity.addChild(spellEntity)
         arView.scene.addAnchor(anchorEntity)
         
@@ -177,29 +194,29 @@ class ViewController: UIViewController {
             self.arView.scene.removeAnchor(anchorEntity)
         }
     }
-
+    
     func startCountdown() {
-            countdownLabel = UILabel()
-            countdownLabel.textColor = .white
-            countdownLabel.font = UIFont.systemFont(ofSize: 24)
-            countdownLabel.textAlignment = .center
-            countdownLabel.frame = CGRect(x: 0, y: 0, width: 200, height: 50)
-            countdownLabel.center = arView.center
-            arView.addSubview(countdownLabel)
-
-            countdownTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] timer in
-                guard let self = self else {
-                    timer.invalidate()
-                    return
-                }
-                self.countdownCounter -= 1
-                self.countdownLabel.text = "\(self.countdownCounter)"
-                if self.countdownCounter == 0 {
-                    self.countdownTimer?.invalidate()
-                    self.countdownLabel.removeFromSuperview()
-                }
+        countdownLabel = UILabel()
+        countdownLabel.textColor = .white
+        countdownLabel.font = UIFont.systemFont(ofSize: 24)
+        countdownLabel.textAlignment = .center
+        countdownLabel.frame = CGRect(x: 0, y: 0, width: 200, height: 50)
+        countdownLabel.center = arView.center
+        arView.addSubview(countdownLabel)
+        
+        countdownTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] timer in
+            guard let self = self else {
+                timer.invalidate()
+                return
+            }
+            self.countdownCounter -= 1
+            self.countdownLabel.text = "\(self.countdownCounter)"
+            if self.countdownCounter == 0 {
+                self.countdownTimer?.invalidate()
+                self.countdownLabel.removeFromSuperview()
             }
         }
+    }
     
 }
 
@@ -209,21 +226,21 @@ extension ViewController: ARSessionDelegate{
             if let anchorName = anchor.name, anchorName == "SpellShoot" {
                 placeObject(named: anchorName, for : anchor)
             }
-			
-			if let anchorName = anchor.name, anchorName == "BlockDeploy"{
-				placeObjectBlock(named: anchorName, for: anchor)
-			}
-			
-			if let playerAnchor = anchor as? ARParticipantAnchor {
-				print("Success connected with another player")
-				let anchorEntity = AnchorEntity(anchor: playerAnchor)
-				
-				let playerEntity = HitboxEntity(color: .green, arView: arView)
-				
-				anchorEntity.addChild(playerEntity)
-				
-				arView.scene.addAnchor(anchorEntity)
-			}
+            
+            if let anchorName = anchor.name, anchorName == "BlockDeploy"{
+                placeObjectBlock(named: anchorName, for: anchor)
+            }
+            
+            if let playerAnchor = anchor as? ARParticipantAnchor {
+                print("Success connected with another player")
+                let anchorEntity = AnchorEntity(anchor: playerAnchor)
+                
+                let playerEntity = HitboxEntity(color: .green, arView: arView, healthViewModel: healthviewModel ?? HealthViewModel())
+                
+                anchorEntity.addChild(playerEntity)
+                
+                arView.scene.addAnchor(anchorEntity)
+            }
         }
         
         
@@ -327,8 +344,10 @@ extension ViewController{
             
         }
         else{
-            //            print("Deferred sending collaboration to later because there are no peers")
-            message.displayMessage("Finding Local Players")
+//                        print("Deferred sending collaboration to later because there are no peers")
+            message.displayMessage("Finding Local Players \(multipeerSession.peerSessionIDs)")
+            print(multipeerSession.peerSessionIDs)
+            
         }
     }
 }
