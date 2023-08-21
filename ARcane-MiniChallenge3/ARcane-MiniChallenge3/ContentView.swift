@@ -36,7 +36,6 @@ struct ContentView : View {
                     }
                 }
                 .padding(EdgeInsets(top: 0, leading: 10, bottom: 150, trailing: 6))
-                
                 VStack {
                     HStack {
                         Text("Your Health: \(healthviewModel.playerOneHealth)")
@@ -78,7 +77,7 @@ struct ContentView : View {
                 }
             }
         }
-        .onChange(of: healthviewModel.playerTwoHealth) { newHealth in
+        .onChange(of: healthviewModel.playerOneHealth) { newHealth in
                     if newHealth <= 0 {
                         withAnimation {
                             showModalResult = true
