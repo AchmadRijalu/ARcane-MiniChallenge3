@@ -83,10 +83,17 @@ class ViewController: UIViewController {
     
         setupMultipeerSession()
 		
-		let hitbox = HitboxEntity(color: .systemPink, arView: arView)
+//		let hitbox = HitboxEntity(color: .systemPink, arView: arView)
+//
+//		arView.scene.anchors.append(hitbox)
+//		hitbox.addCollisions()
 		
-		arView.scene.anchors.append(hitbox)
-		hitbox.addCollisions()
+		let playerEntity = HitboxEntity(color: .green, arView: arView)
+		
+		let anchorEntity = AnchorEntity(.camera)
+		anchorEntity.addChild(playerEntity)
+		
+		arView.scene.anchors.append(anchorEntity)
     }
 	
     //setup the AR View
@@ -214,16 +221,16 @@ extension ViewController: ARSessionDelegate{
 				placeObjectBlock(named: anchorName, for: anchor)
 			}
 			
-			if let playerAnchor = anchor as? ARParticipantAnchor {
-				print("Success connected with another player")
-				let anchorEntity = AnchorEntity(anchor: playerAnchor)
-				
-				let playerEntity = HitboxEntity(color: .green, arView: arView)
-				
-				anchorEntity.addChild(playerEntity)
-				
-				arView.scene.addAnchor(anchorEntity)
-			}
+//			if let playerAnchor = anchor as? ARParticipantAnchor {
+//				print("Success connected with another player")
+//				let anchorEntity = AnchorEntity(anchor: playerAnchor)
+//
+//				let playerEntity = HitboxEntity(color: .green, arView: arView)
+//
+//				anchorEntity.addChild(playerEntity)
+//
+//				arView.scene.addAnchor(anchorEntity)
+//			}
         }
         
         

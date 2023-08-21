@@ -11,7 +11,7 @@ import SwiftUI
 import ARKit
 
 // HasCollision protocol is vital for enabling collision detection within the entity
-class HitboxEntity: Entity, HasModel, HasCollision, HasAnchoring {
+class HitboxEntity: Entity, HasModel, HasCollision {
 	// Array that holds the collision subscriptions for the entities
 	var collisionSubs: [Cancellable] = []
 	var arView: ARView = ARView()
