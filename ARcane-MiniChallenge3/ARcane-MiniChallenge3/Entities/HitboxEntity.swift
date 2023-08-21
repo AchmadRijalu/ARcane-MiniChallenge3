@@ -16,13 +16,14 @@ class HitboxEntity: Entity, HasModel, HasCollision {
 	var collisionSubs: [Cancellable] = []
 	var arView: ARView = ARView()
 	var health: Int = 100
+    @StateObject var viewModel = HealthViewModel()
+    @ObservedObject var healthviewModel : HealthViewModel
 	var textEntity = ModelEntity(mesh: .generateText("", font: UIFont.systemFont(ofSize: 0.01)), materials: [SimpleMaterial(color: .red, isMetallic: false)])
 		
-	required init(color: UIColor, arView: ARView) {
+    required init(color: UIColor, arView: ARView, healthViewModel: HealthViewModel) {
+        self.healthviewModel = healthViewModel
 		super.init()
-		
 		self.arView = arView
-		
 		self.components[CollisionComponent.self] = CollisionComponent(
 			shapes: [.generateBox(width: 0.5, height: 1, depth: 0.5)],
 			mode: .trigger,
@@ -47,7 +48,7 @@ class HitboxEntity: Entity, HasModel, HasCollision {
 			mode: .static
 		)
 		
-		textEntity = ModelEntity(mesh: .generateText("\(health)", extrusionDepth: 0.01, font: UIFont.systemFont(ofSize: 0.1), alignment: .center), materials: [SimpleMaterial(color: .white, isMetallic: false)])
+        textEntity = ModelEntity(mesh: .generateText("\(healthviewModel.playerTwoHealth)", extrusionDepth: 0.01, font: UIFont.systemFont(ofSize: 0.1), alignment: .center), materials: [SimpleMaterial(color: .white, isMetallic: false)])
 		textEntity.position.z += 0.5
 		
 		self.addChild(textEntity)
@@ -71,8 +72,8 @@ extension HitboxEntity {
 
 //		self.arView.scene.anchors.remove(self)
 		self.removeChild(self.textEntity)
-		self.health -= 1
-		self.textEntity = ModelEntity(mesh: .generateText("\(self.health)", extrusionDepth: 0.01, font: UIFont.systemFont(ofSize: 0.1), alignment: .center), materials: [SimpleMaterial(color: .white, isMetallic: false)])
+        self.healthviewModel.playerTwoHealth -= 1
+        self.textEntity = ModelEntity(mesh: .generateText("\(self.healthviewModel.playerTwoHealth)", extrusionDepth: 0.01, font: UIFont.systemFont(ofSize: 0.1), alignment: .center), materials: [SimpleMaterial(color: .white, isMetallic: false)])
 		self.textEntity.position.z += 0.7
 		self.addChild(self.textEntity)
 	})

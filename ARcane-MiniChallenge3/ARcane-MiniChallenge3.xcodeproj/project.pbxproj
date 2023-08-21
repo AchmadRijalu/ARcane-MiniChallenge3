@@ -12,13 +12,14 @@
 		7729332F2A7A04CB006B42F6 /* MultipeerSession in Frameworks */ = {isa = PBXBuildFile; productRef = 7729332E2A7A04CB006B42F6 /* MultipeerSession */; };
 		776712092A847FBB0011362B /* ViewControllerMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776712082A847FBB0011362B /* ViewControllerMessage.swift */; };
 		7767120B2A8483200011362B /* MessageLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7767120A2A8483200011362B /* MessageLabel.swift */; };
-		7767120F2A848B4D0011362B /* StartShowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7767120E2A848B4D0011362B /* StartShowButton.swift */; };
 		77767C612A7C88180043EC08 /* MultipeerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77767C602A7C88180043EC08 /* MultipeerController.swift */; };
+		778619072A921D7700BF6E8F /* ResultPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778619062A921D7700BF6E8F /* ResultPage.swift */; };
+		778619092A9244D800BF6E8F /* HealthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778619082A9244D800BF6E8F /* HealthViewModel.swift */; };
+		7786190B2A92555E00BF6E8F /* ShieldSummonButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7786190A2A92555E00BF6E8F /* ShieldSummonButton.swift */; };
 		77AC76CE2A85CF9C00564ADF /* ViewStartController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AC76CD2A85CF9C00564ADF /* ViewStartController.swift */; };
 		77AC76D02A85D04200564ADF /* StartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AC76CF2A85D04200564ADF /* StartViewModel.swift */; };
 		77AC76D22A85DEF200564ADF /* ViewCounterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AC76D12A85DEF200564ADF /* ViewCounterController.swift */; };
 		77AF6B002A89CE6A000DF49B /* FocusEntity in Frameworks */ = {isa = PBXBuildFile; productRef = 77AF6AFF2A89CE6A000DF49B /* FocusEntity */; };
-		77AF6B022A8A7A87000DF49B /* ARObjectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AF6B012A8A7A87000DF49B /* ARObjectViewModel.swift */; };
 		77AF6B0A2A8B3832000DF49B /* MenuExperience.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = 77767C622A7C9E110043EC08 /* MenuExperience.rcproject */; };
 		77AF6B0C2A8B78C5000DF49B /* HelpPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AF6B0B2A8B78C5000DF49B /* HelpPage.swift */; };
 		77C1F9332A735E3F00D2FBD2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C1F9322A735E3F00D2FBD2 /* AppDelegate.swift */; };
@@ -37,14 +38,15 @@
 		772933382A7AA103006B42F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		776712082A847FBB0011362B /* ViewControllerMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerMessage.swift; sourceTree = "<group>"; };
 		7767120A2A8483200011362B /* MessageLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageLabel.swift; sourceTree = "<group>"; };
-		7767120E2A848B4D0011362B /* StartShowButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartShowButton.swift; sourceTree = "<group>"; };
 		77767C602A7C88180043EC08 /* MultipeerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipeerController.swift; sourceTree = "<group>"; };
 		77767C622A7C9E110043EC08 /* MenuExperience.rcproject */ = {isa = PBXFileReference; lastKnownFileType = file.rcproject; path = MenuExperience.rcproject; sourceTree = "<group>"; };
+		778619062A921D7700BF6E8F /* ResultPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultPage.swift; sourceTree = "<group>"; };
+		778619082A9244D800BF6E8F /* HealthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthViewModel.swift; sourceTree = "<group>"; };
+		7786190A2A92555E00BF6E8F /* ShieldSummonButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShieldSummonButton.swift; sourceTree = "<group>"; };
 		77AC76CD2A85CF9C00564ADF /* ViewStartController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewStartController.swift; sourceTree = "<group>"; };
 		77AC76CF2A85D04200564ADF /* StartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewModel.swift; sourceTree = "<group>"; };
 		77AC76D12A85DEF200564ADF /* ViewCounterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCounterController.swift; sourceTree = "<group>"; };
 		77AC76D32A85E0CD00564ADF /* PlayerHitPointExperience.rcproject */ = {isa = PBXFileReference; lastKnownFileType = file.rcproject; path = PlayerHitPointExperience.rcproject; sourceTree = "<group>"; };
-		77AF6B012A8A7A87000DF49B /* ARObjectViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARObjectViewModel.swift; sourceTree = "<group>"; };
 		77AF6B0B2A8B78C5000DF49B /* HelpPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpPage.swift; sourceTree = "<group>"; };
 		77C1F92F2A735E3F00D2FBD2 /* ARcane-MiniChallenge3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ARcane-MiniChallenge3.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		77C1F9322A735E3F00D2FBD2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -75,7 +77,7 @@
 			children = (
 				7729332B2A78E974006B42F6 /* SpellViewModel.swift */,
 				77AC76CF2A85D04200564ADF /* StartViewModel.swift */,
-				77AF6B012A8A7A87000DF49B /* ARObjectViewModel.swift */,
+				778619082A9244D800BF6E8F /* HealthViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -84,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				77AF6B0B2A8B78C5000DF49B /* HelpPage.swift */,
+				778619062A921D7700BF6E8F /* ResultPage.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -104,7 +107,7 @@
 			children = (
 				77C1F9482A736D4200D2FBD2 /* SpellshootButton.swift */,
 				7767120A2A8483200011362B /* MessageLabel.swift */,
-				7767120E2A848B4D0011362B /* StartShowButton.swift */,
+				7786190A2A92555E00BF6E8F /* ShieldSummonButton.swift */,
 			);
 			path = DesignComponents;
 			sourceTree = "<group>";
@@ -258,15 +261,16 @@
 				77C1F9352A735E3F00D2FBD2 /* ContentView.swift in Sources */,
 				77C1F9332A735E3F00D2FBD2 /* AppDelegate.swift in Sources */,
 				77C1F9492A736D4200D2FBD2 /* SpellshootButton.swift in Sources */,
-				77AF6B022A8A7A87000DF49B /* ARObjectViewModel.swift in Sources */,
 				77AC76D02A85D04200564ADF /* StartViewModel.swift in Sources */,
 				77AF6B0A2A8B3832000DF49B /* MenuExperience.rcproject in Sources */,
+				778619072A921D7700BF6E8F /* ResultPage.swift in Sources */,
 				7729332C2A78E974006B42F6 /* SpellViewModel.swift in Sources */,
 				77AC76CE2A85CF9C00564ADF /* ViewStartController.swift in Sources */,
-				7767120F2A848B4D0011362B /* StartShowButton.swift in Sources */,
 				77C1F9372A735E3F00D2FBD2 /* Experience.rcproject in Sources */,
 				7767120B2A8483200011362B /* MessageLabel.swift in Sources */,
+				778619092A9244D800BF6E8F /* HealthViewModel.swift in Sources */,
 				776712092A847FBB0011362B /* ViewControllerMessage.swift in Sources */,
+				7786190B2A92555E00BF6E8F /* ShieldSummonButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -395,7 +399,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ARcane-MiniChallenge3/Preview Content\"";
-				DEVELOPMENT_TEAM = 9B67722SW9;
+				DEVELOPMENT_TEAM = DYXBWDG6F4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "ARcane-MiniChallenge3/Info.plist";
