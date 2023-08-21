@@ -103,7 +103,8 @@ class ViewController: UIViewController {
 //		arView.scene.anchors.append(hitbox)
 //		hitbox.addCollisions()
 		
-		let playerEntity = HitboxEntity(color: .green, arView: arView)
+		let playerEntity = HitboxEntity(color: .green, arView: arView, healthViewModel: healthviewModel!)
+		playerEntity.position += SIMD3<Float>(0, 1, 0)
 		
 		let anchorEntity = AnchorEntity(.camera)
 		anchorEntity.addChild(playerEntity)
