@@ -21,7 +21,6 @@
 		77AC76D22A85DEF200564ADF /* ViewCounterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AC76D12A85DEF200564ADF /* ViewCounterController.swift */; };
 		77AF6B002A89CE6A000DF49B /* FocusEntity in Frameworks */ = {isa = PBXBuildFile; productRef = 77AF6AFF2A89CE6A000DF49B /* FocusEntity */; };
 		77AF6B0A2A8B3832000DF49B /* MenuExperience.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = 77767C622A7C9E110043EC08 /* MenuExperience.rcproject */; };
-		77AF6B0C2A8B78C5000DF49B /* HelpPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AF6B0B2A8B78C5000DF49B /* HelpPage.swift */; };
 		77C1F9332A735E3F00D2FBD2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C1F9322A735E3F00D2FBD2 /* AppDelegate.swift */; };
 		77C1F9352A735E3F00D2FBD2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C1F9342A735E3F00D2FBD2 /* ContentView.swift */; };
 		77C1F9372A735E3F00D2FBD2 /* Experience.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = 77C1F9362A735E3F00D2FBD2 /* Experience.rcproject */; };
@@ -47,7 +46,6 @@
 		77AC76CF2A85D04200564ADF /* StartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewModel.swift; sourceTree = "<group>"; };
 		77AC76D12A85DEF200564ADF /* ViewCounterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCounterController.swift; sourceTree = "<group>"; };
 		77AC76D32A85E0CD00564ADF /* PlayerHitPointExperience.rcproject */ = {isa = PBXFileReference; lastKnownFileType = file.rcproject; path = PlayerHitPointExperience.rcproject; sourceTree = "<group>"; };
-		77AF6B0B2A8B78C5000DF49B /* HelpPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpPage.swift; sourceTree = "<group>"; };
 		77C1F92F2A735E3F00D2FBD2 /* ARcane-MiniChallenge3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ARcane-MiniChallenge3.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		77C1F9322A735E3F00D2FBD2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		77C1F9342A735E3F00D2FBD2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -85,7 +83,6 @@
 		772933302A7A082B006B42F6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				77AF6B0B2A8B78C5000DF49B /* HelpPage.swift */,
 				778619062A921D7700BF6E8F /* ResultPage.swift */,
 			);
 			path = Views;
@@ -257,7 +254,6 @@
 				77AC76D22A85DEF200564ADF /* ViewCounterController.swift in Sources */,
 				BF5182B32A8B1BE4005413F9 /* HitboxEntity.swift in Sources */,
 				772933292A78C57C006B42F6 /* ViewController.swift in Sources */,
-				77AF6B0C2A8B78C5000DF49B /* HelpPage.swift in Sources */,
 				77C1F9352A735E3F00D2FBD2 /* ContentView.swift in Sources */,
 				77C1F9332A735E3F00D2FBD2 /* AppDelegate.swift in Sources */,
 				77C1F9492A736D4200D2FBD2 /* SpellshootButton.swift in Sources */,

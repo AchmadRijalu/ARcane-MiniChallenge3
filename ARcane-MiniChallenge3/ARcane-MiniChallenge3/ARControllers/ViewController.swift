@@ -19,7 +19,6 @@ import FocusEntity
 class ViewController: UIViewController {
     var healthviewModel : HealthViewModel?
     var healthLabel =  UILabel()
-    
     var arView: ARView = {
         let arView = ARView(frame: .zero)
         // give physics to ar view environment
@@ -30,7 +29,8 @@ class ViewController: UIViewController {
     var shootAudioPlayer : AVAudioPlayer!
     var multipeerSession: MultipeerSession?
     var sessionIDObservation: NSKeyValueObservation?
-    var connectedPeers: [UUID: String] = [:]
+    //    var connectedPeers: [UUID: String] = [:]
+    var connectedPeers: [UUID] = []
     
     //setup the arcoachignoverlay
     let coachingOverlay = ARCoachingOverlayView()
@@ -44,6 +44,8 @@ class ViewController: UIViewController {
     var countdownIsOn:Bool = false
     
     
+    var playerHealthMapping: [UUID: Int] = [:]
+    
     
     //Did Appear
     override func viewDidAppear(_ animated:Bool) {
@@ -52,18 +54,18 @@ class ViewController: UIViewController {
         self.view.addSubview(self.arView)
         self.view.addSubview(self.message)
         
-//        healthLabel.translatesAutoresizingMaskIntoConstraints = false
-//        healthLabel.textAlignment = .left
-//        healthLabel.font = UIFont.systemFont(ofSize: 18)
-//        healthLabel.text = "Finger X Position"
-//        healthLabel.numberOfLines = 0
-//        view.addSubview(healthLabel)
-//        
-//        NSLayoutConstraint.activate([
-//            healthLabel.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
-//            healthLabel.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
-//            
-//        ])
+        //        healthLabel.translatesAutoresizingMaskIntoConstraints = false
+        //        healthLabel.textAlignment = .left
+        //        healthLabel.font = UIFont.systemFont(ofSize: 18)
+        //        healthLabel.text = "Finger X Position"
+        //        healthLabel.numberOfLines = 0
+        //        view.addSubview(healthLabel)
+        //
+        //        NSLayoutConstraint.activate([
+        //            healthLabel.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
+        //            healthLabel.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
+        //
+        //        ])
         
         
         NSLayoutConstraint.activate([
@@ -150,29 +152,23 @@ class ViewController: UIViewController {
         arView.session.add(anchor: anchor)
         
     }
+	
     func blockDeploy(){
         let anchor = ARAnchor(name: "BlockDeploy", transform: arView.cameraTransform.matrix)
         arView.session.add(anchor: anchor)
     }
-    func placeObjectBlock(named entityName : String , for anchor : ARAnchor){
-        // Mesh
+	
+    func placeObjectBlock(named entityName: String, for anchor: ARAnchor) {
+        // Calculate the position for the square closer to the anchor
         let anchorTransform = anchor.transform
-        
-        // Create a translation matrix to move the square in front of the anchor
-        let translationMatrix = simd_float4x4([
-            simd_float4(1, 0, 0, 0),    // X-axis translation
-            simd_float4(0, 1, 0, 0),    // Y-axis translation
-            simd_float4(0, 0, 1, -1),   // Z-axis translation (negative to move in front)
-            simd_float4(0, 0, 0, 1)     // Homogeneous coordinate
-        ])
-        
-        // Apply the translation to the anchor's transform
+        var translationMatrix = matrix_identity_float4x4
+        translationMatrix.columns.3.z = -0.2 // Move the square closer to the anchor
         let transformedTransform = simd_mul(anchorTransform, translationMatrix)
         
         // Create the square entity
-        let squareSize: Float = 0.2  // Adjust the size as needed
-        let squareEntity = ModelEntity(mesh: .generateBox(width: squareSize, height: squareSize, depth: squareSize), materials: [SimpleMaterial(color: .systemPink, isMetallic: true)])
-        squareEntity.collision = CollisionComponent(shapes: [.generateBox(width: squareSize, height: squareSize, depth: squareSize)])
+        let squareSize: Float = 0.2 // Adjust the size as needed
+        let squareEntity = ModelEntity(mesh: .generateBox(width: squareSize, height: squareSize, depth: 0.01), materials: [SimpleMaterial(color: UIColor(Color("SecondButtonColor")), isMetallic: true)])
+        squareEntity.collision = CollisionComponent(shapes: [.generateBox(width: squareSize, height: squareSize, depth: 0.01)])
         squareEntity.physicsBody = PhysicsBodyComponent(massProperties: .default, material: .default, mode: .static)
         
         // Create an anchor entity at the transformed position and add the square entity
@@ -181,11 +177,11 @@ class ViewController: UIViewController {
         
         // Add the anchor entity to the AR view's scene
         arView.scene.addAnchor(anchorEntity)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 4) { [weak anchorEntity] in
-            guard let anchorEntity = anchorEntity else { return }
+        
+        // Remove the anchor entity after a delay
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
             self.arView.scene.removeAnchor(anchorEntity)
         }
-        
     }
     
     func placeObject(named entityName: String, for anchor: ARAnchor){
@@ -199,6 +195,12 @@ class ViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.70){
             self.arView.scene.removeAnchor(anchorEntity)
         }
+    }
+    
+    func printConnectedPeers() {
+        let connectedPeerNames = multipeerSession!.connectedPeers.map { $0.displayName }
+        let connectedPeersText = connectedPeerNames.joined(separator: ", ")
+        print("Connected peers: \(connectedPeersText)")
     }
     
     func startCountdown() {
@@ -225,7 +227,6 @@ class ViewController: UIViewController {
     }
     
 }
-
 extension ViewController: ARSessionDelegate{
     func session(_ session: ARSession, didAdd anchors: [ARAnchor]) {
         for anchor in anchors {
@@ -302,11 +303,15 @@ extension ViewController{
         }
         
     }
+    
+    
     func peerJoined(_ peer: PeerID){
         print("A Player wants to join hold it")
         message.displayMessage("""
                    \(peer.displayName) is joining
             """, duration: 6.0)
+       
+        printConnectedPeers()
         //provide it the session ID to the new user so they can your track the anchors
         //        if let playerAnchor = arView.session.currentFrame?.anchors.first {
         //            let indicatorEntity = createPlayerIndicator(playerName: connectedPeers[peer] ?? "Unknown")
@@ -350,9 +355,9 @@ extension ViewController{
             
         }
         else{
-//                        print("Deferred sending collaboration to later because there are no peers")
-            message.displayMessage("Finding Local Players \(multipeerSession.peerSessionIDs)")
-            print(multipeerSession.peerSessionIDs)
+            //                        print("Deferred sending collaboration to later because there are no peers")
+            message.displayMessage("Finding Local Players")
+            
             
         }
     }
