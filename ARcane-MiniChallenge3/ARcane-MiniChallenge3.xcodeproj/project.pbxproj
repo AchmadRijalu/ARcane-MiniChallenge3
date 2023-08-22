@@ -27,9 +27,6 @@
 		77C1F9392A735E4000D2FBD2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77C1F9382A735E4000D2FBD2 /* Assets.xcassets */; };
 		77C1F93C2A735E4000D2FBD2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77C1F93B2A735E4000D2FBD2 /* Preview Assets.xcassets */; };
 		77C1F9492A736D4200D2FBD2 /* SpellshootButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C1F9482A736D4200D2FBD2 /* SpellshootButton.swift */; };
-		84D2B76F2A93781E00DE1746 /* BolaApi.usdc in Resources */ = {isa = PBXBuildFile; fileRef = 84D2B76E2A93781E00DE1746 /* BolaApi.usdc */; };
-		84D2B7712A9378AC00DE1746 /* WoodPlank2.usdc in Resources */ = {isa = PBXBuildFile; fileRef = 84D2B7702A9378AC00DE1746 /* WoodPlank2.usdc */; };
-		84D2B7772A94480000DE1746 /* Shield.usdc in Resources */ = {isa = PBXBuildFile; fileRef = 84D2B7762A94480000DE1746 /* Shield.usdc */; };
 		BF5182B12A89DF63005413F9 /* BulletEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5182B02A89DF63005413F9 /* BulletEntity.swift */; };
 		BF5182B32A8B1BE4005413F9 /* HitboxEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5182B22A8B1BE4005413F9 /* HitboxEntity.swift */; };
 /* End PBXBuildFile section */
@@ -56,9 +53,6 @@
 		77C1F9382A735E4000D2FBD2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		77C1F93B2A735E4000D2FBD2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		77C1F9482A736D4200D2FBD2 /* SpellshootButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellshootButton.swift; sourceTree = "<group>"; };
-		84D2B76E2A93781E00DE1746 /* BolaApi.usdc */ = {isa = PBXFileReference; lastKnownFileType = file; path = BolaApi.usdc; sourceTree = "<group>"; };
-		84D2B7702A9378AC00DE1746 /* WoodPlank2.usdc */ = {isa = PBXFileReference; lastKnownFileType = file; path = WoodPlank2.usdc; sourceTree = "<group>"; };
-		84D2B7762A94480000DE1746 /* Shield.usdc */ = {isa = PBXFileReference; lastKnownFileType = file; name = Shield.usdc; path = ../../../../../../Downloads/Shield.usdc; sourceTree = "<group>"; };
 		BF5182B02A89DF63005413F9 /* BulletEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulletEntity.swift; sourceTree = "<group>"; };
 		BF5182B22A8B1BE4005413F9 /* HitboxEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitboxEntity.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -142,7 +136,6 @@
 		77C1F9312A735E3F00D2FBD2 /* ARcane-MiniChallenge3 */ = {
 			isa = PBXGroup;
 			children = (
-				84D2B76D2A9377FC00DE1746 /* 3DAssets */,
 				BF5182AF2A89DF2E005413F9 /* Entities */,
 				772933382A7AA103006B42F6 /* Info.plist */,
 				77C1F9322A735E3F00D2FBD2 /* AppDelegate.swift */,
@@ -167,16 +160,6 @@
 				77C1F93B2A735E4000D2FBD2 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		84D2B76D2A9377FC00DE1746 /* 3DAssets */ = {
-			isa = PBXGroup;
-			children = (
-				84D2B76E2A93781E00DE1746 /* BolaApi.usdc */,
-				84D2B7702A9378AC00DE1746 /* WoodPlank2.usdc */,
-				84D2B7762A94480000DE1746 /* Shield.usdc */,
-			);
-			path = 3DAssets;
 			sourceTree = "<group>";
 		};
 		BF5182AF2A89DF2E005413F9 /* Entities */ = {
@@ -255,10 +238,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				77C1F93C2A735E4000D2FBD2 /* Preview Assets.xcassets in Resources */,
-				84D2B7712A9378AC00DE1746 /* WoodPlank2.usdc in Resources */,
 				77C1F9392A735E4000D2FBD2 /* Assets.xcassets in Resources */,
-				84D2B76F2A93781E00DE1746 /* BolaApi.usdc in Resources */,
-				84D2B7772A94480000DE1746 /* Shield.usdc in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,7 +395,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ARcane-MiniChallenge3/Preview Content\"";
-				DEVELOPMENT_TEAM = 2KW4763FM3;
+				DEVELOPMENT_TEAM = 9B67722SW9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "ARcane-MiniChallenge3/Info.plist";
@@ -451,7 +431,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ARcane-MiniChallenge3/Preview Content\"";
-				DEVELOPMENT_TEAM = 2KW4763FM3;
+				DEVELOPMENT_TEAM = 9B67722SW9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "ARcane-MiniChallenge3/Info.plist";

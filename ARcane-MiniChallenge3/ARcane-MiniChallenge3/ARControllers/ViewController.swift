@@ -54,18 +54,18 @@ class ViewController: UIViewController {
         self.view.addSubview(self.arView)
         self.view.addSubview(self.message)
         
-                healthLabel.translatesAutoresizingMaskIntoConstraints = false
-                healthLabel.textAlignment = .left
-                healthLabel.font = UIFont.systemFont(ofSize: 18)
-                healthLabel.text = "Finger X Position"
-                healthLabel.numberOfLines = 0
-                view.addSubview(healthLabel)
-        
-                NSLayoutConstraint.activate([
-                    healthLabel.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
-                    healthLabel.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
-        
-                ])
+        //        healthLabel.translatesAutoresizingMaskIntoConstraints = false
+        //        healthLabel.textAlignment = .left
+        //        healthLabel.font = UIFont.systemFont(ofSize: 18)
+        //        healthLabel.text = "Finger X Position"
+        //        healthLabel.numberOfLines = 0
+        //        view.addSubview(healthLabel)
+        //
+        //        NSLayoutConstraint.activate([
+        //            healthLabel.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
+        //            healthLabel.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
+        //
+        //        ])
         
         
         NSLayoutConstraint.activate([
@@ -167,16 +167,9 @@ class ViewController: UIViewController {
         
         // Create the square entity
         let squareSize: Float = 0.2 // Adjust the size as needed
-//        let squareEntity = ModelEntity(mesh: .generateBox(width: squareSize, height: squareSize, depth: 0.01), materials: [SimpleMaterial(color: UIColor(Color("SecondButtonColor")), isMetallic: true)])
-        let squareEntity = try! ModelEntity.loadModel(named: "Shield")
-        squareEntity.setScale(SIMD3(x: 0.05, y: 0.05, z: 0.05), relativeTo: squareEntity.self)
-        
-        //Set Rotation of Shield
-//        let rotationQuaternion = simd_quatf(angle: .pi/4, axis: SIMD3(x: .pi, y: 0, z: .pi))
-        
-        squareEntity.collision = CollisionComponent(shapes: [.generateBox(width: 1.15, height: 1.15, depth: 2)])
+        let squareEntity = ModelEntity(mesh: .generateBox(width: squareSize, height: squareSize, depth: 0.01), materials: [SimpleMaterial(color: UIColor(Color("SecondButtonColor")), isMetallic: true)])
+        squareEntity.collision = CollisionComponent(shapes: [.generateBox(width: squareSize, height: squareSize, depth: 0.01)])
         squareEntity.physicsBody = PhysicsBodyComponent(massProperties: .default, material: .default, mode: .static)
-        squareEntity.transform.rotation = simd_quatf(angle: .pi/2, axis: SIMD3(x: 1, y: 0, z: 0))
         
         // Create an anchor entity at the transformed position and add the square entity
         let anchorEntity = AnchorEntity(world: transformedTransform)
@@ -195,26 +188,6 @@ class ViewController: UIViewController {
         let anchorEntity = AnchorEntity(anchor: anchor)
         
         let spellEntity = BulletEntity(color: .systemPink, for: anchor)
-//        let spellEntity = try! ModelEntity.loadModel(named: "BolaApi")
-//        spellEntity.physicsBody = PhysicsBodyComponent(
-//            massProperties: .default,
-//            material: .default,
-//            mode: .dynamic
-//        )
-//        spellEntity.physicsMotion = PhysicsMotionComponent(
-//            linearVelocity: SIMD3(
-//                anchor.transform.columns.2.x * -20,
-//                anchor.transform.columns.2.y * -20,
-//                anchor.transform.columns.2.z * -20
-//
-//            )
-//        )
-//        spellEntity.collision = CollisionComponent(
-//            shapes: [.generateBox(width: 0.5, height: 0.5, depth: 0.5)],
-//            mode: .trigger,
-//            filter: .sensor
-//        )
-//        spellEntity.setScale(SIMD3(x: 0.8, y: 0.8, z: 0.8), relativeTo: spellEntity.self)
         
         anchorEntity.addChild(spellEntity)
         arView.scene.addAnchor(anchorEntity)
@@ -265,21 +238,24 @@ extension ViewController: ARSessionDelegate{
 				placeObjectBlock(named: anchorName, for: anchor)
 			}
 			
-			if let playerAnchor = anchor as? ARParticipantAnchor {
-				print("Success connected with another player")
-				let anchorEntity = AnchorEntity(anchor: playerAnchor)
-
-                let playerEntity = HitboxEntity(color: .green, arView: arView, healthViewModel: HealthViewModel())
-
-				anchorEntity.addChild(playerEntity)
-
-				arView.scene.addAnchor(anchorEntity)
-			}
+//			if let playerAnchor = anchor as? ARParticipantAnchor {
+//				print("Success connected with another player")
+//				let anchorEntity = AnchorEntity(anchor: playerAnchor)
+//
+//				let playerEntity = HitboxEntity(color: .green, arView: arView)
+//
+//				anchorEntity.addChild(playerEntity)
+//
+//				arView.scene.addAnchor(anchorEntity)
+//			}
         }
         
         
     }
 }
+
+
+
 
 //MARK: - This is Multipeer Extension start
 extension ViewController{
