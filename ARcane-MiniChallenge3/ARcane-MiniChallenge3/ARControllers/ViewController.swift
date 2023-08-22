@@ -10,13 +10,12 @@ import ARKit
 import RealityKit
 import AVFoundation
 import SwiftUI
-import MultipeerSession
 import UIKit
 import FocusEntity
-
-
+import MultipeerConnectivity
 
 class ViewController: UIViewController {
+	var devicePeerID: MCPeerID
     var healthviewModel : HealthViewModel?
     var healthLabel =  UILabel()
     var arView: ARView = {
@@ -25,6 +24,7 @@ class ViewController: UIViewController {
         arView.environment.sceneUnderstanding.options.insert([.collision, .physics, .occlusion])
         return arView
     }()
+	
     //setup the mutlipeer package
     var shootAudioPlayer : AVAudioPlayer!
     var multipeerSession: MultipeerSession?
@@ -97,21 +97,11 @@ class ViewController: UIViewController {
         message.layer.cornerRadius = 10
         message.ignoreMessages = false
         message.textAlignment = .center
-        
-        setupMultipeerSession()
 		
 //		let hitbox = HitboxEntity(color: .systemPink, arView: arView)
 //
 //		arView.scene.anchors.append(hitbox)
 //		hitbox.addCollisions()
-		
-		let playerEntity = HitboxEntity(color: .green, arView: arView, healthViewModel: healthviewModel!)
-		playerEntity.position += SIMD3<Float>(0, 1, 0)
-		
-		let anchorEntity = AnchorEntity(.camera)
-		anchorEntity.addChild(playerEntity)
-		
-		arView.scene.anchors.append(anchorEntity)
     }
     
     //setup the AR View
@@ -145,15 +135,15 @@ class ViewController: UIViewController {
             self.sendARSessionIDTo(peers: multipeerSession.connectedPeers)
         }
         multipeerSession = MultipeerSession(serviceName: "multiuser-ar", receivedDataHandler: self.receivedData, peerJoinedHandler: self.peerJoined, peerLeftHandler: self.peerLeft, peerDiscoveredHandler: self.peerDiscovered)
+		multipeerSession.my
     }
     
-    func spellShoot(){
+    func spellShoot() {
         let anchor = ARAnchor(name: "SpellShoot", transform: arView.cameraTransform.matrix)
         arView.session.add(anchor: anchor)
-        
     }
 	
-    func blockDeploy(){
+    func blockDeploy() {
         let anchor = ARAnchor(name: "BlockDeploy", transform: arView.cameraTransform.matrix)
         arView.session.add(anchor: anchor)
     }
@@ -238,7 +228,7 @@ extension ViewController: ARSessionDelegate{
 				placeObjectBlock(named: anchorName, for: anchor)
 			}
 			
-//			if let playerAnchor = anchor as? ARParticipantAnchor {
+			if let playerAnchor = anchor as? ARParticipantAnchor {
 //				print("Success connected with another player")
 //				let anchorEntity = AnchorEntity(anchor: playerAnchor)
 //
@@ -247,7 +237,20 @@ extension ViewController: ARSessionDelegate{
 //				anchorEntity.addChild(playerEntity)
 //
 //				arView.scene.addAnchor(anchorEntity)
-//			}
+				
+				
+				let playerEntity = HitboxEntity(color: .green, arView: arView, healthViewModel: healthviewModel ?? HealthViewModel())
+				playerEntity.position += SIMD3<Float>(0, 0, -1)
+				
+				let anchorEntity = AnchorEntity(.camera)
+				anchorEntity.addChild(playerEntity)
+				
+				arView.scene.anchors.append(anchorEntity)
+				
+				playerEntity.addCollisions()
+			}
+			
+			
         }
         
         

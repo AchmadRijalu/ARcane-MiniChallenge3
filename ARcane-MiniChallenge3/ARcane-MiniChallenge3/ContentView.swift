@@ -23,7 +23,7 @@ struct ContentView : View {
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     var body: some View {
         ZStack(alignment: .bottomTrailing){
-            ARViewController(isHit: $isHit, isStarted: $isStarted, isSummonedBlock: $isSummonedBlock, healthviewModel: healthviewModel, Health: healthviewModel.playerOneHealth ).edgesIgnoringSafeArea(.all)
+			ARViewController(isHit: $isHit, isStarted: $isStarted, isSummonedBlock: $isSummonedBlock, healthviewModel: healthviewModel, Health: healthviewModel.playerTwoHealth ).edgesIgnoringSafeArea(.all)
             if isStarted {
                 SpellshootButton().onTapGesture {
                     isHit = true
@@ -38,7 +38,7 @@ struct ContentView : View {
                 .padding(EdgeInsets(top: 0, leading: 10, bottom: 150, trailing: 6))
                 VStack {
                     HStack {
-                        Text("Your Health: \(healthviewModel.playerOneHealth)")
+                        Text("Your Health: \(healthviewModel.playerTwoHealth)")
                             .foregroundColor(.black)
                             .background(.white)
                             .font(.title2)
@@ -125,6 +125,8 @@ struct ARViewController : UIViewControllerRepresentable{
         
         uiViewController.healthviewModel = healthviewModel
         uiViewController.healthLabel.text = String(Health)
+//		print(Health)
+//		print(healthviewModel.playerTwoHealth)
         if isHit == true{
             uiViewController.spellShoot()
             DispatchQueue.main.async {
