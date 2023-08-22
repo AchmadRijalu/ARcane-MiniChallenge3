@@ -16,7 +16,6 @@ class HitboxEntity: Entity, HasModel, HasCollision {
 	var collisionSubs: [Cancellable] = []
 	var arView: ARView = ARView()
 	var health: Int = 100
-    @StateObject var viewModel = HealthViewModel()
     @ObservedObject var healthviewModel : HealthViewModel
 	var textEntity = ModelEntity(mesh: .generateText("", font: UIFont.systemFont(ofSize: 0.01)), materials: [SimpleMaterial(color: .red, isMetallic: false)])
 		
@@ -41,19 +40,16 @@ class HitboxEntity: Entity, HasModel, HasCollision {
 		)
 		
 		self.scale = [0.2, 0.2, 0.2]
-		
 		self.components[PhysicsBodyComponent.self] = PhysicsBodyComponent(
 			massProperties: .default,
 			material: .default,
 			mode: .static
 		)
-		
         textEntity = ModelEntity(mesh: .generateText("\(healthviewModel.playerTwoHealth)", extrusionDepth: 0.01, font: UIFont.systemFont(ofSize: 0.1), alignment: .center), materials: [SimpleMaterial(color: .white, isMetallic: false)])
 		textEntity.position.z += 0.5
 		
 		self.addChild(textEntity)
 	}
-	
 	required init() {
 		fatalError("init() has not been implemented")
 	}

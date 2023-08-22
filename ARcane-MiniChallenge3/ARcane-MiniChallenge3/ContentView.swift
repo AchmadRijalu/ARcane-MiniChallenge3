@@ -23,7 +23,7 @@ struct ContentView : View {
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     var body: some View {
         ZStack(alignment: .bottomTrailing){
-            ARViewController(isHit: $isHit, isStarted: $isStarted, isSummonedBlock: $isSummonedBlock, healthviewModel: healthviewModel, Health: healthviewModel.playerOneHealth ).edgesIgnoringSafeArea(.all)
+            ARViewController(isHit: $isHit, isStarted: $isStarted, isSummonedBlock: $isSummonedBlock, healthviewModel: healthviewModel, Health: healthviewModel.playerTwoHealth ).edgesIgnoringSafeArea(.all)
             if isStarted {
                 SpellshootButton().onTapGesture {
                     isHit = true

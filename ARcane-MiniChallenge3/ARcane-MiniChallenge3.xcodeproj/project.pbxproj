@@ -10,6 +10,7 @@
 		772933292A78C57C006B42F6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772933282A78C57C006B42F6 /* ViewController.swift */; };
 		7729332C2A78E974006B42F6 /* SpellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7729332B2A78E974006B42F6 /* SpellViewModel.swift */; };
 		7729332F2A7A04CB006B42F6 /* MultipeerSession in Frameworks */ = {isa = PBXBuildFile; productRef = 7729332E2A7A04CB006B42F6 /* MultipeerSession */; };
+		774C4DF52A93528F00A723A7 /* PlayerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774C4DF42A93528F00A723A7 /* PlayerModel.swift */; };
 		776712092A847FBB0011362B /* ViewControllerMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776712082A847FBB0011362B /* ViewControllerMessage.swift */; };
 		7767120B2A8483200011362B /* MessageLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7767120A2A8483200011362B /* MessageLabel.swift */; };
 		77767C612A7C88180043EC08 /* MultipeerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77767C602A7C88180043EC08 /* MultipeerController.swift */; };
@@ -35,6 +36,7 @@
 		772933282A78C57C006B42F6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		7729332B2A78E974006B42F6 /* SpellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellViewModel.swift; sourceTree = "<group>"; };
 		772933382A7AA103006B42F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		774C4DF42A93528F00A723A7 /* PlayerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerModel.swift; sourceTree = "<group>"; };
 		776712082A847FBB0011362B /* ViewControllerMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerMessage.swift; sourceTree = "<group>"; };
 		7767120A2A8483200011362B /* MessageLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageLabel.swift; sourceTree = "<group>"; };
 		77767C602A7C88180043EC08 /* MultipeerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipeerController.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 				7729332A2A78E95A006B42F6 /* ViewModels */,
 				77C1F93A2A735E4000D2FBD2 /* Preview Content */,
 				77767C602A7C88180043EC08 /* MultipeerController.swift */,
+				774C4DF42A93528F00A723A7 /* PlayerModel.swift */,
 			);
 			path = "ARcane-MiniChallenge3";
 			sourceTree = "<group>";
@@ -260,6 +263,7 @@
 				77AC76D02A85D04200564ADF /* StartViewModel.swift in Sources */,
 				77AF6B0A2A8B3832000DF49B /* MenuExperience.rcproject in Sources */,
 				778619072A921D7700BF6E8F /* ResultPage.swift in Sources */,
+				774C4DF52A93528F00A723A7 /* PlayerModel.swift in Sources */,
 				7729332C2A78E974006B42F6 /* SpellViewModel.swift in Sources */,
 				77AC76CE2A85CF9C00564ADF /* ViewStartController.swift in Sources */,
 				77C1F9372A735E3F00D2FBD2 /* Experience.rcproject in Sources */,
@@ -395,7 +399,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ARcane-MiniChallenge3/Preview Content\"";
-				DEVELOPMENT_TEAM = 9B67722SW9;
+				DEVELOPMENT_TEAM = DYXBWDG6F4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "ARcane-MiniChallenge3/Info.plist";
@@ -431,7 +435,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ARcane-MiniChallenge3/Preview Content\"";
-				DEVELOPMENT_TEAM = 9B67722SW9;
+				DEVELOPMENT_TEAM = DYXBWDG6F4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "ARcane-MiniChallenge3/Info.plist";
