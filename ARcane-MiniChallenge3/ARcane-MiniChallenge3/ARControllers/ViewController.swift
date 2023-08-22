@@ -39,9 +39,10 @@ class ViewController: UIViewController {
     var countdownCounter = 5
     var countdownIsOn:Bool = false
     
+    private var audioPlayer: AVAudioPlayer?
+    
     
     var playerHealthMapping: [PlayerModel] = []
-    
     
     //Did Appear
     override func viewDidAppear(_ animated:Bool) {
@@ -95,19 +96,19 @@ class ViewController: UIViewController {
         message.textAlignment = .center
         
         setupMultipeerSession()
-		
-//		let hitbox = HitboxEntity(color: .systemPink, arView: arView)
-//
-//		arView.scene.anchors.append(hitbox)
-//		hitbox.addCollisions()
-		
-		let playerEntity = HitboxEntity(color: .green, arView: arView, healthViewModel: healthviewModel!)
-		playerEntity.position += SIMD3<Float>(0, 1, 0)
-		
-		let anchorEntity = AnchorEntity(.camera)
-		anchorEntity.addChild(playerEntity)
-		
-		arView.scene.anchors.append(anchorEntity)
+        
+        //		let hitbox = HitboxEntity(color: .systemPink, arView: arView)
+        //
+        //		arView.scene.anchors.append(hitbox)
+        //		hitbox.addCollisions()
+        
+        let playerEntity = HitboxEntity(color: .green, arView: arView, healthViewModel: healthviewModel!)
+        playerEntity.position += SIMD3<Float>(0, 1, 0)
+        
+        let anchorEntity = AnchorEntity(.camera)
+        anchorEntity.addChild(playerEntity)
+        
+        arView.scene.anchors.append(anchorEntity)
     }
     
     //setup the AR View
@@ -151,12 +152,12 @@ class ViewController: UIViewController {
         arView.session.add(anchor: anchor)
         
     }
-	
+    
     func blockDeploy(){
         let anchor = ARAnchor(name: "BlockDeploy", transform: arView.cameraTransform.matrix)
         arView.session.add(anchor: anchor)
     }
-	
+    
     func placeObjectBlock(named entityName: String, for anchor: ARAnchor) {
         // Calculate the position for the square closer to the anchor
         let anchorTransform = anchor.transform
@@ -190,6 +191,23 @@ class ViewController: UIViewController {
         
         anchorEntity.addChild(spellEntity)
         arView.scene.addAnchor(anchorEntity)
+        
+        if audioPlayer != nil && audioPlayer!.isPlaying {
+            
+        } else {
+            guard let path = Bundle.main.path(forResource: "spellsound", ofType:"wav") else {
+                return }
+            let url = URL(fileURLWithPath: path)
+            
+            do {
+                if audioPlayer == nil {
+                    audioPlayer = try AVAudioPlayer(contentsOf: url)
+                }
+                audioPlayer?.play()
+            } catch let error {
+                print(error.localizedDescription)
+            }
+        }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.70){
             self.arView.scene.removeAnchor(anchorEntity)
@@ -232,24 +250,24 @@ extension ViewController: ARSessionDelegate{
             if let anchorName = anchor.name, anchorName == "SpellShoot" {
                 placeObject(named: anchorName, for : anchor)
             }
-			
-			if let anchorName = anchor.name, anchorName == "BlockDeploy"{
-				placeObjectBlock(named: anchorName, for: anchor)
-			}
-			
-//			if let playerAnchor = anchor as? ARParticipantAnchor {
-//				print("Success connected with another player")
-//				let anchorEntity = AnchorEntity(anchor: playerAnchor)
-//
-//				let playerEntity = HitboxEntity(color: .green, arView: arView)
-//
-//				anchorEntity.addChild(playerEntity)
-//
-//				arView.scene.addAnchor(anchorEntity)
-//			}
+            
+            if let anchorName = anchor.name, anchorName == "BlockDeploy"{
+                placeObjectBlock(named: anchorName, for: anchor)
+            }
+            
+            //			if let playerAnchor = anchor as? ARParticipantAnchor {
+            //				print("Success connected with another player")
+            //				let anchorEntity = AnchorEntity(anchor: playerAnchor)
+            //
+            //				let playerEntity = HitboxEntity(color: .green, arView: arView)
+            //
+            //				anchorEntity.addChild(playerEntity)
+            //
+            //				arView.scene.addAnchor(anchorEntity)
+            //			}
             print("Hasil Game Master : \(playerHealthMapping[0].peerId)")
             print("Hasil Guest : \(playerHealthMapping[1].peerId)")
-           
+            
         }
         
         
@@ -311,7 +329,7 @@ extension ViewController{
         message.displayMessage("""
                    \(peer.displayName) is joining
             """, duration: 6.0)
-       
+        
         var playerModelGuest = PlayerModel(peerId: multipeerSession!.connectedPeers[0], health: 100, statusLevel: "Guest")
         playerHealthMapping.append(playerModelGuest)
         

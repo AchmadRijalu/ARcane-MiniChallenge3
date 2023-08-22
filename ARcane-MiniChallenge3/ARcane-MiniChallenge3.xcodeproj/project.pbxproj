@@ -10,6 +10,7 @@
 		772933292A78C57C006B42F6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772933282A78C57C006B42F6 /* ViewController.swift */; };
 		7729332C2A78E974006B42F6 /* SpellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7729332B2A78E974006B42F6 /* SpellViewModel.swift */; };
 		7729332F2A7A04CB006B42F6 /* MultipeerSession in Frameworks */ = {isa = PBXBuildFile; productRef = 7729332E2A7A04CB006B42F6 /* MultipeerSession */; };
+		774AD35C2A944E2A00A10AC5 /* spellsound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 774AD35B2A944E2A00A10AC5 /* spellsound.wav */; };
 		774C4DF52A93528F00A723A7 /* PlayerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774C4DF42A93528F00A723A7 /* PlayerModel.swift */; };
 		776712092A847FBB0011362B /* ViewControllerMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776712082A847FBB0011362B /* ViewControllerMessage.swift */; };
 		7767120B2A8483200011362B /* MessageLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7767120A2A8483200011362B /* MessageLabel.swift */; };
@@ -36,6 +37,7 @@
 		772933282A78C57C006B42F6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		7729332B2A78E974006B42F6 /* SpellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellViewModel.swift; sourceTree = "<group>"; };
 		772933382A7AA103006B42F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		774AD35B2A944E2A00A10AC5 /* spellsound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = spellsound.wav; sourceTree = "<group>"; };
 		774C4DF42A93528F00A723A7 /* PlayerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerModel.swift; sourceTree = "<group>"; };
 		776712082A847FBB0011362B /* ViewControllerMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerMessage.swift; sourceTree = "<group>"; };
 		7767120A2A8483200011362B /* MessageLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageLabel.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 		77C1F9312A735E3F00D2FBD2 /* ARcane-MiniChallenge3 */ = {
 			isa = PBXGroup;
 			children = (
+				774AD35B2A944E2A00A10AC5 /* spellsound.wav */,
 				BF5182AF2A89DF2E005413F9 /* Entities */,
 				772933382A7AA103006B42F6 /* Info.plist */,
 				77C1F9322A735E3F00D2FBD2 /* AppDelegate.swift */,
@@ -242,6 +245,7 @@
 			files = (
 				77C1F93C2A735E4000D2FBD2 /* Preview Assets.xcassets in Resources */,
 				77C1F9392A735E4000D2FBD2 /* Assets.xcassets in Resources */,
+				774AD35C2A944E2A00A10AC5 /* spellsound.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
