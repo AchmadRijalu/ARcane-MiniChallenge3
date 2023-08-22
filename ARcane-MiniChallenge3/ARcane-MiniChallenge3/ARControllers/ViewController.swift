@@ -11,7 +11,6 @@ import RealityKit
 import AVFoundation
 import SwiftUI
 import UIKit
-import FocusEntity
 import MultipeerConnectivity
 
 class ViewController: UIViewController {
@@ -44,7 +43,7 @@ class ViewController: UIViewController {
     var countdownIsOn:Bool = false
     
     
-    var playerHealthMapping: [UUID: Int] = [:]
+    var playerHealthMapping: [PlayerModel] = []
     
     
     //Did Appear
@@ -110,7 +109,6 @@ class ViewController: UIViewController {
         let configuration = ARWorldTrackingConfiguration()
         configuration.environmentTexturing = .automatic
         configuration.sceneReconstruction = .mesh
-        
         if type(of: configuration).supportsFrameSemantics(.sceneDepth) {
             // read surroundings and create a depth map using the sensor
             configuration.frameSemantics = .sceneDepth
@@ -135,7 +133,10 @@ class ViewController: UIViewController {
             self.sendARSessionIDTo(peers: multipeerSession.connectedPeers)
         }
         multipeerSession = MultipeerSession(serviceName: "multiuser-ar", receivedDataHandler: self.receivedData, peerJoinedHandler: self.peerJoined, peerLeftHandler: self.peerLeft, peerDiscoveredHandler: self.peerDiscovered)
-		multipeerSession.my
+        
+        var playerModel = PlayerModel(peerId: multipeerSession!.myPeerID, health: 3, statusLevel: "Game Master")
+        
+        playerHealthMapping.append(playerModel)
     }
     
     func spellShoot() {
@@ -285,7 +286,6 @@ extension ViewController{
         
         if let commandString = String(data: data, encoding: .utf8), commandString.starts(with: sessionIDCommandString){
             let newSessionID = String(commandString[commandString.index( commandString.startIndex, offsetBy: sessionIDCommandString.count)...])
-            
             if let oldSessionID = multipeerSession.peerSessionIDs[peer]{
                 removeAllAnchorsOriginatingFromARSessionWithID(oldSessionID)
             }
@@ -314,7 +314,9 @@ extension ViewController{
                    \(peer.displayName) is joining
             """, duration: 6.0)
        
-        printConnectedPeers()
+        var playerModelGuest = PlayerModel(peerId: multipeerSession!.connectedPeers[0], health: 100, statusLevel: "Guest")
+        playerHealthMapping.append(playerModelGuest)
+        
         //provide it the session ID to the new user so they can your track the anchors
         //        if let playerAnchor = arView.session.currentFrame?.anchors.first {
         //            let indicatorEntity = createPlayerIndicator(playerName: connectedPeers[peer] ?? "Unknown")
@@ -360,6 +362,7 @@ extension ViewController{
         else{
             //                        print("Deferred sending collaboration to later because there are no peers")
             message.displayMessage("Finding Local Players")
+            print("Game Master Model: \(playerHealthMapping[0].statusLevel)")
             
             
         }

@@ -40,7 +40,6 @@ class HitboxEntity: Entity, HasModel, HasCollision {
 		)
 		
 		self.scale = [0.2, 0.2, 0.2]
-		
 		self.components[PhysicsBodyComponent.self] = PhysicsBodyComponent(
 			massProperties: .default,
 			material: .default,
@@ -52,7 +51,6 @@ class HitboxEntity: Entity, HasModel, HasCollision {
 		
 		self.addChild(textEntity)
 	}
-	
 	required init() {
 		fatalError("init() has not been implemented")
 	}
