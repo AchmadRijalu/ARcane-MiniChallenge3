@@ -8,6 +8,7 @@
 import SwiftUI
 import RealityKit
 import MultipeerConnectivity
+import AVFoundation
 
 struct ContentView : View {
     @State var isHit = false
@@ -22,14 +23,35 @@ struct ContentView : View {
     @State private var showModalResult = false
     
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    
+    var audioPlayer: AVAudioPlayer!
 	
+    init() {
+            if let path = Bundle.main.path(forResource: "spellsound", ofType:"wav") {
+                let url = URL(fileURLWithPath: path)
+                do {
+                    audioPlayer = try AVAudioPlayer(contentsOf: url)
+                    audioPlayer.prepareToPlay()
+                } catch {
+                    print(error.localizedDescription)
+                }
+            }
+        }
+    
+    
     var body: some View {
         ZStack(alignment: .bottomTrailing){
 			ARViewController(isHit: $isHit, isStarted: $isStarted, isSummonedBlock: $isSummonedBlock, playerHealth: $playerHealth, playerMapModel: playerMapModel).edgesIgnoringSafeArea(.all)
             if isStarted {
                 SpellshootButton().onTapGesture {
+                    if audioPlayer.isPlaying {
+                            // If playing, stop and rewind the player
+                            audioPlayer.stop()
+                            audioPlayer.currentTime = 0
+                        }
+                        // Play the sound
+                        audioPlayer.play()
                     isHit = true
-//                    healthviewModel.playerOneHealth -= 1
                     
                 }
                 VStack{
@@ -67,16 +89,7 @@ struct ContentView : View {
                 }
             }
         }
-//        .onChange(of: healthviewModel.playerOneHealth) { newHealth in
-//                    if newHealth <= 0 {
-//                        withAnimation {
-//                            showModalResult = true
-//                        }
-//                    }
-//                }
-//        .sheet(isPresented: $showModalResult) {
-//            ResultPage()
-//        }
+
     }
 }
 
@@ -117,9 +130,6 @@ struct ARViewController : UIViewControllerRepresentable{
 	
     func makeUIViewController(context: Context) -> ViewController {
         let controller = ViewController()
-        //        if controller.countdownIsOn == true{
-        //            controller.startCountdown()
-        //        }
         return controller
     }
     
@@ -131,13 +141,7 @@ struct ARViewController : UIViewControllerRepresentable{
 		DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
 			playerHealth = showPlayerHealth(currentPeerID: currentPeerID)
 		}
-		
-//		DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-//			devicePeerID = uiViewController.devicePeerID ?? MCPeerID(displayName: "X")
-//
-//			print("dEVice ID : ASA \(devicePeerID)")
-//		}
-		
+
         if isHit == true{
             uiViewController.spellShoot()
             DispatchQueue.main.async {
@@ -151,7 +155,6 @@ struct ARViewController : UIViewControllerRepresentable{
             }
         }
     }
-    // this is very important, this coordinator will be used in `makeUIViewController`
     
 }
 

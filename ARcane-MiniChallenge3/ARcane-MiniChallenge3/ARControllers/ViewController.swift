@@ -156,10 +156,7 @@ class ViewController: UIViewController {
 //        let squareEntity = ModelEntity(mesh: .generateBox(width: squareSize, height: squareSize, depth: 0.01), materials: [SimpleMaterial(color: UIColor(Color("SecondButtonColor")), isMetallic: true)])
         let squareEntity = try! ModelEntity.loadModel(named: "shield")
         squareEntity.setScale(SIMD3(x: 0.05, y: 0.05, z: 0.05), relativeTo: squareEntity.self)
-        
-        //Set Rotation of Shield
-//        let rotationQuaternion = simd_quatf(angle: .pi/4, axis: SIMD3(x: .pi, y: 0, z: .pi))
-        
+
         squareEntity.collision = CollisionComponent(shapes: [.generateBox(width: 1.15, height: 1.15, depth: 2)])
         squareEntity.physicsBody = PhysicsBodyComponent(massProperties: .default, material: .default, mode: .static)
         squareEntity.transform.rotation = simd_quatf(angle: .pi/2, axis: SIMD3(x: 1, y: 0, z: 0))
@@ -181,46 +178,10 @@ class ViewController: UIViewController {
         let anchorEntity = AnchorEntity(anchor: anchor)
         
         let spellEntity = BulletEntity(color: .systemPink, for: anchor)
-//        let spellEntity = try! ModelEntity.loadModel(named: "BolaApi")
-//        spellEntity.physicsBody = PhysicsBodyComponent(
-//            massProperties: .default,
-//            material: .default,
-//            mode: .dynamic
-//        )
-//        spellEntity.physicsMotion = PhysicsMotionComponent(
-//            linearVelocity: SIMD3(
-//                anchor.transform.columns.2.x * -20,
-//                anchor.transform.columns.2.y * -20,
-//                anchor.transform.columns.2.z * -20
-//
-//            )
-//        )
-//        spellEntity.collision = CollisionComponent(
-//            shapes: [.generateBox(width: 0.5, height: 0.5, depth: 0.5)],
-//            mode: .trigger,
-//            filter: .sensor
-//        )
-//        spellEntity.setScale(SIMD3(x: 0.8, y: 0.8, z: 0.8), relativeTo: spellEntity.self)
-        
         anchorEntity.addChild(spellEntity)
         arView.scene.addAnchor(anchorEntity)
         
-        if audioPlayer != nil && audioPlayer!.isPlaying {
-            
-        } else {
-            guard let path = Bundle.main.path(forResource: "spellsound", ofType:"wav") else {
-                return }
-            let url = URL(fileURLWithPath: path)
-            
-            do {
-                if audioPlayer == nil {
-                    audioPlayer = try AVAudioPlayer(contentsOf: url)
-                }
-                audioPlayer?.play()
-            } catch let error {
-                print(error.localizedDescription)
-            }
-        }
+        
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.70){
             self.arView.scene.removeAnchor(anchorEntity)
