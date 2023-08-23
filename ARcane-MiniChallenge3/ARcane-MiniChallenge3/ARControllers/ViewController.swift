@@ -145,6 +145,7 @@ class ViewController: UIViewController {
 //        let squareEntity = ModelEntity(mesh: .generateBox(width: squareSize, height: squareSize, depth: 0.01), materials: [SimpleMaterial(color: UIColor(Color("SecondButtonColor")), isMetallic: true)])
         let squareEntity = try! ModelEntity.loadModel(named: "shield")
         squareEntity.setScale(SIMD3(x: 0.05, y: 0.05, z: 0.05), relativeTo: squareEntity.self)
+        squareEntity.position.y += 0.15
 
         squareEntity.collision = CollisionComponent(shapes: [.generateBox(width: 1.15, height: 1.15, depth: 2)])
         squareEntity.physicsBody = PhysicsBodyComponent(massProperties: .default, material: .default, mode: .static)
@@ -162,21 +163,16 @@ class ViewController: UIViewController {
             self.arView.scene.removeAnchor(anchorEntity)
         }
     }
-    
     func placeObject(named entityName: String, for anchor: ARAnchor){
         let anchorEntity = AnchorEntity(anchor: anchor)
         
         let spellEntity = BulletEntity(color: .systemPink, for: anchor)
         anchorEntity.addChild(spellEntity)
         arView.scene.addAnchor(anchorEntity)
-        
-        
-        
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.70){
             self.arView.scene.removeAnchor(anchorEntity)
         }
     }
-    
     func printConnectedPeers() {
         let connectedPeerNames = multipeerSession!.connectedPeers.map { $0.displayName }
         let connectedPeersText = connectedPeerNames.joined(separator: ", ")
