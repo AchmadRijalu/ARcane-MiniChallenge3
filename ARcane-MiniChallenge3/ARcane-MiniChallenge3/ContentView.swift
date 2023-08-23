@@ -7,6 +7,7 @@
 
 import SwiftUI
 import RealityKit
+import MultipeerConnectivity
 
 struct ContentView : View {
     @State var isHit = false
@@ -14,16 +15,17 @@ struct ContentView : View {
     //    @StateObject var startViewModel = StartViewModel()
     @State var isAnimating:Bool = false
     @State var isStarted:Bool = false
+	@State var playerHealth: Int = 0
     
     //PASS THE VALUE INTO UIKIT FOR THE SCORE
-    @StateObject var healthviewModel = HealthViewModel()
+    @StateObject var playerMapModel = PlayerMapModel()
     @State private var showModalResult = false
     
-    
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+	
     var body: some View {
         ZStack(alignment: .bottomTrailing){
-			ARViewController(isHit: $isHit, isStarted: $isStarted, isSummonedBlock: $isSummonedBlock, healthviewModel: healthviewModel, Health: healthviewModel.playerTwoHealth ).edgesIgnoringSafeArea(.all)
+			ARViewController(isHit: $isHit, isStarted: $isStarted, isSummonedBlock: $isSummonedBlock, playerHealth: $playerHealth, playerMapModel: playerMapModel).edgesIgnoringSafeArea(.all)
             if isStarted {
                 SpellshootButton().onTapGesture {
                     isHit = true
@@ -38,7 +40,7 @@ struct ContentView : View {
                 .padding(EdgeInsets(top: 0, leading: 10, bottom: 150, trailing: 6))
                 VStack {
                     HStack {
-                        Text("Your Health: \(healthviewModel.playerTwoHealth)")
+                        Text("Your Health: \(playerHealth)")
                             .foregroundColor(.black)
                             .background(.white)
                             .font(.title2)
@@ -77,16 +79,16 @@ struct ContentView : View {
                 }
             }
         }
-        .onChange(of: healthviewModel.playerOneHealth) { newHealth in
-                    if newHealth <= 0 {
-                        withAnimation {
-                            showModalResult = true
-                        }
-                    }
-                }
-        .sheet(isPresented: $showModalResult) {
-            ResultPage()
-        }
+//        .onChange(of: healthviewModel.playerOneHealth) { newHealth in
+//                    if newHealth <= 0 {
+//                        withAnimation {
+//                            showModalResult = true
+//                        }
+//                    }
+//                }
+//        .sheet(isPresented: $showModalResult) {
+//            ResultPage()
+//        }
     }
 }
 
@@ -109,10 +111,22 @@ struct ARViewController : UIViewControllerRepresentable{
     @Binding var isHit:Bool
     @Binding var isStarted:Bool
     @Binding var isSummonedBlock:Bool
+	@Binding var playerHealth: Int
+	
+	func showPlayerHealth(currentPeerID: MCPeerID) -> Int {
+		for player in playerMapModel.playerHealthMapping {
+			if currentPeerID == player.peerId {
+				return player.health
+			}
+		}
+		
+		return -1
+	}
+	
     
     //PASS THE VALUE INTO HERE
-    var healthviewModel : HealthViewModel
-    var Health: Int
+    @ObservedObject var playerMapModel : PlayerMapModel
+	
     func makeUIViewController(context: Context) -> ViewController {
         let controller = ViewController()
         //        if controller.countdownIsOn == true{
@@ -123,10 +137,19 @@ struct ARViewController : UIViewControllerRepresentable{
     
     func updateUIViewController(_ uiViewController: ViewController, context: Context) {
         
-        uiViewController.healthviewModel = healthviewModel
-        uiViewController.healthLabel.text = String(Health)
-//		print(Health)
-//		print(healthviewModel.playerTwoHealth)
+		uiViewController.playerMapModel = playerMapModel
+		let currentPeerID = uiViewController.devicePeerID ?? MCPeerID(displayName: "X")
+		
+		DispatchQueue.main.async {
+			playerHealth = showPlayerHealth(currentPeerID: currentPeerID)
+		}
+		
+//		DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+//			devicePeerID = uiViewController.devicePeerID ?? MCPeerID(displayName: "X")
+//
+//			print("dEVice ID : ASA \(devicePeerID)")
+//		}
+		
         if isHit == true{
             uiViewController.spellShoot()
             DispatchQueue.main.async {
