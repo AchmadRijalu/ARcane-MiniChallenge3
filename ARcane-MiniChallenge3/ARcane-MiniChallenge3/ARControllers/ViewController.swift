@@ -152,7 +152,7 @@ class ViewController: UIViewController {
         // Create the square entity
         let squareSize: Float = 0.2 // Adjust the size as needed
 //        let squareEntity = ModelEntity(mesh: .generateBox(width: squareSize, height: squareSize, depth: 0.01), materials: [SimpleMaterial(color: UIColor(Color("SecondButtonColor")), isMetallic: true)])
-        let squareEntity = try! ModelEntity.loadModel(named: "Shield")
+        let squareEntity = try! ModelEntity.loadModel(named: "shield")
         squareEntity.setScale(SIMD3(x: 0.05, y: 0.05, z: 0.05), relativeTo: squareEntity.self)
         
         //Set Rotation of Shield
@@ -255,7 +255,7 @@ extension ViewController: ARSessionDelegate{
 				
 				var playerModel = PlayerModel(peerId: MCPeerID(displayName: "X"), health: 0, statusLevel: "")
 				for player in playerMapModel!.playerHealthMapping {
-					if devicePeerID == player.peerId {
+					if devicePeerID != player.peerId {
 						playerModel = player
 						break
 					}

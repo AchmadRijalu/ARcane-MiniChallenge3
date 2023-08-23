@@ -38,19 +38,17 @@ class HitboxEntity: Entity, HasModel, HasCollision {
 			]
 		)
 		
-//		self.scale = [0.7, 0.7, 0.7]
-		
 		self.components[PhysicsBodyComponent.self] = PhysicsBodyComponent(
 			massProperties: .default,
 			material: .default,
 			mode: .static
 		)
 		
-		self.position.y += 0.05
+		self.position.y += 0.22
 		
-		textEntity = ModelEntity(mesh: .generateText("\(playerModel.health)", extrusionDepth: 0.01, font: UIFont.systemFont(ofSize: 0.1), alignment: .center), materials: [SimpleMaterial(color: .white, isMetallic: false)])
-		textEntity.position.z += -0.05
-		textEntity.position.y -= 0.05
+		textEntity = ModelEntity(mesh: .generateText("\(playerModel.health)", extrusionDepth: 0.01, font: UIFont.systemFont(ofSize: 0.2), alignment: .center), materials: [SimpleMaterial(color: .white, isMetallic: false)])
+		textEntity.position.z += -0.1
+		textEntity.position.y += 0.07
 		
 		self.addChild(textEntity)
 	}
@@ -74,9 +72,9 @@ extension HitboxEntity {
 		
 		self.removeChild(self.textEntity)
 		self.playerModel.health -= 1
-		self.textEntity = ModelEntity(mesh: .generateText("\(self.playerModel.health)", extrusionDepth: 0.01, font: UIFont.systemFont(ofSize: 0.1), alignment: .center), materials: [SimpleMaterial(color: .white, isMetallic: false)])
-		self.textEntity.position.z += -0.05
-		self.textEntity.position.y += 0.05
+		self.textEntity = ModelEntity(mesh: .generateText("\(self.playerModel.health)", extrusionDepth: 0.01, font: UIFont.systemFont(ofSize: 0.2), alignment: .center), materials: [SimpleMaterial(color: .white, isMetallic: false)])
+		self.textEntity.position.z += -0.1
+		self.textEntity.position.y += 0.07
 		self.addChild(self.textEntity)
 	})
 	  

@@ -38,19 +38,7 @@ struct ContentView : View {
                     }
                 }
                 .padding(EdgeInsets(top: 0, leading: 10, bottom: 150, trailing: 6))
-                VStack {
-                    HStack {
-                        Text("Your Health: \(playerHealth)")
-                            .foregroundColor(.black)
-                            .background(.white)
-                            .font(.title2)
-                        
-                        Spacer()
-                    }
-                    
-                    Spacer()
-                }
-                .padding(EdgeInsets(top: 15, leading: 15, bottom: 0, trailing: 0))
+				
             } else {
                 // Create a transparent background with a blur effect
                 Color.clear
@@ -115,12 +103,12 @@ struct ARViewController : UIViewControllerRepresentable{
 	
 	func showPlayerHealth(currentPeerID: MCPeerID) -> Int {
 		for player in playerMapModel.playerHealthMapping {
-			if currentPeerID == player.peerId {
+			if currentPeerID != player.peerId {
 				return player.health
 			}
 		}
 		
-		return -1
+		return 0
 	}
 	
     
@@ -140,7 +128,7 @@ struct ARViewController : UIViewControllerRepresentable{
 		uiViewController.playerMapModel = playerMapModel
 		let currentPeerID = uiViewController.devicePeerID ?? MCPeerID(displayName: "X")
 		
-		DispatchQueue.main.async {
+		DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
 			playerHealth = showPlayerHealth(currentPeerID: currentPeerID)
 		}
 		

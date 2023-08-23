@@ -29,9 +29,9 @@
 		77C1F9492A736D4200D2FBD2 /* SpellshootButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C1F9482A736D4200D2FBD2 /* SpellshootButton.swift */; };
 		84D2B76F2A93781E00DE1746 /* BolaApi.usdc in Resources */ = {isa = PBXBuildFile; fileRef = 84D2B76E2A93781E00DE1746 /* BolaApi.usdc */; };
 		84D2B7712A9378AC00DE1746 /* WoodPlank2.usdc in Resources */ = {isa = PBXBuildFile; fileRef = 84D2B7702A9378AC00DE1746 /* WoodPlank2.usdc */; };
-		84D2B7772A94480000DE1746 /* Shield.usdc in Resources */ = {isa = PBXBuildFile; fileRef = 84D2B7762A94480000DE1746 /* Shield.usdc */; };
 		BF5182B12A89DF63005413F9 /* BulletEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5182B02A89DF63005413F9 /* BulletEntity.swift */; };
 		BF5182B32A8B1BE4005413F9 /* HitboxEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5182B22A8B1BE4005413F9 /* HitboxEntity.swift */; };
+		BFB9AEEA2A95956600FC53AC /* shield.usdc in Resources */ = {isa = PBXBuildFile; fileRef = BFB9AEE92A95956600FC53AC /* shield.usdc */; };
 		BFD6F28D2A9454320014A2EC /* PlayerMapModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD6F28C2A9454320014A2EC /* PlayerMapModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -59,9 +59,9 @@
 		77C1F9482A736D4200D2FBD2 /* SpellshootButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellshootButton.swift; sourceTree = "<group>"; };
 		84D2B76E2A93781E00DE1746 /* BolaApi.usdc */ = {isa = PBXFileReference; lastKnownFileType = file; path = BolaApi.usdc; sourceTree = "<group>"; };
 		84D2B7702A9378AC00DE1746 /* WoodPlank2.usdc */ = {isa = PBXFileReference; lastKnownFileType = file; path = WoodPlank2.usdc; sourceTree = "<group>"; };
-		84D2B7762A94480000DE1746 /* Shield.usdc */ = {isa = PBXFileReference; lastKnownFileType = file; name = Shield.usdc; path = ../../../../../../Downloads/Shield.usdc; sourceTree = "<group>"; };
 		BF5182B02A89DF63005413F9 /* BulletEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulletEntity.swift; sourceTree = "<group>"; };
 		BF5182B22A8B1BE4005413F9 /* HitboxEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitboxEntity.swift; sourceTree = "<group>"; };
+		BFB9AEE92A95956600FC53AC /* shield.usdc */ = {isa = PBXFileReference; lastKnownFileType = file; path = shield.usdc; sourceTree = "<group>"; };
 		BFD6F28C2A9454320014A2EC /* PlayerMapModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerMapModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -176,7 +176,7 @@
 			children = (
 				84D2B76E2A93781E00DE1746 /* BolaApi.usdc */,
 				84D2B7702A9378AC00DE1746 /* WoodPlank2.usdc */,
-				84D2B7762A94480000DE1746 /* Shield.usdc */,
+				BFB9AEE92A95956600FC53AC /* shield.usdc */,
 			);
 			path = 3DAssets;
 			sourceTree = "<group>";
@@ -269,7 +269,7 @@
 				84D2B7712A9378AC00DE1746 /* WoodPlank2.usdc in Resources */,
 				77C1F9392A735E4000D2FBD2 /* Assets.xcassets in Resources */,
 				84D2B76F2A93781E00DE1746 /* BolaApi.usdc in Resources */,
-				84D2B7772A94480000DE1746 /* Shield.usdc in Resources */,
+				BFB9AEEA2A95956600FC53AC /* shield.usdc in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -427,7 +427,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ARcane-MiniChallenge3/Preview Content\"";
-				DEVELOPMENT_TEAM = 2KW4763FM3;
+				DEVELOPMENT_TEAM = 9B67722SW9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "ARcane-MiniChallenge3/Info.plist";
@@ -463,7 +463,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ARcane-MiniChallenge3/Preview Content\"";
-				DEVELOPMENT_TEAM = DYXBWDG6F4;
+				DEVELOPMENT_TEAM = 9B67722SW9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "ARcane-MiniChallenge3/Info.plist";
