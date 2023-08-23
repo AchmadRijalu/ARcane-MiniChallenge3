@@ -15,7 +15,9 @@ import MultipeerConnectivity
 
 class ViewController: UIViewController {
 	var devicePeerID: MCPeerID?
+    //MARK: - Currently not used in any screen
     var healthLabel =  UILabel()
+    //---------------------
     var arView: ARView = {
         let arView = ARView(frame: .zero)
         // give physics to ar view environment
@@ -52,19 +54,6 @@ class ViewController: UIViewController {
         self.view.backgroundColor = .clear
         self.view.addSubview(self.arView)
         self.view.addSubview(self.message)
-        
-                healthLabel.translatesAutoresizingMaskIntoConstraints = false
-                healthLabel.textAlignment = .left
-                healthLabel.font = UIFont.systemFont(ofSize: 18)
-                healthLabel.text = "Finger X Position"
-                healthLabel.numberOfLines = 0
-                view.addSubview(healthLabel)
-        
-                NSLayoutConstraint.activate([
-                    healthLabel.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
-                    healthLabel.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
-        
-                ])
         
         
         NSLayoutConstraint.activate([
