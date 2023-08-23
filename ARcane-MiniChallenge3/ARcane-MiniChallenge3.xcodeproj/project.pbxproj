@@ -16,7 +16,6 @@
 		7767120B2A8483200011362B /* MessageLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7767120A2A8483200011362B /* MessageLabel.swift */; };
 		77767C612A7C88180043EC08 /* MultipeerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77767C602A7C88180043EC08 /* MultipeerController.swift */; };
 		778619072A921D7700BF6E8F /* ResultPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778619062A921D7700BF6E8F /* ResultPage.swift */; };
-		778619092A9244D800BF6E8F /* HealthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778619082A9244D800BF6E8F /* HealthViewModel.swift */; };
 		7786190B2A92555E00BF6E8F /* ShieldSummonButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7786190A2A92555E00BF6E8F /* ShieldSummonButton.swift */; };
 		77AC76CE2A85CF9C00564ADF /* ViewStartController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AC76CD2A85CF9C00564ADF /* ViewStartController.swift */; };
 		77AC76D02A85D04200564ADF /* StartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AC76CF2A85D04200564ADF /* StartViewModel.swift */; };
@@ -29,8 +28,12 @@
 		77C1F9392A735E4000D2FBD2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77C1F9382A735E4000D2FBD2 /* Assets.xcassets */; };
 		77C1F93C2A735E4000D2FBD2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77C1F93B2A735E4000D2FBD2 /* Preview Assets.xcassets */; };
 		77C1F9492A736D4200D2FBD2 /* SpellshootButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C1F9482A736D4200D2FBD2 /* SpellshootButton.swift */; };
+		84D2B76F2A93781E00DE1746 /* BolaApi.usdc in Resources */ = {isa = PBXBuildFile; fileRef = 84D2B76E2A93781E00DE1746 /* BolaApi.usdc */; };
+		84D2B7712A9378AC00DE1746 /* WoodPlank2.usdc in Resources */ = {isa = PBXBuildFile; fileRef = 84D2B7702A9378AC00DE1746 /* WoodPlank2.usdc */; };
 		BF5182B12A89DF63005413F9 /* BulletEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5182B02A89DF63005413F9 /* BulletEntity.swift */; };
 		BF5182B32A8B1BE4005413F9 /* HitboxEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5182B22A8B1BE4005413F9 /* HitboxEntity.swift */; };
+		BFB9AEEA2A95956600FC53AC /* shield.usdc in Resources */ = {isa = PBXBuildFile; fileRef = BFB9AEE92A95956600FC53AC /* shield.usdc */; };
+		BFD6F28D2A9454320014A2EC /* PlayerMapModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD6F28C2A9454320014A2EC /* PlayerMapModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,7 +47,6 @@
 		77767C602A7C88180043EC08 /* MultipeerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipeerController.swift; sourceTree = "<group>"; };
 		77767C622A7C9E110043EC08 /* MenuExperience.rcproject */ = {isa = PBXFileReference; lastKnownFileType = file.rcproject; path = MenuExperience.rcproject; sourceTree = "<group>"; };
 		778619062A921D7700BF6E8F /* ResultPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultPage.swift; sourceTree = "<group>"; };
-		778619082A9244D800BF6E8F /* HealthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthViewModel.swift; sourceTree = "<group>"; };
 		7786190A2A92555E00BF6E8F /* ShieldSummonButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShieldSummonButton.swift; sourceTree = "<group>"; };
 		77AC76CD2A85CF9C00564ADF /* ViewStartController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewStartController.swift; sourceTree = "<group>"; };
 		77AC76CF2A85D04200564ADF /* StartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewModel.swift; sourceTree = "<group>"; };
@@ -57,8 +59,12 @@
 		77C1F9382A735E4000D2FBD2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		77C1F93B2A735E4000D2FBD2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		77C1F9482A736D4200D2FBD2 /* SpellshootButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellshootButton.swift; sourceTree = "<group>"; };
+		84D2B76E2A93781E00DE1746 /* BolaApi.usdc */ = {isa = PBXFileReference; lastKnownFileType = file; path = BolaApi.usdc; sourceTree = "<group>"; };
+		84D2B7702A9378AC00DE1746 /* WoodPlank2.usdc */ = {isa = PBXFileReference; lastKnownFileType = file; path = WoodPlank2.usdc; sourceTree = "<group>"; };
 		BF5182B02A89DF63005413F9 /* BulletEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulletEntity.swift; sourceTree = "<group>"; };
 		BF5182B22A8B1BE4005413F9 /* HitboxEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitboxEntity.swift; sourceTree = "<group>"; };
+		BFB9AEE92A95956600FC53AC /* shield.usdc */ = {isa = PBXFileReference; lastKnownFileType = file; path = shield.usdc; sourceTree = "<group>"; };
+		BFD6F28C2A9454320014A2EC /* PlayerMapModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerMapModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,7 +85,6 @@
 			children = (
 				7729332B2A78E974006B42F6 /* SpellViewModel.swift */,
 				77AC76CF2A85D04200564ADF /* StartViewModel.swift */,
-				778619082A9244D800BF6E8F /* HealthViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -141,6 +146,8 @@
 			isa = PBXGroup;
 			children = (
 				774AD35B2A944E2A00A10AC5 /* spellsound.wav */,
+				BFD6F28B2A94541F0014A2EC /* Model */,
+				84D2B76D2A9377FC00DE1746 /* 3DAssets */,
 				BF5182AF2A89DF2E005413F9 /* Entities */,
 				772933382A7AA103006B42F6 /* Info.plist */,
 				77C1F9322A735E3F00D2FBD2 /* AppDelegate.swift */,
@@ -155,7 +162,6 @@
 				7729332A2A78E95A006B42F6 /* ViewModels */,
 				77C1F93A2A735E4000D2FBD2 /* Preview Content */,
 				77767C602A7C88180043EC08 /* MultipeerController.swift */,
-				774C4DF42A93528F00A723A7 /* PlayerModel.swift */,
 			);
 			path = "ARcane-MiniChallenge3";
 			sourceTree = "<group>";
@@ -168,6 +174,16 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		84D2B76D2A9377FC00DE1746 /* 3DAssets */ = {
+			isa = PBXGroup;
+			children = (
+				84D2B76E2A93781E00DE1746 /* BolaApi.usdc */,
+				84D2B7702A9378AC00DE1746 /* WoodPlank2.usdc */,
+				BFB9AEE92A95956600FC53AC /* shield.usdc */,
+			);
+			path = 3DAssets;
+			sourceTree = "<group>";
+		};
 		BF5182AF2A89DF2E005413F9 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
@@ -175,6 +191,15 @@
 				BF5182B22A8B1BE4005413F9 /* HitboxEntity.swift */,
 			);
 			path = Entities;
+			sourceTree = "<group>";
+		};
+		BFD6F28B2A94541F0014A2EC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				774C4DF42A93528F00A723A7 /* PlayerModel.swift */,
+				BFD6F28C2A9454320014A2EC /* PlayerMapModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -244,8 +269,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				77C1F93C2A735E4000D2FBD2 /* Preview Assets.xcassets in Resources */,
+				84D2B7712A9378AC00DE1746 /* WoodPlank2.usdc in Resources */,
 				77C1F9392A735E4000D2FBD2 /* Assets.xcassets in Resources */,
 				774AD35C2A944E2A00A10AC5 /* spellsound.wav in Resources */,
+				84D2B76F2A93781E00DE1746 /* BolaApi.usdc in Resources */,
+				BFB9AEEA2A95956600FC53AC /* shield.usdc in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,11 +296,11 @@
 				77AF6B0A2A8B3832000DF49B /* MenuExperience.rcproject in Sources */,
 				778619072A921D7700BF6E8F /* ResultPage.swift in Sources */,
 				774C4DF52A93528F00A723A7 /* PlayerModel.swift in Sources */,
+				BFD6F28D2A9454320014A2EC /* PlayerMapModel.swift in Sources */,
 				7729332C2A78E974006B42F6 /* SpellViewModel.swift in Sources */,
 				77AC76CE2A85CF9C00564ADF /* ViewStartController.swift in Sources */,
 				77C1F9372A735E3F00D2FBD2 /* Experience.rcproject in Sources */,
 				7767120B2A8483200011362B /* MessageLabel.swift in Sources */,
-				778619092A9244D800BF6E8F /* HealthViewModel.swift in Sources */,
 				776712092A847FBB0011362B /* ViewControllerMessage.swift in Sources */,
 				7786190B2A92555E00BF6E8F /* ShieldSummonButton.swift in Sources */,
 			);
@@ -403,7 +431,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ARcane-MiniChallenge3/Preview Content\"";
-				DEVELOPMENT_TEAM = DYXBWDG6F4;
+				DEVELOPMENT_TEAM = 9B67722SW9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "ARcane-MiniChallenge3/Info.plist";
@@ -439,7 +467,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ARcane-MiniChallenge3/Preview Content\"";
-				DEVELOPMENT_TEAM = DYXBWDG6F4;
+				DEVELOPMENT_TEAM = 9B67722SW9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "ARcane-MiniChallenge3/Info.plist";

@@ -11,9 +11,10 @@ import RealityKit
 import AVFoundation
 import SwiftUI
 import UIKit
+import MultipeerConnectivity
 
 class ViewController: UIViewController {
-    var healthviewModel : HealthViewModel?
+	var devicePeerID: MCPeerID?
     var healthLabel =  UILabel()
     var arView: ARView = {
         let arView = ARView(frame: .zero)
@@ -21,6 +22,9 @@ class ViewController: UIViewController {
         arView.environment.sceneUnderstanding.options.insert([.collision, .physics, .occlusion])
         return arView
     }()
+	
+	var playerMapModel: PlayerMapModel?
+	
     //setup the mutlipeer package
     var shootAudioPlayer : AVAudioPlayer!
     var multipeerSession: MultipeerSession?
@@ -42,8 +46,6 @@ class ViewController: UIViewController {
     private var audioPlayer: AVAudioPlayer?
     
     
-    var playerHealthMapping: [PlayerModel] = []
-    
     //Did Appear
     override func viewDidAppear(_ animated:Bool) {
         super.viewDidAppear(animated)
@@ -51,18 +53,18 @@ class ViewController: UIViewController {
         self.view.addSubview(self.arView)
         self.view.addSubview(self.message)
         
-        //        healthLabel.translatesAutoresizingMaskIntoConstraints = false
-        //        healthLabel.textAlignment = .left
-        //        healthLabel.font = UIFont.systemFont(ofSize: 18)
-        //        healthLabel.text = "Finger X Position"
-        //        healthLabel.numberOfLines = 0
-        //        view.addSubview(healthLabel)
-        //
-        //        NSLayoutConstraint.activate([
-        //            healthLabel.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
-        //            healthLabel.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
-        //
-        //        ])
+                healthLabel.translatesAutoresizingMaskIntoConstraints = false
+                healthLabel.textAlignment = .left
+                healthLabel.font = UIFont.systemFont(ofSize: 18)
+                healthLabel.text = "Finger X Position"
+                healthLabel.numberOfLines = 0
+                view.addSubview(healthLabel)
+        
+                NSLayoutConstraint.activate([
+                    healthLabel.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
+                    healthLabel.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
+        
+                ])
         
         
         NSLayoutConstraint.activate([
@@ -94,21 +96,6 @@ class ViewController: UIViewController {
         message.layer.cornerRadius = 10
         message.ignoreMessages = false
         message.textAlignment = .center
-        
-        setupMultipeerSession()
-        
-        //		let hitbox = HitboxEntity(color: .systemPink, arView: arView)
-        //
-        //		arView.scene.anchors.append(hitbox)
-        //		hitbox.addCollisions()
-        
-        let playerEntity = HitboxEntity(color: .green, arView: arView, healthViewModel: healthviewModel!)
-        playerEntity.position += SIMD3<Float>(0, 1, 0)
-        
-        let anchorEntity = AnchorEntity(.camera)
-        anchorEntity.addChild(playerEntity)
-        
-        arView.scene.anchors.append(anchorEntity)
     }
     
     //setup the AR View
@@ -141,19 +128,18 @@ class ViewController: UIViewController {
             self.sendARSessionIDTo(peers: multipeerSession.connectedPeers)
         }
         multipeerSession = MultipeerSession(serviceName: "multiuser-ar", receivedDataHandler: self.receivedData, peerJoinedHandler: self.peerJoined, peerLeftHandler: self.peerLeft, peerDiscoveredHandler: self.peerDiscovered)
+		devicePeerID = multipeerSession!.myPeerID
         
-        var playerModel = PlayerModel(peerId: multipeerSession!.myPeerID, health: 3, statusLevel: "Game Master")
-        
-        playerHealthMapping.append(playerModel)
+		var playerModel = PlayerModel(peerId: multipeerSession!.myPeerID, health: 3, statusLevel: "Game Master")
+		playerMapModel?.playerHealthMapping.append(playerModel)
     }
     
-    func spellShoot(){
+    func spellShoot() {
         let anchor = ARAnchor(name: "SpellShoot", transform: arView.cameraTransform.matrix)
         arView.session.add(anchor: anchor)
-        
     }
-    
-    func blockDeploy(){
+	
+    func blockDeploy() {
         let anchor = ARAnchor(name: "BlockDeploy", transform: arView.cameraTransform.matrix)
         arView.session.add(anchor: anchor)
     }
@@ -167,9 +153,16 @@ class ViewController: UIViewController {
         
         // Create the square entity
         let squareSize: Float = 0.2 // Adjust the size as needed
-        let squareEntity = ModelEntity(mesh: .generateBox(width: squareSize, height: squareSize, depth: 0.01), materials: [SimpleMaterial(color: UIColor(Color("SecondButtonColor")), isMetallic: true)])
-        squareEntity.collision = CollisionComponent(shapes: [.generateBox(width: squareSize, height: squareSize, depth: 0.01)])
+//        let squareEntity = ModelEntity(mesh: .generateBox(width: squareSize, height: squareSize, depth: 0.01), materials: [SimpleMaterial(color: UIColor(Color("SecondButtonColor")), isMetallic: true)])
+        let squareEntity = try! ModelEntity.loadModel(named: "shield")
+        squareEntity.setScale(SIMD3(x: 0.05, y: 0.05, z: 0.05), relativeTo: squareEntity.self)
+        
+        //Set Rotation of Shield
+//        let rotationQuaternion = simd_quatf(angle: .pi/4, axis: SIMD3(x: .pi, y: 0, z: .pi))
+        
+        squareEntity.collision = CollisionComponent(shapes: [.generateBox(width: 1.15, height: 1.15, depth: 2)])
         squareEntity.physicsBody = PhysicsBodyComponent(massProperties: .default, material: .default, mode: .static)
+        squareEntity.transform.rotation = simd_quatf(angle: .pi/2, axis: SIMD3(x: 1, y: 0, z: 0))
         
         // Create an anchor entity at the transformed position and add the square entity
         let anchorEntity = AnchorEntity(world: transformedTransform)
@@ -188,6 +181,26 @@ class ViewController: UIViewController {
         let anchorEntity = AnchorEntity(anchor: anchor)
         
         let spellEntity = BulletEntity(color: .systemPink, for: anchor)
+//        let spellEntity = try! ModelEntity.loadModel(named: "BolaApi")
+//        spellEntity.physicsBody = PhysicsBodyComponent(
+//            massProperties: .default,
+//            material: .default,
+//            mode: .dynamic
+//        )
+//        spellEntity.physicsMotion = PhysicsMotionComponent(
+//            linearVelocity: SIMD3(
+//                anchor.transform.columns.2.x * -20,
+//                anchor.transform.columns.2.y * -20,
+//                anchor.transform.columns.2.z * -20
+//
+//            )
+//        )
+//        spellEntity.collision = CollisionComponent(
+//            shapes: [.generateBox(width: 0.5, height: 0.5, depth: 0.5)],
+//            mode: .trigger,
+//            filter: .sensor
+//        )
+//        spellEntity.setScale(SIMD3(x: 0.8, y: 0.8, z: 0.8), relativeTo: spellEntity.self)
         
         anchorEntity.addChild(spellEntity)
         arView.scene.addAnchor(anchorEntity)
@@ -250,32 +263,38 @@ extension ViewController: ARSessionDelegate{
             if let anchorName = anchor.name, anchorName == "SpellShoot" {
                 placeObject(named: anchorName, for : anchor)
             }
-            
-            if let anchorName = anchor.name, anchorName == "BlockDeploy"{
-                placeObjectBlock(named: anchorName, for: anchor)
-            }
-            
-            //			if let playerAnchor = anchor as? ARParticipantAnchor {
-            //				print("Success connected with another player")
-            //				let anchorEntity = AnchorEntity(anchor: playerAnchor)
-            //
-            //				let playerEntity = HitboxEntity(color: .green, arView: arView)
-            //
-            //				anchorEntity.addChild(playerEntity)
-            //
-            //				arView.scene.addAnchor(anchorEntity)
-            //			}
-            print("Hasil Game Master : \(playerHealthMapping[0].peerId)")
-            print("Hasil Guest : \(playerHealthMapping[1].peerId)")
-            
+			
+			if let anchorName = anchor.name, anchorName == "BlockDeploy"{
+				placeObjectBlock(named: anchorName, for: anchor)
+			}
+			
+			if let playerAnchor = anchor as? ARParticipantAnchor {
+				print("Success connected with another player")
+				let anchorEntity = AnchorEntity(anchor: playerAnchor)
+				
+				var playerModel = PlayerModel(peerId: MCPeerID(displayName: "X"), health: 0, statusLevel: "")
+				for player in playerMapModel!.playerHealthMapping {
+					if devicePeerID != player.peerId {
+						playerModel = player
+						break
+					}
+				}
+
+				let playerEntity = HitboxEntity(color: .green, playerModel: playerModel)
+
+				anchorEntity.addChild(playerEntity)
+
+				arView.scene.addAnchor(anchorEntity)
+				
+				playerEntity.addCollisions()
+			}
+			
+			
         }
         
         
     }
 }
-
-
-
 
 //MARK: - This is Multipeer Extension start
 extension ViewController{
@@ -313,7 +332,7 @@ extension ViewController{
     func peerDiscovered(_ peer: PeerID) -> Bool {
         guard let multipeerSession = multipeerSession else {return false}
         
-        if multipeerSession.connectedPeers.count > 2{
+        if multipeerSession.connectedPeers.count > 1 {
             print("There's some player wants to join but the limitation of peers, it can't join the battle")
             return false
         }
@@ -329,9 +348,11 @@ extension ViewController{
         message.displayMessage("""
                    \(peer.displayName) is joining
             """, duration: 6.0)
-        
-        var playerModelGuest = PlayerModel(peerId: multipeerSession!.connectedPeers[0], health: 100, statusLevel: "Guest")
-        playerHealthMapping.append(playerModelGuest)
+		
+		if multipeerSession?.connectedPeers.count == 1 {
+			var playerModelGuest = PlayerModel(peerId: multipeerSession!.connectedPeers[0], health: 3, statusLevel: "Guest")
+			playerMapModel?.playerHealthMapping.append(playerModelGuest)
+		}
         
         //provide it the session ID to the new user so they can your track the anchors
         //        if let playerAnchor = arView.session.currentFrame?.anchors.first {
@@ -378,7 +399,6 @@ extension ViewController{
         else{
             //                        print("Deferred sending collaboration to later because there are no peers")
             message.displayMessage("Finding Local Players")
-            print("Game Master Model: \(playerHealthMapping[0].statusLevel)")
             
             
         }
